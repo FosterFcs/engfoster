@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d0e10">
+<title>Foster Engenharia · Tecnologia de engenheiro para quem constrói</title>
+<meta name="description" content="Encontre profissionais de obra verificados, calcule blocos, piso e concreto grátis e use apps de cálculo estrutural, gestão de obra e vistoria com IA. Criado por um engenheiro civil (CREA-SP).">
+<meta name="keywords" content="engenheiro civil, pedreiro, eletricista, orçamento de obra, calculadora de blocos, calculadora de piso, concreto m3, cálculo estrutural, diário de obra, vistoria, laudo">
+<link rel="canonical" href="https://engfoster.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Foster Engenharia">
+<meta property="og:title" content="Foster Engenharia · Tecnologia de engenheiro para quem constrói">
+<meta property="og:description" content="Profissionais verificados, calculadoras grátis de obra e apps de engenharia. Feito por um engenheiro civil.">
+<meta property="og:image" content="https://engfoster.com.br/previa.png">
+<meta property="og:url" content="https://engfoster.com.br/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23d0191f'/%3E%3Ctext x='32' y='46' font-family='Arial' font-weight='700' font-size='40' fill='white' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Foster Engenharia","url":"https://engfoster.com.br/","image":"https://engfoster.com.br/wilson.jpg","telephone":"+55-24-99209-6103","email":"comercial@fosterconstrucoes.com.br","areaServed":"São Paulo e Grande São Paulo","founder":{"@type":"Person","name":"José Wilson Pereira","jobTitle":"Engenheiro Civil"},"sameAs":["https://instagram.com/foster.engenharia","https://facebook.com/fosterconstrucoes"]}
+</script>
+<style>
+:root{
+  --bg:#f4f3f0; --card:#fff; --ink:#131416; --muted:#5d6066; --line:#e3e1dc;
+  --dark:#0d0e10; --dark2:#16181c; --red:#d0191f; --red2:#ff4d4f; --soft:#fdecec; --green:#1f9d55;
+  --f-d:"Barlow Condensed","Arial Narrow",system-ui,sans-serif; --f-b:"Inter",system-ui,sans-serif;
+  --shadow:0 1px 2px rgba(16,17,20,.06),0 10px 28px rgba(16,17,20,.07);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--f-b);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img,svg{max-width:100%}
+.wrap{max-width:1140px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:var(--f-d);letter-spacing:.01em;line-height:1.02;margin:0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font:700 .72rem var(--f-b);letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.eyebrow::before{content:"";width:18px;height:2px;background:currentColor}
+
+/* topo */
+.top{position:sticky;top:0;z-index:40;background:rgba(13,14,16,.86);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid rgba(255,255,255,.07)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:62px}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font:800 1.35rem var(--f-d);letter-spacing:.06em}
+.logo b{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--red2),var(--red));font-size:1.15rem;box-shadow:0 4px 14px rgba(208,25,31,.45)}
+.logo small{display:block;font:600 .58rem var(--f-b);letter-spacing:.18em;color:#9ca0a6;margin-top:-2px}
+.top nav{display:flex;gap:2px}
+.top nav a{color:#c9cbcf;text-decoration:none;font:500 .88rem var(--f-b);padding:8px 12px;border-radius:999px}
+.top nav a:hover{background:rgba(255,255,255,.08);color:#fff}
+.top .cta{background:var(--red);color:#fff;text-decoration:none;font:700 .82rem var(--f-b);padding:10px 14px;border-radius:10px;white-space:nowrap;box-shadow:0 4px 14px rgba(208,25,31,.4)}
+@media (max-width:860px){.top nav{display:none}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:radial-gradient(110% 80% at 80% 0%,#2a1012 0%,#121316 45%,#0a0b0d 100%);color:#fff;padding:44px 0 0}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:30px 30px;mask-image:radial-gradient(ellipse at 60% 10%,#000 25%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 60% 10%,#000 25%,transparent 75%)}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:28px;align-items:center}
+@media (max-width:860px){.hero .wrap{grid-template-columns:minmax(0,1fr)}}
+.selo{display:inline-flex;align-items:center;gap:8px;font:600 .72rem var(--f-b);letter-spacing:.1em;text-transform:uppercase;color:#ffb3b4;background:rgba(208,25,31,.16);border:1px solid rgba(255,77,79,.35);border-radius:999px;padding:6px 12px}
+.selo i{width:7px;height:7px;border-radius:50%;background:var(--red2);box-shadow:0 0 0 4px rgba(255,77,79,.22);animation:pulso 1.8s infinite}
+@keyframes pulso{50%{box-shadow:0 0 0 8px rgba(255,77,79,0)}}
+.hero h1{font-weight:800;font-size:clamp(2.6rem,8.4vw,4.9rem);margin:16px 0 14px;text-transform:uppercase}
+.hero h1 .troca{display:inline-block;color:transparent;background:linear-gradient(90deg,#ff6b6d,var(--red2));-webkit-background-clip:text;background-clip:text;min-width:6ch}
+.hero h1 .troca.sai{animation:sai .35s forwards}.hero h1 .troca.entra{animation:entra .35s forwards}
+@keyframes sai{to{opacity:0;transform:translateY(-12px)}}@keyframes entra{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hero .sub{max-width:54ch;color:#c3c6cb;margin:0 0 22px;font-size:1.04rem}
+.acoes{display:flex;flex-wrap:wrap;gap:10px}
+.bt{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 .95rem var(--f-b);text-decoration:none;border-radius:12px;padding:14px 20px;border:0;cursor:pointer;transition:transform .15s,filter .15s}
+.bt:hover{transform:translateY(-2px);filter:brightness(1.07)}
+.bt.pri{background:linear-gradient(135deg,var(--red2),var(--red));color:#fff;box-shadow:0 8px 22px rgba(208,25,31,.4)}
+.bt.sec{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.18)}
+.bt.zapb{background:#1faa55;color:#fff;box-shadow:0 8px 22px rgba(31,170,85,.3)}
+@media (max-width:560px){.acoes .bt{flex:1 1 100%}}
+.provas{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+.provas span{font-size:.8rem;color:#d4d6da;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:6px 11px}
+.provas span::before{content:"✓ ";color:#4ade80;font-weight:800}
+.foto{position:relative;justify-self:center;width:min(300px,78vw)}
+@media (max-width:860px){.foto{width:min(220px,60vw);margin-top:6px}.foto .crea{left:-8px;bottom:14px}.foto .flut{right:-8px}}
+.foto img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:24px;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 30px 60px rgba(0,0,0,.5)}
+.foto .crea{position:absolute;left:-14px;bottom:22px;background:#fff;color:var(--ink);border-radius:14px;padding:10px 14px;box-shadow:0 14px 30px rgba(0,0,0,.35);font-size:.78rem;line-height:1.3}
+.foto .crea b{display:block;font:800 1.05rem var(--f-d);letter-spacing:.02em}
+.foto .flut{position:absolute;right:-12px;top:20px;background:var(--red);color:#fff;border-radius:12px;padding:8px 12px;font:700 .78rem var(--f-b);box-shadow:0 12px 26px rgba(208,25,31,.45);transform:rotate(3deg)}
+.figuras{position:relative;z-index:1;max-width:760px;margin:34px auto 0;padding:0 8px}
+.figuras svg{display:block;width:100%;height:auto}
+.faixa{position:relative;z-index:1;background:var(--red);color:#fff;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,.2)}
+.faixa div{display:inline-flex;gap:34px;padding:12px 0;animation:corre 32s linear infinite;font:800 1.05rem var(--f-d);letter-spacing:.12em;text-transform:uppercase}
+.faixa span::after{content:"✦";margin-left:34px;opacity:.6}
+@keyframes corre{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.faixa div,.selo i{animation:none}}
+
+/* seções */
+section.bloco{padding:56px 0 0}
+.cab{display:flex;flex-direction:column;gap:8px;margin:0 0 22px}
+.cab h2{font-weight:800;font-size:clamp(2rem,6vw,2.9rem);text-transform:uppercase}
+.cab p{margin:0;color:var(--muted);max-width:60ch}
+
+/* o que você precisa */
+.intencoes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:860px){.intencoes{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.int{position:relative;display:flex;flex-direction:column;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;text-decoration:none;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s,border-color .2s;min-height:150px}
+.int:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 18px 40px rgba(208,25,31,.14)}
+.int .em{font-size:2rem;line-height:1}
+.int b{font:800 1.35rem/1.05 var(--f-d);text-transform:uppercase;letter-spacing:.01em}
+.int span{font-size:.86rem;color:var(--muted)}
+.int i{margin-top:auto;font-style:normal;font:700 .8rem var(--f-b);color:var(--red)}
+.int.destaque{background:linear-gradient(150deg,#1a0b0c,#0d0e10);color:#fff;border-color:#2a1416}
+.int.destaque span{color:#c3c6cb}.int.destaque i{color:#ff8a8c}
+.int .novo{position:absolute;top:14px;right:14px;font:800 .62rem var(--f-b);letter-spacing:.1em;background:var(--red);color:#fff;border-radius:999px;padding:4px 8px}
+@media (max-width:560px){.int{padding:14px;min-height:140px}.int b{font-size:1.15rem}.int span{font-size:.8rem}}
+
+/* calculadoras */
+.calc{background:var(--dark2);color:#fff;border-radius:24px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+.calc-abas{display:flex;overflow-x:auto;border-bottom:1px solid rgba(255,255,255,.08)}
+.calc-abas button{flex:1;min-width:max-content;background:none;border:0;color:#9ca0a6;font:700 .9rem var(--f-b);padding:16px 18px;cursor:pointer;border-bottom:3px solid transparent}
+.calc-abas button.ativo{color:#fff;border-bottom-color:var(--red2);background:rgba(255,255,255,.03)}
+.calc-corpo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0}
+@media (max-width:760px){.calc-corpo{grid-template-columns:minmax(0,1fr)}}
+.calc-form{padding:22px;display:grid;gap:12px;align-content:start}
+.calc-form[hidden]{display:none}
+.calc-form label{display:grid;gap:6px;font:600 .78rem var(--f-b);letter-spacing:.06em;text-transform:uppercase;color:#b9bcc1}
+.calc-form input,.calc-form select{width:100%;font:500 1rem var(--f-b);color:#fff;background:#0f1013;border:1px solid #2b2e33;border-radius:10px;padding:12px}
+.calc-form input:focus,.calc-form select:focus{outline:none;border-color:var(--red2);box-shadow:0 0 0 3px rgba(255,77,79,.2)}
+.linha2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.calc-res{background:linear-gradient(160deg,#2a0f11,#140a0b);padding:22px;display:flex;flex-direction:column;gap:12px;border-left:1px solid rgba(255,255,255,.06)}
+.calc-res .grande{font:800 clamp(2.6rem,9vw,3.6rem)/1 var(--f-d);color:#fff}
+.calc-res .grande small{font-size:.45em;color:#ffb3b4;margin-left:6px;letter-spacing:.04em}
+.calc-res ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:.92rem;color:#e2e3e5}
+.calc-res ul li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed rgba(255,255,255,.1);padding-bottom:6px}
+.calc-res ul b{color:#fff;font-variant-numeric:tabular-nums}
+.calc-res .aviso{font-size:.76rem;color:#9ca0a6}
+.calc-res .acoes .bt{flex:1 1 200px;padding:13px 14px;font-size:.88rem}
+
+/* produtos */
+.prods{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:16px}
+.prod{position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+.prod:hover{transform:translateY(-4px);box-shadow:0 22px 46px rgba(16,17,20,.13)}
+.prod .tela{position:relative;height:150px;display:flex;align-items:flex-end;justify-content:center;padding:18px 18px 0;overflow:hidden}
+.prod .tela::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:18px 18px}
+.mock{position:relative;z-index:1;width:72%;height:118px;background:#fff;border-radius:14px 14px 0 0;box-shadow:0 -6px 30px rgba(0,0,0,.28);padding:12px;display:grid;gap:7px;align-content:start}
+.mock i{display:block;height:8px;border-radius:4px;background:#e5e7eb}
+.mock i.c{background:var(--cor);width:45%;height:10px}
+.mock i.m{width:80%}.mock i.p{width:60%}
+.mock .lin{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.mock .lin i{height:26px;border-radius:6px;background:#f3f4f6}
+.mock .lin i:first-child{background:color-mix(in srgb,var(--cor) 22%,#fff)}
+.prod .ico{position:absolute;z-index:2;left:18px;top:16px;width:50px;height:50px;border-radius:14px;display:grid;place-items:center;background:#fff;box-shadow:0 8px 18px rgba(0,0,0,.25);font-size:1.6rem}
+.prod .badge{position:absolute;z-index:2;right:16px;top:16px;font:800 .64rem var(--f-b);letter-spacing:.1em;text-transform:uppercase;background:#fff;color:var(--ink);border-radius:999px;padding:5px 9px}
+.prod .badge.r{background:var(--red);color:#fff}.prod .badge.g{background:#dcfce7;color:#15803d}
+.prod .txt{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.prod .tag{font:700 .68rem var(--f-b);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.prod h3{font-weight:800;font-size:1.8rem;text-transform:uppercase}
+.prod p{margin:0;font-size:.93rem}
+.prod ul{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:4px 0 0;padding:0}
+.prod ul li{font-size:.76rem;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 9px}
+.prod .pe{display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:12px}
+.prod .preco{font:700 .8rem var(--f-b);color:var(--red);background:var(--soft);border-radius:999px;padding:5px 11px}
+.prod .pe .bt{margin-left:auto;padding:11px 16px;font-size:.88rem}
+.prod .pe .bt::after{content:"→"}
+
+/* números / confiança */
+.conf{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:760px){.conf{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.conf div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.conf b{display:block;font:800 2.2rem/1 var(--f-d);color:var(--red)}
+.conf span{font-size:.84rem;color:var(--muted)}
+
+/* quem */
+.quem{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:0;background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+@media (max-width:760px){.quem{grid-template-columns:minmax(0,1fr)}}
+.quem img{width:100%;height:100%;min-height:300px;object-fit:cover;object-position:50% 20%;display:block}
+.quem .t{padding:26px;display:flex;flex-direction:column;gap:12px}
+.quem h2{font-weight:800;font-size:2.3rem;text-transform:uppercase}
+.quem p{margin:0;color:var(--muted)}
+.quem .ass{font:800 1.4rem var(--f-d);color:var(--ink);letter-spacing:.02em}
+.quem .ass small{display:block;font:500 .8rem var(--f-b);color:var(--muted)}
+
+/* chamada final */
+.final{margin:56px 0 0;background:linear-gradient(135deg,var(--red2),var(--red) 60%,#8f0f13);color:#fff;border-radius:26px;padding:30px 24px;display:grid;grid-template-columns:minmax(0,1.3fr) auto;gap:18px;align-items:center;box-shadow:0 26px 60px rgba(208,25,31,.3);position:relative;overflow:hidden}
+.final::after{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.1)}
+@media (max-width:760px){.final{grid-template-columns:minmax(0,1fr)}}
+.final h2{font-weight:800;font-size:clamp(2rem,6vw,2.8rem);text-transform:uppercase}
+.final p{margin:8px 0 0;color:#ffe1e1}
+.final .acoes{position:relative;z-index:1}
+.final .bt.br{background:#fff;color:var(--red)}
+.final .bt.sec{border-color:rgba(255,255,255,.5)}
+
+footer{margin:48px 0 0;background:var(--dark);color:#9ca0a6;font-size:.84rem}
+footer .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding:30px 16px 100px}
+@media (max-width:760px){footer .wrap{grid-template-columns:minmax(0,1fr)}}
+footer b{display:block;color:#fff;font:800 1.1rem var(--f-d);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+footer a{display:block;color:#c9cbcf;text-decoration:none;padding:3px 0}
+footer a:hover{color:#fff}
+
+.zap{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:50;display:flex;align-items:center;gap:8px;background:#1faa55;color:#fff;text-decoration:none;font:700 .92rem var(--f-b);padding:13px 18px 13px 14px;border-radius:999px;box-shadow:0 10px 26px rgba(31,170,85,.45)}
+.zap svg{width:22px;height:22px}
+@media (prefers-reduced-motion:no-preference){.rev{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}.rev.vis{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="./"><b>F</b><span>FOSTER<small>ENGENHARIA</small></span></a>
+    <nav aria-label="Seções"><a href="#precisa">O que você precisa</a><a href="#calculadoras">Calculadoras grátis</a><a href="#produtos">Aplicativos</a><a href="#quem">Quem faz</a></nav>
+    <a class="cta" href="https://central.engfoster.com.br/">Pedir orçamento</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="selo"><i></i>Engenharia civil + tecnologia</span>
+      <h1>Tecnologia de engenheiro para quem <span class="troca" id="troca">constrói</span></h1>
+      <p class="sub">Profissionais de obra conferidos, calculadoras grátis e aplicativos de cálculo estrutural, gestão de obra e vistoria com IA — tudo feito por um engenheiro civil que conhece o canteiro.</p>
+      <div class="acoes">
+        <a class="bt pri" href="https://central.engfoster.com.br/">🏗️ Preciso de um profissional</a>
+        <a class="bt sec" href="#calculadoras">🧮 Calcular minha obra grátis</a>
+      </div>
+      <div class="provas"><span>CREA-SP 5071894914</span><span>Normas ABNT na base</span><span>Funciona no celular</span><span>Sem instalar nada</span></div>
+    </div>
+    <div class="foto">
+      <img src="wilson.jpg" width="480" height="600" alt="Wilson Foster, engenheiro civil, de capacete branco">
+      <div class="flut">7 apps no ar 🚀</div>
+      <div class="crea"><b>Eng. Wilson Foster</b>Engenheiro civil · CREA-SP</div>
+    </div>
+  </div>
+  <div class="figuras" aria-hidden="true"><svg viewBox="0 0 366 132" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração de profissionais da construção: engenheiro, arquiteto, pedreiro, eletricista, pintor e encanador"><g opacity=".22" fill="#93c5fd"><rect x="0" y="66" width="26" height="60"/><rect x="30" y="41" width="22" height="85"/><rect x="56" y="76" width="30" height="50"/><rect x="92" y="26" width="24" height="100"/><rect x="120" y="56" width="28" height="70"/><rect x="152" y="34" width="20" height="92"/><rect x="176" y="71" width="32" height="55"/><rect x="212" y="16" width="26" height="110"/><rect x="242" y="51" width="22" height="75"/><rect x="268" y="31" width="28" height="95"/><rect x="300" y="66" width="24" height="60"/><rect x="328" y="38" width="32" height="88"/></g><g stroke="#93c5fd" stroke-width="2" opacity=".28" fill="none"><line x1="250" y1="126" x2="250" y2="6"/><line x1="200" y1="10" x2="345" y2="10"/><line x1="250" y1="10" x2="335" y2="40"/><line x1="320" y1="10" x2="320" y2="34"/><rect x="314" y="34" width="12" height="8" fill="#93c5fd"/></g><rect x="0" y="125" width="366" height="7" fill="#0b1223" opacity=".6"/><g transform="translate(38,0)"><rect x="-11" y="98" width="9" height="26" rx="3" fill="#334155"/><rect x="2" y="98" width="9" height="26" rx="3" fill="#334155"/><rect x="-13" y="121" width="12" height="5" rx="2" fill="#1f2328"/><rect x="1" y="121" width="12" height="5" rx="2" fill="#1f2328"/><path d="M-17 66 Q-17 58 -9 57 L9 57 Q17 58 17 66 L16 100 L-16 100 Z" fill="#1e3a8a"/><rect x="-24" y="60" width="8" height="30" rx="4" fill="#1e3a8a"/><rect x="16" y="60" width="8" height="30" rx="4" fill="#1e3a8a"/><circle cx="-20" cy="91" r="4.5" fill="#f1c27d"/><circle cx="20" cy="91" r="4.5" fill="#f1c27d"/><rect x="-16" y="80" width="32" height="4" fill="#ffffff" opacity=".55"/><rect x="-4" y="50" width="8" height="8" fill="#f1c27d"/><circle cx="0" cy="42" r="11" fill="#f1c27d"/><circle cx="-4" cy="43" r="1.4" fill="#1f2328"/><circle cx="4" cy="43" r="1.4" fill="#1f2328"/><path d="M-3.5 47 Q0 49.5 3.5 47" stroke="#1f2328" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M-13 39 Q-13 25 0 25 Q13 25 13 39 Z" fill="#ffffff"/><rect x="-15" y="37" width="30" height="4" rx="2" fill="#ffffff"/><rect x="-2" y="25" width="4" height="12" fill="#000" opacity=".12"/><rect x="20" y="70" width="8" height="34" rx="3" fill="#dbeafe" transform="rotate(-18 24 87)"/><line x1="18" y1="76" x2="30" y2="72" stroke="#1d4ed8" stroke-width="1.5" transform="rotate(-18 24 87)"/></g><g transform="translate(96,0)"><rect x="-11" y="98" width="9" height="26" rx="3" fill="#1f2937"/><rect x="2" y="98" width="9" height="26" rx="3" fill="#1f2937"/><rect x="-13" y="121" width="12" height="5" rx="2" fill="#1f2328"/><rect x="1" y="121" width="12" height="5" rx="2" fill="#1f2328"/><path d="M-17 66 Q-17 58 -9 57 L9 57 Q17 58 17 66 L16 100 L-16 100 Z" fill="#0f766e"/><rect x="-24" y="60" width="8" height="30" rx="4" fill="#0f766e"/><rect x="16" y="60" width="8" height="30" rx="4" fill="#0f766e"/><circle cx="-20" cy="91" r="4.5" fill="#c68642"/><circle cx="20" cy="91" r="4.5" fill="#c68642"/><rect x="-16" y="80" width="32" height="4" fill="#ffffff" opacity=".55"/><rect x="-4" y="50" width="8" height="8" fill="#c68642"/><circle cx="0" cy="42" r="11" fill="#c68642"/><circle cx="-4" cy="43" r="1.4" fill="#1f2328"/><circle cx="4" cy="43" r="1.4" fill="#1f2328"/><path d="M-3.5 47 Q0 49.5 3.5 47" stroke="#1f2328" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M-12 38 Q-12 27 0 27 Q12 27 12 38 Z" fill="#2563eb"/><rect x="0" y="35" width="17" height="4" rx="2" fill="#2563eb"/><path d="M22 72 L22 102 L44 102 Z" fill="none" stroke="#fde68a" stroke-width="3" stroke-linejoin="round"/></g><g transform="translate(154,0)"><rect x="-11" y="98" width="9" height="26" rx="3" fill="#374151"/><rect x="2" y="98" width="9" height="26" rx="3" fill="#374151"/><rect x="-13" y="121" width="12" height="5" rx="2" fill="#1f2328"/><rect x="1" y="121" width="12" height="5" rx="2" fill="#1f2328"/><path d="M-17 66 Q-17 58 -9 57 L9 57 Q17 58 17 66 L16 100 L-16 100 Z" fill="#9a3412"/><rect x="-24" y="60" width="8" height="30" rx="4" fill="#9a3412"/><rect x="16" y="60" width="8" height="30" rx="4" fill="#9a3412"/><circle cx="-20" cy="91" r="4.5" fill="#8d5524"/><circle cx="20" cy="91" r="4.5" fill="#8d5524"/><rect x="-16" y="80" width="32" height="4" fill="#ffffff" opacity=".55"/><rect x="-4" y="50" width="8" height="8" fill="#8d5524"/><circle cx="0" cy="42" r="11" fill="#8d5524"/><circle cx="-4" cy="43" r="1.4" fill="#1f2328"/><circle cx="4" cy="43" r="1.4" fill="#1f2328"/><path d="M-3.5 47 Q0 49.5 3.5 47" stroke="#1f2328" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M-13 39 Q-13 25 0 25 Q13 25 13 39 Z" fill="#f97316"/><rect x="-15" y="37" width="30" height="4" rx="2" fill="#f97316"/><rect x="-2" y="25" width="4" height="12" fill="#000" opacity=".12"/><rect x="19" y="80" width="3" height="10" fill="#7c4a1e"/><path d="M14 91 L28 91 L21 106 Z" fill="#cbd5e1"/></g><g transform="translate(212,0)"><rect x="-11" y="98" width="9" height="26" rx="3" fill="#1e293b"/><rect x="2" y="98" width="9" height="26" rx="3" fill="#1e293b"/><rect x="-13" y="121" width="12" height="5" rx="2" fill="#1f2328"/><rect x="1" y="121" width="12" height="5" rx="2" fill="#1f2328"/><path d="M-17 66 Q-17 58 -9 57 L9 57 Q17 58 17 66 L16 100 L-16 100 Z" fill="#1d4ed8"/><rect x="-24" y="60" width="8" height="30" rx="4" fill="#1d4ed8"/><rect x="16" y="60" width="8" height="30" rx="4" fill="#1d4ed8"/><circle cx="-20" cy="91" r="4.5" fill="#e0ac69"/><circle cx="20" cy="91" r="4.5" fill="#e0ac69"/><rect x="-16" y="80" width="32" height="4" fill="#ffffff" opacity=".55"/><rect x="-4" y="50" width="8" height="8" fill="#e0ac69"/><circle cx="0" cy="42" r="11" fill="#e0ac69"/><circle cx="-4" cy="43" r="1.4" fill="#1f2328"/><circle cx="4" cy="43" r="1.4" fill="#1f2328"/><path d="M-3.5 47 Q0 49.5 3.5 47" stroke="#1f2328" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M-13 39 Q-13 25 0 25 Q13 25 13 39 Z" fill="#facc15"/><rect x="-15" y="37" width="30" height="4" rx="2" fill="#facc15"/><rect x="-2" y="25" width="4" height="12" fill="#000" opacity=".12"/><path d="M28 66 L20 84 L27 84 L22 100 L35 78 L28 78 L33 66 Z" fill="#facc15" stroke="#a16207" stroke-width="1"/></g><g transform="translate(270,0)"><rect x="-11" y="98" width="9" height="26" rx="3" fill="#94a3b8"/><rect x="2" y="98" width="9" height="26" rx="3" fill="#94a3b8"/><rect x="-13" y="121" width="12" height="5" rx="2" fill="#1f2328"/><rect x="1" y="121" width="12" height="5" rx="2" fill="#1f2328"/><path d="M-17 66 Q-17 58 -9 57 L9 57 Q17 58 17 66 L16 100 L-16 100 Z" fill="#f8fafc"/><rect x="-24" y="60" width="8" height="30" rx="4" fill="#f8fafc"/><rect x="16" y="60" width="8" height="30" rx="4" fill="#f8fafc"/><circle cx="-20" cy="91" r="4.5" fill="#a0663a"/><circle cx="20" cy="91" r="4.5" fill="#a0663a"/><rect x="-16" y="80" width="32" height="4" fill="#ffffff" opacity=".55"/><rect x="-4" y="50" width="8" height="8" fill="#a0663a"/><circle cx="0" cy="42" r="11" fill="#a0663a"/><circle cx="-4" cy="43" r="1.4" fill="#1f2328"/><circle cx="4" cy="43" r="1.4" fill="#1f2328"/><path d="M-3.5 47 Q0 49.5 3.5 47" stroke="#1f2328" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M-12 38 Q-12 27 0 27 Q12 27 12 38 Z" fill="#e5e7eb"/><rect x="0" y="35" width="17" height="4" rx="2" fill="#e5e7eb"/><rect x="19" y="62" width="3" height="30" fill="#78350f"/><rect x="14" y="55" width="20" height="9" rx="3" fill="#ef4444"/><path d="M22 62 L30 62" stroke="#64748b" stroke-width="2"/></g><g transform="translate(328,0)"><rect x="-11" y="98" width="9" height="26" rx="3" fill="#1f2937"/><rect x="2" y="98" width="9" height="26" rx="3" fill="#1f2937"/><rect x="-13" y="121" width="12" height="5" rx="2" fill="#1f2328"/><rect x="1" y="121" width="12" height="5" rx="2" fill="#1f2328"/><path d="M-17 66 Q-17 58 -9 57 L9 57 Q17 58 17 66 L16 100 L-16 100 Z" fill="#15803d"/><rect x="-24" y="60" width="8" height="30" rx="4" fill="#15803d"/><rect x="16" y="60" width="8" height="30" rx="4" fill="#15803d"/><circle cx="-20" cy="91" r="4.5" fill="#f5d0a9"/><circle cx="20" cy="91" r="4.5" fill="#f5d0a9"/><rect x="-16" y="80" width="32" height="4" fill="#ffffff" opacity=".55"/><rect x="-4" y="50" width="8" height="8" fill="#f5d0a9"/><circle cx="0" cy="42" r="11" fill="#f5d0a9"/><circle cx="-4" cy="43" r="1.4" fill="#1f2328"/><circle cx="4" cy="43" r="1.4" fill="#1f2328"/><path d="M-3.5 47 Q0 49.5 3.5 47" stroke="#1f2328" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M-13 39 Q-13 25 0 25 Q13 25 13 39 Z" fill="#22c55e"/><rect x="-15" y="37" width="30" height="4" rx="2" fill="#22c55e"/><rect x="-2" y="25" width="4" height="12" fill="#000" opacity=".12"/><path d="M20 70 L30 100" stroke="#94a3b8" stroke-width="5" stroke-linecap="round"/><circle cx="19" cy="68" r="6" fill="none" stroke="#94a3b8" stroke-width="4"/></g></svg></div>
+  <div class="faixa" aria-hidden="true"><div>
+    <span>Foster Central</span><span>Foster Calc</span><span>Foster Obras</span><span>VistorIA</span><span>LocaObra</span><span>Minha Casa Segura</span><span>Academia Foster</span>
+    <span>Foster Central</span><span>Foster Calc</span><span>Foster Obras</span><span>VistorIA</span><span>LocaObra</span><span>Minha Casa Segura</span><span>Academia Foster</span>
+  </div></div>
+</section>
+
+<main class="wrap">
+
+<section class="bloco" id="precisa">
+  <div class="cab rev"><span class="eyebrow">Comece por aqui</span><h2>O que você precisa hoje?</h2><p>Escolha e vá direto para a ferramenta certa.</p></div>
+  <div class="intencoes">
+    <a class="int destaque rev" href="https://central.engfoster.com.br/"><span class="novo">NOVO</span><span class="em">👷</span><b>Contratar um profissional</b><span>Pedreiro, eletricista, engenheiro… no máximo 3 te chamam.</span><i>Pedir orçamento grátis →</i></a>
+    <a class="int rev" href="#calculadoras"><span class="em">🧮</span><b>Calcular material</b><span>Blocos, piso e concreto em segundos.</span><i>Usar calculadora →</i></a>
+    <a class="int rev" href="https://fostercalc.com.br" target="_blank" rel="noopener"><span class="em">📐</span><b>Calcular estrutura</b><span>Lajes, vigas e pilares pela NBR 6118.</span><i>Abrir Foster Calc →</i></a>
+    <a class="int rev" href="https://fosterfcs.github.io/DIARIO-DE-OBRA/" target="_blank" rel="noopener"><span class="em">📋</span><b>Organizar minha obra</b><span>Diário de obra, equipe, financeiro e estoque.</span><i>Abrir Foster Obras →</i></a>
+    <a class="int rev" href="https://fosterfcs.github.io/vistoria/" target="_blank" rel="noopener"><span class="em">📸</span><b>Vistoriar um imóvel</b><span>Foto da trinca vira diagnóstico e laudo em PDF.</span><i>Abrir VistorIA →</i></a>
+    <a class="int rev" href="https://fosterfcs.github.io/minha-casa-segura/" target="_blank" rel="noopener"><span class="em">🏠</span><b>Minha casa tem risco?</b><span>Teste grátis com orientação de engenharia.</span><i>Fazer o teste →</i></a>
+  </div>
+</section>
+
+<section class="bloco" id="calculadoras">
+  <div class="cab rev"><span class="eyebrow">Grátis · sem cadastro</span><h2>Calcule sua obra agora</h2><p>Estimativas rápidas para você não comprar material de menos nem de mais. Mande o resultado no WhatsApp ou peça o profissional com tudo já preenchido.</p></div>
+  <div class="calc rev">
+    <div class="calc-abas" role="tablist">
+      <button class="ativo" data-calc="blocos" role="tab">🧱 Blocos da parede</button>
+      <button data-calc="piso" role="tab">🟫 Piso e revestimento</button>
+      <button data-calc="concreto" role="tab">🪨 Concreto</button>
+    </div>
+    <div class="calc-corpo">
+      <div class="calc-form" id="formBlocos">
+        <div class="linha2"><label>Comprimento (m)<input type="number" id="bComp" value="5" min="0" step="0.1" inputmode="decimal"></label><label>Altura (m)<input type="number" id="bAlt" value="2.8" min="0" step="0.1" inputmode="decimal"></label></div>
+        <label>Portas e janelas a descontar (m²)<input type="number" id="bAbert" value="1.6" min="0" step="0.1" inputmode="decimal"></label>
+        <label>Tipo de bloco<select id="bTipo">
+          <option value="25|bloco cerâmico 9×19×19">Bloco cerâmico 9×19×19 cm</option>
+          <option value="16.7|bloco cerâmico 14×19×29" selected>Bloco cerâmico 14×19×29 cm</option>
+          <option value="12.5|bloco de concreto 14×19×39">Bloco de concreto 14×19×39 cm</option>
+          <option value="80|tijolo maciço 5×10×20">Tijolo maciço 5×10×20 cm (meia vez)</option>
+        </select></label>
+        <label>Perda / quebra (%)<input type="number" id="bPerda" value="10" min="0" max="30" step="1" inputmode="numeric"></label>
+      </div>
+      <div class="calc-form" id="formPiso" hidden>
+        <div class="linha2"><label>Comprimento (m)<input type="number" id="pComp" value="4" min="0" step="0.1" inputmode="decimal"></label><label>Largura (m)<input type="number" id="pLarg" value="3.5" min="0" step="0.1" inputmode="decimal"></label></div>
+        <div class="linha2"><label>m² por caixa<input type="number" id="pCaixa" value="2.2" min="0.1" step="0.01" inputmode="decimal"></label><label>Paginação<select id="pPerda"><option value="10">Reta (10%)</option><option value="15">Diagonal (15%)</option></select></label></div>
+        <label>Argamassa colante<select id="pArg"><option value="5">Colagem simples (~5 kg/m²)</option><option value="8">Dupla colagem, peça grande (~8 kg/m²)</option></select></label>
+      </div>
+      <div class="calc-form" id="formConcreto" hidden>
+        <label>Peça<select id="cTipo"><option value="laje">Laje / contrapiso</option><option value="sapata">Sapatas (várias iguais)</option><option value="viga">Vigas / baldrame</option></select></label>
+        <div class="linha2"><label>Comprimento (m)<input type="number" id="cComp" value="5" min="0" step="0.1" inputmode="decimal"></label><label>Largura (m)<input type="number" id="cLarg" value="4" min="0" step="0.05" inputmode="decimal"></label></div>
+        <div class="linha2"><label>Altura / espessura (cm)<input type="number" id="cAlt" value="10" min="0" step="1" inputmode="decimal"></label><label>Quantidade de peças<input type="number" id="cQtd" value="1" min="1" step="1" inputmode="numeric"></label></div>
+      </div>
+      <div class="calc-res" aria-live="polite">
+        <div class="grande" id="resGrande">0</div>
+        <ul id="resLista"></ul>
+        <div class="aviso" id="resAviso">Estimativa de referência. Para compra final e para estrutura, confirme com o profissional responsável.</div>
+        <div class="acoes">
+          <a class="bt pri" id="resPedir" href="https://central.engfoster.com.br/">👷 Pedir profissional com esses dados</a>
+          <a class="bt zapb" id="resZap" href="#" target="_blank" rel="noopener">💬 Mandar no WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bloco" id="produtos">
+  <div class="cab rev"><span class="eyebrow">Ecossistema Foster</span><h2>Aplicativos para cada etapa da obra</h2><p>Do primeiro orçamento ao laudo final. Todos funcionam no navegador e no celular.</p></div>
+  <div class="prods">
+    <article class="prod rev" style="--cor:#d0191f">
+      <div class="tela" style="background:linear-gradient(135deg,#ff4d4f,#9a0f13)"><span class="ico">👷</span><span class="badge">Novo</span><div class="mock"><i class="c"></i><i class="m"></i><div class="lin"><i></i><i></i><i></i></div><i class="p"></i></div></div>
+      <div class="txt"><span class="tag">Serviços de construção</span><h3>Foster Central</h3><p>Cliente pede orçamento grátis e no máximo 3 profissionais conferidos entram em contato. Orçamento aceito com um clique.</p>
+        <ul><li>CNPJ conferido</li><li>Fotos de obras</li><li>Avaliação real</li><li>Orçamento com aceite</li></ul>
+        <div class="pe"><span class="preco">Grátis para clientes</span><a class="bt pri" href="https://central.engfoster.com.br/">Acessar</a></div></div>
+    </article>
+    <article class="prod rev" style="--cor:#1d4ed8">
+      <div class="tela" style="background:linear-gradient(135deg,#3b82f6,#1e3a8a)"><span class="ico">📐</span><span class="badge g">7 dias grátis</span><div class="mock"><i class="c"></i><div class="lin"><i></i><i></i><i></i></div><i class="m"></i><i class="p"></i></div></div>
+      <div class="txt"><span class="tag">Cálculo estrutural · NBR 6118</span><h3>Foster Calc</h3><p>Você projeta, o Foster Calc calcula e mostra cada passo, com memória em PDF e desenho em DXF.</p>
+        <ul><li>Lajes e vigas</li><li>Pilares e escadas</li><li>Sapatas e muros</li><li>Calculadoras grátis</li></ul>
+        <div class="pe"><span class="preco">A partir de R$ 9,90/mês</span><a class="bt pri" href="https://fostercalc.com.br" target="_blank" rel="noopener">Acessar</a></div></div>
+    </article>
+    <article class="prod rev" style="--cor:#0f766e">
+      <div class="tela" style="background:linear-gradient(135deg,#14b8a6,#134e4a)"><span class="ico">📋</span><span class="badge">App Android</span><div class="mock"><i class="c"></i><i class="m"></i><i class="p"></i><div class="lin"><i></i><i></i><i></i></div></div></div>
+      <div class="txt"><span class="tag">Gestão de obras</span><h3>Foster Obras</h3><p>A obra organizada do canteiro ao escritório, sincronizada entre celular e computador.</p>
+        <ul><li>Diário de obra (RDO)</li><li>Financeiro</li><li>Equipe e presença</li><li>Almoxarifado</li></ul>
+        <div class="pe"><a class="bt pri" href="https://fosterfcs.github.io/DIARIO-DE-OBRA/" target="_blank" rel="noopener">Acessar</a></div></div>
+    </article>
+    <article class="prod rev" style="--cor:#7c3aed">
+      <div class="tela" style="background:linear-gradient(135deg,#a855f7,#4c1d95)"><span class="ico">📸</span><span class="badge g">Beta grátis</span><div class="mock"><div class="lin"><i></i><i></i><i></i></div><i class="c"></i><i class="m"></i><i class="p"></i></div></div>
+      <div class="txt"><span class="tag">Vistoria e patologias · IA</span><h3>VistorIA</h3><p>Vistoria por ambiente e diagnóstico preliminar de trincas, infiltração e corrosão a partir de fotos.</p>
+        <ul><li>Normas ABNT</li><li>Locação e reforma</li><li>Laudo em PDF</li></ul>
+        <div class="pe"><span class="preco">Grátis no beta</span><a class="bt pri" href="https://fosterfcs.github.io/vistoria/" target="_blank" rel="noopener">Acessar</a></div></div>
+    </article>
+    <article class="prod rev" style="--cor:#374151">
+      <div class="tela" style="background:linear-gradient(135deg,#4b5563,#111827)"><span class="ico">🔧</span><span class="badge g">7 dias grátis</span><div class="mock"><i class="c"></i><div class="lin"><i></i><i></i><i></i></div><i class="m"></i></div></div>
+      <div class="txt"><span class="tag">Locação de ferramentas</span><h3>LocaObra</h3><p>Controle de locação de ferramentas e equipamentos, com contrato, recibo e lembretes no WhatsApp.</p>
+        <ul><li>Disponibilidade</li><li>Contrato em PDF</li><li>Multas e atrasos</li></ul>
+        <div class="pe"><a class="bt pri" href="https://fosterfcs.github.io/Locaobra/" target="_blank" rel="noopener">Acessar</a></div></div>
+    </article>
+    <article class="prod rev" style="--cor:#15803d">
+      <div class="tela" style="background:linear-gradient(135deg,#22c55e,#14532d)"><span class="ico">🏠</span><span class="badge g">Grátis</span><div class="mock"><i class="c"></i><i class="m"></i><i class="p"></i><i class="m"></i></div></div>
+      <div class="txt"><span class="tag">Para a população</span><h3>Minha Casa Segura</h3><p>Avaliação gratuita do risco da sua moradia: trincas, muros, encostas e alagamentos.</p>
+        <ul><li>Funciona sem internet</li><li>Orientação de engenharia</li></ul>
+        <div class="pe"><span class="preco">Grátis</span><a class="bt pri" href="https://fosterfcs.github.io/minha-casa-segura/" target="_blank" rel="noopener">Acessar</a></div></div>
+    </article>
+    <article class="prod rev" style="--cor:#b45309">
+      <div class="tela" style="background:linear-gradient(135deg,#f59e0b,#78350f)"><span class="ico">🎓</span><span class="badge">Estudantes</span><div class="mock"><i class="c"></i><i class="m"></i><div class="lin"><i></i><i></i><i></i></div></div></div>
+      <div class="txt"><span class="tag">Engenharia civil descomplicada</span><h3>Academia Foster</h3><p>Disciplinas de engenharia civil explicadas de um jeito fácil, com certificado de horas complementares.</p>
+        <ul><li>Resistência dos Materiais</li><li>Certificado de 4 h</li></ul>
+        <div class="pe"><span class="preco">Estudo grátis</span><a class="bt pri" href="https://fosterfcs.github.io/academia-foster/" target="_blank" rel="noopener">Acessar</a></div></div>
+    </article>
+  </div>
+</section>
+
+<section class="bloco">
+  <div class="conf">
+    <div class="rev"><b>7</b><span>aplicativos no ar</span></div>
+    <div class="rev"><b>NBR</b><span>normas ABNT como base técnica</span></div>
+    <div class="rev"><b>3</b><span>profissionais no máximo por pedido na Central</span></div>
+    <div class="rev"><b>100%</b><span>no navegador e no celular</span></div>
+  </div>
+</section>
+
+<section class="bloco" id="quem">
+  <div class="quem rev">
+    <img src="wilson.jpg" width="480" height="600" alt="Wilson Foster, engenheiro civil">
+    <div class="t">
+      <span class="eyebrow">Quem faz</span>
+      <h2>Do canteiro para o celular</h2>
+      <p>Sou Wilson Foster, engenheiro civil. Antes de programar, passei anos em campo: atendendo famílias de porta em porta, acompanhando obra e vendo de perto os problemas de quem constrói e de quem contrata.</p>
+      <p>Cada aplicativo daqui nasceu de um problema real — o pedreiro que some, o orçamento combinado de boca, o cálculo feito na pressa, a trinca que ninguém sabe se é grave. Tecnologia simples, com responsabilidade técnica.</p>
+      <p>Precisa de um sistema sob medida para a sua empresa ou prefeitura? Fale comigo.</p>
+      <div class="ass">José Wilson Pereira (Wilson Foster)<small>Engenheiro civil · CREA-SP 5071894914</small></div>
+      <div class="acoes"><a class="bt zapb" href="https://wa.me/5524992096103?text=Ol%C3%A1%20Wilson!%20Vim%20pelo%20site%20engfoster.com.br." target="_blank" rel="noopener">💬 Falar no WhatsApp</a><a class="bt sec" style="color:var(--ink);border-color:var(--line);background:var(--bg);" href="https://instagram.com/foster.engenharia" target="_blank" rel="noopener">📷 @foster.engenharia</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="final rev">
+  <div><h2>Tem obra para fazer?</h2><p>Peça orçamento grátis. No máximo 3 profissionais conferidos te chamam — e o orçamento fica registrado no app.</p></div>
+  <div class="acoes"><a class="bt br" href="https://central.engfoster.com.br/">🏗️ Pedir orçamento grátis</a><a class="bt sec" id="compartilhar" href="#">↗ Compartilhar este site</a></div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Foster Engenharia</b>Tecnologia de engenheiro para quem constrói.<br><br>Foster Construções e Serviços<br>CNPJ 16.588.130/0001-27<br>Eng. civil José Wilson Pereira · CREA-SP 5071894914</div>
+    <div><b>Aplicativos</b><a href="https://central.engfoster.com.br/">Foster Central</a><a href="https://fostercalc.com.br" target="_blank" rel="noopener">Foster Calc</a><a href="https://fosterfcs.github.io/DIARIO-DE-OBRA/" target="_blank" rel="noopener">Foster Obras</a><a href="https://fosterfcs.github.io/vistoria/" target="_blank" rel="noopener">VistorIA</a><a href="https://fosterfcs.github.io/Locaobra/" target="_blank" rel="noopener">LocaObra</a><a href="https://fosterfcs.github.io/minha-casa-segura/" target="_blank" rel="noopener">Minha Casa Segura</a><a href="https://fosterfcs.github.io/academia-foster/" target="_blank" rel="noopener">Academia Foster</a></div>
+    <div><b>Contato</b><a href="https://wa.me/5524992096103" target="_blank" rel="noopener">WhatsApp (24) 99209-6103</a><a href="tel:+5511939591627">(11) 93959-1627</a><a href="mailto:comercial@fosterconstrucoes.com.br">comercial@fosterconstrucoes.com.br</a><a href="https://instagram.com/foster.engenharia" target="_blank" rel="noopener">Instagram @foster.engenharia</a><a href="https://facebook.com/fosterconstrucoes" target="_blank" rel="noopener">Facebook /fosterconstrucoes</a></div>
+  </div>
+</footer>
+
+<a class="zap" href="https://wa.me/5524992096103?text=Ol%C3%A1%20Wilson!%20Vim%20pelo%20site%20engfoster.com.br." target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.2-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2z"/></svg>WhatsApp</a>
+
+<script>
+(function () {
+  var SITE = 'https://engfoster.com.br/', CENTRAL = 'https://central.engfoster.com.br/';
+  // palavra que troca no título
+  var palavras = ['constrói', 'projeta', 'reforma', 'contrata', 'vistoria'], k = 0, el = document.getElementById('troca');
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(function () {
+    el.className = 'troca sai';
+    setTimeout(function () { k = (k + 1) % palavras.length; el.textContent = palavras[k]; el.className = 'troca entra'; }, 330);
+  }, 2600);
+
+  // entrada suave
+  var els = document.querySelectorAll('.rev');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('vis'); io.unobserve(en.target); } }); }, { rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  } else els.forEach(function (e) { e.classList.add('vis'); });
+
+  // calculadoras
+  var atual = 'blocos';
+  var n = function (id) { var v = parseFloat(String(document.getElementById(id).value).replace(',', '.')); return isFinite(v) && v > 0 ? v : 0; };
+  var f = function (v, d) { return Number(v).toLocaleString('pt-BR', { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 }); };
+  function li(a, b) { return '<li><span>' + a + '</span><b>' + b + '</b></li>'; }
+  function calcular() {
+    var g = document.getElementById('resGrande'), l = document.getElementById('resLista'), pedir = document.getElementById('resPedir'), zap = document.getElementById('resZap');
+    var resumo = '', pedido = {};
+    if (atual === 'blocos') {
+      var area = Math.max(n('bComp') * n('bAlt') - n('bAbert'), 0), t = document.getElementById('bTipo').value.split('|'), porM2 = Number(t[0]), perda = n('bPerda');
+      var qtd = Math.ceil(area * porM2 * (1 + perda / 100));
+      g.innerHTML = f(qtd) + '<small>' + (t[1].indexOf('tijolo') === 0 ? 'tijolos' : 'blocos') + '</small>';
+      l.innerHTML = li('Área de parede', f(area, 2) + ' m²') + li('Peças por m²', f(porM2, 1)) + li('Perda considerada', f(perda) + '%') + li('Argamassa de assentamento (aprox.)', f(area * 0.02, 2) + ' m³');
+      resumo = 'Parede de ' + f(area, 2) + ' m² em ' + t[1] + ': cerca de ' + f(qtd) + ' peças (com ' + f(perda) + '% de perda)';
+      pedido = { cat: 'civil', servico: 'Alvenaria', desc: resumo + '. Preciso de pedreiro para levantar a parede.' };
+    } else if (atual === 'piso') {
+      var a = n('pComp') * n('pLarg'), p = Number(document.getElementById('pPerda').value), cx = n('pCaixa') || 1, kg = Number(document.getElementById('pArg').value);
+      var total = a * (1 + p / 100), caixas = Math.ceil(total / cx), sacos = Math.ceil(a * kg / 20);
+      g.innerHTML = f(caixas) + '<small>caixas</small>';
+      l.innerHTML = li('Área do ambiente', f(a, 2) + ' m²') + li('Comprar (com ' + p + '% de perda)', f(total, 2) + ' m²') + li('Argamassa colante', f(sacos) + ' sacos de 20 kg') + li('Rejunte (aprox.)', f(Math.ceil(a * 0.3)) + ' kg');
+      resumo = 'Piso de ' + f(a, 2) + ' m²: ' + f(caixas) + ' caixas de ' + f(cx, 2) + ' m² e ' + f(sacos) + ' sacos de argamassa de 20 kg';
+      pedido = { cat: 'acabamento', servico: 'Piso Porcelanato', desc: resumo + '. Preciso de profissional para assentar.' };
+    } else {
+      var tipo = document.getElementById('cTipo').value, vol = n('cComp') * n('cLarg') * (n('cAlt') / 100) * Math.max(n('cQtd'), 1);
+      var vc = vol * 1.05;
+      g.innerHTML = f(vc, 2) + '<small>m³</small>';
+      l.innerHTML = li('Volume da peça', f(vol, 2) + ' m³') + li('Com 5% de perda', f(vc, 2) + ' m³') + li('Cimento (traço 1:2:3)', f(Math.ceil(vc * 7)) + ' sacos de 50 kg') + li('Areia média', f(vc * 0.6, 2) + ' m³') + li('Brita 1', f(vc * 0.8, 2) + ' m³');
+      resumo = 'Concreto para ' + ({ laje: 'laje/contrapiso', sapata: 'sapatas', viga: 'vigas/baldrame' })[tipo] + ': ' + f(vc, 2) + ' m³ (cerca de ' + f(Math.ceil(vc * 7)) + ' sacos de cimento no traço 1:2:3)';
+      pedido = { cat: tipo === 'laje' ? 'civil' : 'civil', servico: tipo === 'sapata' ? 'Alicerce e Fundação' : 'Estrutura de Concreto', desc: resumo + '. Preciso de profissional para executar.' };
+    }
+    document.getElementById('resAviso').textContent = atual === 'concreto'
+      ? 'Estimativa de referência para concreto feito na obra. Estrutura (laje, viga, sapata) precisa de projeto e ART de engenheiro.'
+      : 'Estimativa de referência. Para a compra final, confirme com o profissional responsável.';
+    pedir.href = CENTRAL + '?cat=' + encodeURIComponent(pedido.cat) + '&servico=' + encodeURIComponent(pedido.servico) + '&desc=' + encodeURIComponent(pedido.desc);
+    zap.href = 'https://wa.me/?text=' + encodeURIComponent('Calculei na Foster Engenharia 👷\n' + resumo + '.\n\nCalcule a sua obra grátis: ' + SITE + '#calculadoras');
+  }
+  document.querySelectorAll('.calc-abas button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      atual = b.dataset.calc;
+      document.querySelectorAll('.calc-abas button').forEach(function (x) { x.classList.toggle('ativo', x === b); });
+      document.getElementById('formBlocos').hidden = atual !== 'blocos';
+      document.getElementById('formPiso').hidden = atual !== 'piso';
+      document.getElementById('formConcreto').hidden = atual !== 'concreto';
+      calcular();
+    });
+  });
+  document.querySelectorAll('.calc input, .calc select').forEach(function (i) { i.addEventListener('input', calcular); i.addEventListener('change', calcular); });
+  calcular();
+
+  // compartilhar
+  document.getElementById('compartilhar').addEventListener('click', function (e) {
+    e.preventDefault();
+    var dados = { title: 'Foster Engenharia', text: 'Profissionais de obra conferidos e calculadoras grátis de obra:', url: SITE };
+    if (navigator.share) navigator.share(dados).catch(function () {});
+    else window.open('https://wa.me/?text=' + encodeURIComponent(dados.text + ' ' + SITE), '_blank', 'noopener');
+  });
+})();
+</script>
+</body>
+</html>
