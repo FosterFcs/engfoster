@@ -20,7 +20,7 @@ h2{font:800 1.35rem/1.15 var(--f-d);text-transform:uppercase;letter-spacing:.02e
 @media (max-width:720px){.pedir{grid-template-columns:1fr}.bt{width:100%}}
 .grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:14px;margin-bottom:26px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;box-shadow:var(--shadow)}
-.card ul{margin:0;padding-left:18px}.card li{margin:4px 0}
+.card ul,.card ol{margin:0;padding-left:20px}.card li{margin:4px 0}
 .card.escuro{background:#1a1c20;color:#dcdde0;border-color:#1a1c20}.card.escuro h2{color:#fff}
 .mini{font-size:.83rem;color:var(--muted);margin:10px 0 0}.card.escuro .mini{color:#a3a5aa}
 .links{margin:0 0 24px}.chips{display:flex;flex-wrap:wrap;gap:8px}
