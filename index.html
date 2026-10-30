@@ -76,12 +76,12 @@ h1,h2,h3{font-family:var(--f-d);letter-spacing:.01em;line-height:1.02;margin:0}
 .provas{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
 .provas span{font-size:.8rem;color:#d4d6da;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:6px 11px}
 .provas span::before{content:"✓ ";color:#4ade80;font-weight:800}
-.foto{position:relative;justify-self:center;width:min(300px,78vw)}
-@media (max-width:860px){.foto{width:min(220px,60vw);margin-top:6px}.foto .crea{left:-8px;bottom:14px}.foto .flut{right:-8px}}
-.foto img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:24px;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 30px 60px rgba(0,0,0,.5)}
-.foto .crea{position:absolute;left:-14px;bottom:22px;background:#fff;color:var(--ink);border-radius:14px;padding:10px 14px;box-shadow:0 14px 30px rgba(0,0,0,.35);font-size:.78rem;line-height:1.3}
+.foto{position:relative;justify-self:center;width:min(230px,60vw)}
+@media (max-width:860px){.foto{width:min(170px,46vw);margin-top:6px}.foto .flut{right:-14px}}
+.foto img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:50% 18%;border-radius:50%;border:4px solid var(--red);box-shadow:0 0 0 1px rgba(255,255,255,.1),0 30px 60px rgba(0,0,0,.5)}
+.foto .crea{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;bottom:-16px;background:#fff;color:var(--ink);border-radius:14px;padding:10px 14px;box-shadow:0 14px 30px rgba(0,0,0,.35);font-size:.78rem;line-height:1.3}
 .foto .crea b{display:block;font:800 1.05rem var(--f-d);letter-spacing:.02em}
-.foto .flut{position:absolute;right:-12px;top:20px;background:var(--red);color:#fff;border-radius:12px;padding:8px 12px;font:700 .78rem var(--f-b);box-shadow:0 12px 26px rgba(208,25,31,.45);transform:rotate(3deg)}
+.foto .flut{position:absolute;right:-18px;top:4px;background:var(--red);color:#fff;border-radius:12px;padding:8px 12px;font:700 .78rem var(--f-b);box-shadow:0 12px 26px rgba(208,25,31,.45);transform:rotate(3deg)}
 .figuras{position:relative;z-index:1;max-width:760px;margin:34px auto 0;padding:0 8px}
 .figuras svg{display:block;width:100%;height:auto}
 .faixa{position:relative;z-index:1;background:var(--red);color:#fff;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,.2)}
@@ -166,9 +166,10 @@ section.bloco{padding:56px 0 0}
 .conf span{font-size:.84rem;color:var(--muted)}
 
 /* quem */
-.quem{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:0;background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+.quem{display:grid;grid-template-columns:240px minmax(0,1fr);gap:0;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
 @media (max-width:760px){.quem{grid-template-columns:minmax(0,1fr)}}
-.quem img{width:100%;height:100%;min-height:300px;object-fit:cover;object-position:50% 20%;display:block}
+.quem img{width:180px;height:180px;margin:28px auto;object-fit:cover;object-position:50% 18%;display:block;border-radius:50%;box-shadow:0 0 0 4px #fff,0 0 0 7px var(--red),0 14px 30px rgba(0,0,0,.18)}
+@media (max-width:760px){.quem img{width:130px;height:130px;margin:24px 24px 0}}
 .quem .t{padding:26px;display:flex;flex-direction:column;gap:12px}
 .quem h2{font-weight:800;font-size:2.3rem;text-transform:uppercase}
 .quem p{margin:0;color:var(--muted)}
