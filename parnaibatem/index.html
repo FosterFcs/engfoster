@@ -180,6 +180,11 @@ footer b{color:#fff}
 .toast.on{transform:translateX(-50%)}
 
 .btn.green{background:var(--wa);color:#fff}
+.logo-av{width:90px;height:90px;border-radius:16px;background:#fff center/contain no-repeat;border:1px solid var(--line);flex-shrink:0}
+.fotos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:12px 0}
+.fotos-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;cursor:pointer;display:block}
+.ft{position:relative}.ft button{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.65);color:#fff;border-radius:50%;width:28px;height:28px;font-size:16px;line-height:1}
+.ft .capa{position:absolute;left:4px;bottom:4px;background:var(--acc);color:var(--dark);font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:5px}
 #qr img,#qr canvas{border:8px solid #fff;border-radius:8px}
 </style>
 </head>
@@ -384,7 +389,7 @@ function item(n){
   const contato=nr?`<button class="btn sm ghost" data-claim="${n.id}">É meu negócio</button>`:
     (n.wa?`<a class="btn sm wa" data-ev="whats" data-id="${n.id}" href="${waLink(n.wa)}" target="_blank" rel="noopener">💬 WhatsApp</a>`:(n.site?`<a class="btn sm blue" data-ev="site" data-id="${n.id}" href="${esc(safeUrl(n.site))}" target="_blank" rel="noopener">🌐 Acessar</a>`:""));
   return `<div class="li ${n.pl==="dest"?"dest":""} ${nr?"nr":""}" data-n="${n.id}">
-    <div class="ph" style="background:${COR[n.cat]||"#eee"};${nr?"filter:grayscale(1);opacity:.6":""}">${c.i}</div>
+    ${n.logo?`<div class="ph" style="background:#fff url('${esc(n.logo)}') center/contain no-repeat;border:1px solid var(--line)"></div>`:(n.fotos||[]).length?`<div class="ph" style="background:#ddd url('${esc(n.fotos[0])}') center/cover"></div>`:`<div class="ph" style="background:${COR[n.cat]||"#eee"};${nr?"filter:grayscale(1);opacity:.6":""}">${c.i}</div>`}
     <div class="bd"><h4>${esc(n.nome)} ${badges(n)}</h4>
       <div class="meta">${esc(c.n)} · 📍 ${esc(n.b)}${nr?"":(n.av?` · <span class="stars">★ ${Number(n.nota).toFixed(1)}</span> (${n.av})`:" · Novo, sem avaliações")}</div>
       <div class="desc">${nr?(n.end?"📍 "+esc(n.end)+". ":"")+"Perfil criado com dados abertos. O dono ainda não completou as informações.":esc(n.desc)}</div></div>
@@ -411,8 +416,9 @@ async function abrirPerfil(id){
   $("#mpT").textContent=n.nome;
   const tags=(n.tags||[]).map(t=>`<span>${esc(t)}</span>`).join("");
   const apps=(n.apps||[]).map(a=>`<a href="${esc(safeUrl(a.url))}" target="_blank" rel="noopener" style="background:#e2ebfa;border-radius:7px;padding:4px 10px;font-size:13px;text-decoration:none;color:var(--pri);font-weight:600">${esc(a.nome)} ↗</a>`).join("");
-  $("#mpB").innerHTML=`<div style="display:flex;gap:14px;align-items:center;margin-bottom:12px"><div style="width:90px;height:90px;border-radius:16px;display:grid;place-items:center;font-size:46px;background:${COR[n.cat]||"#eee"};${nr?"filter:grayscale(1);opacity:.6":""}">${c.i}</div>
+  $("#mpB").innerHTML=`<div style="display:flex;gap:14px;align-items:center;margin-bottom:12px">${n.logo?`<div class="logo-av" style="background-image:url('${esc(n.logo)}')"></div>`:`<div style="width:90px;height:90px;border-radius:16px;display:grid;place-items:center;font-size:46px;background:${COR[n.cat]||"#eee"};${nr?"filter:grayscale(1);opacity:.6":""}">${c.i}</div>`}
      <div><div>${badges(n)}</div><p class="note" style="margin-top:6px">${esc(c.n)} · 📍 ${esc(n.b)}${n.b==="Santana de Parnaíba"?"":", Santana de Parnaíba"}</p></div></div>
+    ${(n.fotos||[]).length?`<div class="fotos-grid">${n.fotos.map((f,i)=>`<img src="${esc(f)}" alt="Foto ${i+1} de ${esc(n.nome)}" data-zoom="${esc(f)}" loading="lazy">`).join("")}</div>`:""}
     ${n.end?`<p>📍 <b>${esc(n.end)}</b></p>`:""}${n.hor?`<p class="note" style="margin-top:4px">🕒 ${esc(n.hor)}</p>`:""}
     ${nr?`<p style="margin-top:10px">Este perfil foi criado a partir de <b>dados abertos do OpenStreetMap</b> e ainda não foi confirmado pelo dono.</p><p class="note" style="margin-top:6px">Dados: © colaboradores do OpenStreetMap (ODbL)</p>
       <div class="claim"><b>Este negócio é seu?</b> Reivindique grátis e complete o perfil com WhatsApp, fotos e descrição para receber clientes.<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn sm pri" data-claim="${n.id}">Reivindicar perfil</button><button class="btn sm ghost" data-rem="${n.id}">Remover meu negócio</button></div></div>`
@@ -468,7 +474,7 @@ async function renderPainel(){
       <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><h3>${cat(n.cat).i} ${esc(n.nome)}</h3><div>${n.pl==="dest"?'<span class="bdg d">Destaque</span>':n.pl==="pro"?'<span class="bdg v">Profissional</span>':'<span class="bdg n">Grátis</span>'}${n.plano_ate&&n.pl!=="free"?` <span class="note">até ${new Date(n.plano_ate).toLocaleDateString("pt-BR")}</span>`:""}</div></div>
       <div class="kpis" style="margin-top:10px"><div class="kpi"><small>Visitas (30 dias)</small><b>${n.views}</b></div><div class="kpi"><small>Cliques WhatsApp/site</small><b>${n.whats}</b></div><div class="kpi"><small>Avaliação</small><b>${n.av?"★ "+Number(n.nota).toFixed(1):"—"}</b><span class="note">${n.av} avaliações</span></div><div class="kpi"><small>Categoria</small><b style="font-size:18px">${esc(cat(n.cat).n)}</b></div></div>
       <div class="bars">${(n.dias||[]).map((v,i)=>`<div class="${i===6?"t":""}" style="height:${Math.max(4,v/mx*100)}%"><span>${i===6?"Hoje":"-"+(6-i)+"d"}</span></div>`).join("")}</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:28px"><button class="btn sm blue" data-editar="${n.id}">✏️ Editar perfil</button><button class="btn sm ghost" data-ver="${n.id}">Ver como cliente</button>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:28px"><button class="btn sm blue" data-editar="${n.id}">✏️ Editar perfil</button><button class="btn sm blue" data-fotos="${n.id}">📷 Logo e fotos (${(n.fotos||[]).length}/8)</button><button class="btn sm ghost" data-ver="${n.id}">Ver como cliente</button>
         ${n.pl!=="dest"?`<button class="btn sm pri" data-assinar="${n.id}|dest">⭐ Destaque · ${R(CONTA.precos.dest)}/mês</button>`:""}${n.pl==="free"?`<button class="btn sm" data-assinar="${n.id}|pro">Profissional · ${R(CONTA.precos.pro)}/mês</button>`:""}
         ${n.pl!=="free"?`<button class="btn sm ghost" data-assinar="${n.id}|${n.pl}">Renovar +30 dias</button>`:""}</div></div>`}).join("")
      :`<div class="box" style="margin-bottom:14px"><h3>Você ainda não tem negócio no guia</h3><p class="note">Cadastre grátis, ou procure o seu na busca e toque em "É meu negócio".</p><div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn pri" data-novo="1">+ Cadastrar meu negócio</button><a class="btn ghost" href="#buscar">Procurar meu negócio</a></div></div>`}
@@ -511,6 +517,50 @@ async function salvarNeg(e){
   }catch(err){toast(erro(err))}
 }
 
+/* ===== FOTOS ===== */
+const MAXF=8;
+const getNeg=id=>(CONTA&&(CONTA.negocios||[]).find(x=>x.id==id))||N.find(x=>x.id==id);
+function comprimir(file,m=1280){return new Promise((ok,ko)=>{const img=new Image();const u=URL.createObjectURL(file);
+  img.onload=()=>{k=Math.min(1,m/Math.max(img.width,img.height));const c=document.createElement("canvas");c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);
+    const g=c.getContext("2d");g.fillStyle="#fff";g.fillRect(0,0,c.width,c.height);g.drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(u);
+    const tenta=q=>c.toBlob(b=>{if(!b)return ko(new Error("Não foi possível ler a imagem"));if(b.size>480000&&q>0.5)return tenta(q-0.12);ok(b)},"image/jpeg",q);tenta(0.82)};
+  img.onerror=()=>{URL.revokeObjectURL(u);ko(new Error("Arquivo não é uma imagem válida"))};img.src=u})}
+function telaFotos(id){
+  const n=getNeg(id);if(!n)return;const fs=n.fotos||[];
+  msg("📷 Logo e fotos de "+n.nome,`<h4>Logo</h4><div style="display:flex;gap:12px;align-items:center;margin:8px 0 14px">${n.logo?`<div class="logo-av" style="background-image:url('${esc(n.logo)}')"></div>`:'<div class="logo-av" style="display:grid;place-items:center;color:var(--muted);font-size:12px">sem logo</div>'}
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><label class="btn sm blue" style="cursor:pointer">${n.logo?"Trocar logo":"Enviar logo"}<input type="file" accept="image/*" hidden data-uplogo="${id}"></label>${n.logo?`<button class="btn sm ghost" data-dellogo="${id}" data-conf="Confirmar?">Remover logo</button>`:""}</div></div>
+    <h4>Fotos</h4><p class="note">Até ${MAXF} fotos. A primeira é a capa que aparece na busca. Fotos do serviço, da fachada ou de trabalhos prontos funcionam melhor.</p>
+    <div class="fotos-grid">${fs.map((f,i)=>`<div class="ft"><img src="${esc(f)}" alt="Foto ${i+1}">${i===0?'<span class="capa">CAPA</span>':`<button title="Usar como capa" data-capa="${id}|${i}" style="right:36px">★</button>`}<button title="Remover (toque 2 vezes)" data-conf="?" data-delfoto="${id}|${i}">×</button></div>`).join("")}</div>
+    ${fs.length<MAXF?`<label class="btn pri full" style="cursor:pointer">+ Adicionar fotos<input type="file" accept="image/*" multiple hidden data-upfotos="${id}"></label>`:'<p class="note">Limite de fotos atingido. Remova uma para adicionar outra.</p>'}
+    <p class="note" id="upStatus" style="margin-top:8px"></p>`);
+}
+async function salvarFotos(id,lista){const r=await rpc("guia_salvar_fotos",{p_id:+id,p_fotos:lista});[CONTA&&(CONTA.negocios||[]).find(x=>x.id==id),N.find(x=>x.id==id)].forEach(n=>{if(n)n.fotos=r.fotos});return r.fotos}
+async function enviarLogo(id,file){const n=getNeg(id);const ant=n.logo;const st=$("#upStatus");if(st)st.textContent="Enviando logo…";
+  try{const b=await comprimir(file,512);const path=`${id}/logo-${Date.now()}.jpg`;const {error}=await sb.storage.from("guia-fotos").upload(path,b,{contentType:"image/jpeg"});if(error)throw error;
+    const url=sb.storage.from("guia-fotos").getPublicUrl(path).data.publicUrl;await rpc("guia_salvar_logo",{p_id:+id,p_url:url});
+    [CONTA&&(CONTA.negocios||[]).find(x=>x.id==id),N.find(x=>x.id==id)].forEach(x=>{if(x)x.logo=url});
+    if(ant&&ant.includes("/guia-fotos/"))sb.storage.from("guia-fotos").remove([ant.split("/guia-fotos/")[1]]);toast("Logo salvo!")}catch(e){toast(erro(e))}
+  telaFotos(id);carregar()}
+async function removerLogo(id){const n=getNeg(id);const ant=n.logo;
+  try{await rpc("guia_salvar_logo",{p_id:+id,p_url:""});[CONTA&&(CONTA.negocios||[]).find(x=>x.id==id),N.find(x=>x.id==id)].forEach(x=>{if(x)x.logo=""});if(ant&&ant.includes("/guia-fotos/"))await sb.storage.from("guia-fotos").remove([ant.split("/guia-fotos/")[1]]);toast("Logo removido.")}catch(e){toast(erro(e))}
+  telaFotos(id);carregar()}
+async function enviarFotos(id,files){
+  const n=getNeg(id);let lista=[...(n.fotos||[])];const st=$("#upStatus");
+  const arr=[...files].slice(0,MAXF-lista.length);let i=0;
+  for(const f of arr){i++;if(st)st.textContent=`Enviando ${i} de ${arr.length}…`;
+    try{const b=await comprimir(f);const path=`${id}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.jpg`;
+      const {error}=await sb.storage.from("guia-fotos").upload(path,b,{contentType:"image/jpeg",upsert:false});if(error)throw error;
+      lista.push(sb.storage.from("guia-fotos").getPublicUrl(path).data.publicUrl)}catch(e){toast("Uma foto não foi enviada: "+erro(e))}}
+  try{await salvarFotos(id,lista);toast("Fotos salvas!")}catch(e){toast(erro(e))}
+  telaFotos(id);carregar();atualizaBotaoFotos(id);
+}
+async function removerFoto(id,idx){
+  const n=getNeg(id);const lista=[...(n.fotos||[])];const [url]=lista.splice(idx,1);
+  try{await salvarFotos(id,lista);const path=url.split("/guia-fotos/")[1];if(path)await sb.storage.from("guia-fotos").remove([path]);toast("Foto removida.")}catch(e){toast(erro(e))}
+  telaFotos(id);carregar();atualizaBotaoFotos(id);
+}
+function atualizaBotaoFotos(id){const n=getNeg(id);const b=document.querySelector(`#painelBox [data-fotos="${id}"]`);if(n&&b)b.textContent=`📷 Logo e fotos (${(n.fotos||[]).length}/8)`}
+
 /* ===== ADMIN ===== */
 async function renderAdmin(){
   const box=$("#adminBox");
@@ -535,6 +585,8 @@ async function renderAdmin(){
       <div class="r2"><div><label class="fl">Plano</label><select class="in" id="aPl"><option value="free">Grátis</option><option value="pro">Profissional</option><option value="dest">Destaque</option></select></div><div><label class="fl">Dias (0 = sem prazo)</label><input class="in" id="aDias" type="number" value="30"></div></div>
       <button class="btn blue full" style="margin-top:10px">Aplicar</button></form></div>
    </div>
+   <div class="box" style="margin-top:14px"><h3>📷 Logo e fotos de um negócio</h3><p class="note">Para negócios sem dono (como parceiros) ou para ajudar um anunciante.</p>
+    <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><select class="in" id="fNeg2" style="flex:1;min-width:200px">${N.filter(n=>n.pl!=="nr").map(n=>`<option value="${n.id}">${esc(n.nome)} (${(n.fotos||[]).length} fotos${n.logo?", com logo":""})</option>`).join("")}</select><button class="btn blue" data-fotosadm="1">Abrir</button></div></div>
    <div class="box" style="margin-top:14px"><h3>📝 Últimos pedidos de orçamento</h3>
     ${a.pedidos.length?a.pedidos.map(p=>`<div class="lead"><div class="lh"><b>${esc(p.desc)}</b><span class="bdg n">${esc(p.status)}</span></div><p class="note">${esc(cat(p.cat).n)} · ${esc(p.b)} · ${esc(p.nome)} · ${esc(p.wa)} · ${p.resp} respostas · ${new Date(p.data).toLocaleString("pt-BR")}</p>
       ${p.status!=="removido"?`<button class="btn sm ghost" style="margin-top:6px" data-aped="${p.id}">Remover (spam)</button>`:""}</div>`).join(""):'<p class="note">Nenhum pedido ainda.</p>'}</div>`;
@@ -589,6 +641,12 @@ document.addEventListener("click",async e=>{
   const lb=t.closest("[data-lib]");if(lb){lb.disabled=true;try{const r=await rpc("guia_liberar",{p_pedido:+lb.dataset.lib});toast("Contato liberado: "+r.nome);renderPainel()}catch(err){toast(erro(err));lb.disabled=false}return}
   const pk=t.closest("[data-pac]");if(pk){try{const r=await rpc("guia_comprar",{p_pacote:pk.dataset.pac});telaPix(r,r.creditos+" créditos")}catch(err){toast(erro(err))}return}
   const as=t.closest("[data-assinar]");if(as){const [id,pl]=as.dataset.assinar.split("|");try{const r=await rpc("guia_assinar",{p_negocio:+id,p_plano:pl});telaPix(r,"Plano "+(pl==="dest"?"Destaque":"Profissional")+" (30 dias)")}catch(err){toast(erro(err))}return}
+  const zm=t.closest("[data-zoom]");if(zm){msg("📷 Foto",`<img src="${esc(zm.dataset.zoom)}" alt="" style="width:100%;border-radius:12px">`);return}
+  const fo=t.closest("[data-fotos]");if(fo){telaFotos(+fo.dataset.fotos);return}
+  if(t.closest("[data-fotosadm]")){telaFotos(+$("#fNeg2").value);return}
+  const dl=t.closest("[data-dellogo]");if(dl){if(!confirmarUI(dl))return;removerLogo(+dl.dataset.dellogo);return}
+  const df=t.closest("[data-delfoto]");if(df){if(!confirmarUI(df))return;const [i,k]=df.dataset.delfoto.split("|");removerFoto(+i,+k);return}
+  const cp2=t.closest("[data-capa]");if(cp2){const [i,k]=cp2.dataset.capa.split("|");const n=getNeg(+i);const l=[...n.fotos];const [f]=l.splice(+k,1);l.unshift(f);try{await salvarFotos(+i,l);toast("Capa atualizada!")}catch(e){toast(erro(e))}telaFotos(+i);carregar();atualizaBotaoFotos(+i);return}
   const ed=t.closest("[data-editar]");if(ed){const n=(CONTA.negocios||[]).find(x=>x.id==ed.dataset.editar);msg("✏️ Editar perfil",formNegocio(n));return}
   if(t.closest("[data-novo]")){msg("Cadastrar meu negócio",formNegocio());return}
   const ap=t.closest("[data-apag]");if(ap){const [c,a]=ap.dataset.apag.split("|");if(a==="confirmar"&&!confirmarUI(ap))return;try{await rpc("guia_admin_pagamento",{p_codigo:c,p_acao:a});toast(a==="confirmar"?"Pagamento confirmado e liberado!":"Cancelado.");await carregar();renderAdmin()}catch(err){toast(erro(err))}return}
@@ -600,7 +658,7 @@ document.addEventListener("click",async e=>{
   const c=t.closest("[data-cat]");if(c){B={q:"",c:c.dataset.cat,b:""};location.hash="buscar";renderBusca();return}
   const q=t.closest("[data-q]");if(q){B={q:q.dataset.q,c:"",b:$("#hb").value};location.hash="buscar";renderBusca()}
 });
-function confirmarUI(btn){if(btn.dataset.ok)return true;btn.dataset.ok=1;const o=btn.textContent;btn.textContent="Toque de novo para confirmar";setTimeout(()=>{delete btn.dataset.ok;btn.textContent=o},3500);return false}
+function confirmarUI(btn){if(btn.dataset.ok)return true;btn.dataset.ok=1;const o=btn.textContent;btn.textContent=btn.dataset.conf||"Toque de novo para confirmar";setTimeout(()=>{delete btn.dataset.ok;btn.textContent=o},3500);return false}
 document.addEventListener("submit",async e=>{
   const f=e.target;
   if(f.id==="fLogin")return loginSubmit(e);
@@ -621,6 +679,7 @@ document.addEventListener("submit",async e=>{
     if(f.id==="fPlano"){const d=+$("#aDias").value;await rpc("guia_admin_negocio",{p_id:+$("#aNeg").value,p_plano:$("#aPl").value,p_status:"",p_dias:d});toast("Plano aplicado!");await carregar();return}
   }catch(err){toast(erro(err))}
 });
+document.addEventListener("change",e=>{const u=e.target.dataset?.upfotos;if(u&&e.target.files.length)enviarFotos(+u,e.target.files);const l=e.target.dataset?.uplogo;if(l&&e.target.files.length)enviarLogo(+l,e.target.files[0])});
 ["#bc","#bb"].forEach(s=>document.addEventListener("change",e=>{if(e.target.matches(s)){B={q:$("#bq").value.trim(),c:$("#bc").value,b:$("#bb").value};renderBusca()}}));
 document.addEventListener("keydown",e=>{if(e.key==="Escape")fechar()});
 window.addEventListener("hashchange",route);
