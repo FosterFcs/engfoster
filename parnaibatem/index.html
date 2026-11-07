@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia Parnaíba Tem — Comércios e serviços de Santana de Parnaíba</title>
+<meta name="description" content="Onde tem? Logo ali. Comércios e prestadores de serviço de Santana de Parnaíba: busque por bairro, chame no WhatsApp e peça orçamento grátis.">
+<meta property="og:title" content="Guia Parnaíba Tem">
+<meta property="og:description" content="Onde tem? Logo ali. Comércios e serviços de Santana de Parnaíba num só lugar.">
+<meta name="theme-color" content="#1b1e23">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='30' fill='%23d7262e'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>T</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--bg:#f2f4f8;--card:#fff;--ink:#16191f;--muted:#646b78;--line:#dde2ea;--pri:#1d4fa3;--pri2:#163d80;--red:#d7262e;--red2:#b81d24;--acc:#f7c51e;--acc2:#e5b00a;--dark:#1b1e23;--graf:#2c3038;--wa:#1faa59;--bad:#d7262e;--blue:#1d4fa3;--r:16px;--sh:0 2px 12px rgba(20,30,60,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.45}
+h1,h2,h3,h4,.o{font-family:Outfit,sans-serif}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select,textarea{font:inherit;color:inherit}
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding:0 16px}
+.proto{background:var(--acc);text-align:center;font-size:12.5px;font-weight:600;padding:5px}
+header{background:var(--dark);color:#fff;position:sticky;top:0;z-index:40;box-shadow:0 2px 12px rgba(0,0,0,.25);border-bottom:4px solid;border-image:linear-gradient(90deg,var(--pri) 0 40%,var(--acc) 40% 46%,var(--red) 46% 60%,var(--acc) 60% 66%,var(--pri) 66%) 1}
+.flagbar{height:5px;background:linear-gradient(90deg,var(--pri) 0 40%,var(--acc) 40% 46%,var(--red) 46% 60%,var(--acc) 60% 66%,var(--pri) 66%)}
+.hrow{display:flex;align-items:center;gap:12px;padding:12px 0}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:#fff;white-space:nowrap}
+.logo .mk{width:38px;height:38px;border-radius:50% 50% 50% 6px;background:var(--red);color:#fff;display:grid;place-items:center;font:800 19px Outfit;box-shadow:0 0 0 3px var(--acc)}
+.logo b{font:800 21px Outfit;display:block;line-height:1}
+.logo b span{color:var(--acc)}
+.logo small{font-size:11.5px;color:#aeb5c2}
+.sp{flex:1}
+.hb{padding:8px 12px;border-radius:10px;background:rgba(255,255,255,.12);font-size:13.5px;font-weight:600;white-space:nowrap;text-decoration:none}
+.hb:hover{background:rgba(255,255,255,.2)}
+.hb.y{background:var(--red);color:#fff}.hb.y:hover{background:var(--red2)}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+nav.tabs a{color:#c8ceda;text-decoration:none;padding:6px 12px;border-radius:9px;font-size:14px;font-weight:600;white-space:nowrap}
+nav.tabs a.on{background:var(--acc);color:var(--dark)}
+nav.tabs a:not(.on):hover{background:rgba(255,255,255,.12);color:#fff}
+@media(max-width:700px){.logo small,.hb.hide{display:none}}
+
+.hero{background:linear-gradient(135deg,var(--pri2) 0%,var(--pri) 60%,#2a63c2 100%);color:#fff;border-radius:22px;padding:30px 26px;margin:18px 0;position:relative;overflow:hidden}
+/* cruz vermelha com borda amarela, inspirada na bandeira */
+.hero:before{content:"";position:absolute;top:0;bottom:0;right:22%;width:46px;background:var(--red);box-shadow:0 0 0 6px var(--acc);opacity:.9}
+.hero:after{content:"";position:absolute;left:0;right:0;top:58%;height:46px;background:var(--red);box-shadow:0 0 0 6px var(--acc);opacity:.9}
+.hero .disk{position:absolute;right:calc(22% - 37px);top:calc(58% - 37px);width:120px;height:120px;border-radius:50%;background:#fff;box-shadow:0 0 0 6px var(--acc);z-index:1;display:grid;place-items:center;font-size:52px}
+.hero > *:not(.disk){position:relative;z-index:2}
+.hero h1{font-size:36px;line-height:1.05;font-weight:800;max-width:640px;position:relative}
+.hero h1 em{color:var(--acc);font-style:normal}
+.hero p{color:#dbe5f7;margin:8px 0 18px;position:relative;max-width:560px}
+.hero.alt:after{top:auto;bottom:34px}.hero.alt .disk{top:auto;bottom:-3px}
+@media(max-width:800px){.hero:before,.hero:after,.hero .disk{display:none}}
+.sbar{display:flex;background:#fff;border-radius:14px;padding:6px;gap:6px;max-width:760px;position:relative;box-shadow:0 8px 26px rgba(0,0,0,.18)}
+.sbar input,.sbar select{border:0;outline:0;padding:10px;color:var(--ink);background:transparent;min-width:0}
+.sbar input{flex:1.6}
+.sbar select{flex:1;border-left:1px solid var(--line)}
+.btn{background:var(--acc);color:var(--pri2);font-weight:700;padding:10px 16px;border-radius:11px;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}
+.btn:hover{background:var(--acc2)}
+.btn.pri{background:var(--red);color:#fff}.btn.pri:hover{background:var(--red2)}
+.btn.blue{background:var(--pri);color:#fff}.btn.blue:hover{background:var(--pri2)}
+.btn.wa{background:var(--wa);color:#fff}
+.btn.ghost{background:#fff;border:1.5px solid var(--line);color:var(--ink)}
+.btn.sm{padding:6px 11px;font-size:13px;border-radius:9px}
+.btn.full{width:100%}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:700px){.hero h1{font-size:28px}.sbar{flex-wrap:wrap}.sbar input,.sbar select{flex-basis:100%;border-left:0}.sbar .btn{width:100%}}
+.quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;position:relative}
+.quick button{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);padding:5px 11px;border-radius:20px;font-size:13px}
+
+.sec-t{display:flex;align-items:end;justify-content:space-between;margin:24px 0 12px;gap:10px;flex-wrap:wrap}
+.sec-t h2{font-size:24px}
+.sec-t span{color:var(--muted);font-size:13.5px}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.cat{background:var(--card);border-radius:14px;padding:14px 8px;text-align:center;box-shadow:var(--sh);border:1.5px solid transparent;transition:.15s}
+.cat:hover,.cat.on{border-color:var(--red);transform:translateY(-2px)}
+.cat{border-bottom:3px solid var(--pri)}
+.cat:nth-child(3n+2){border-bottom-color:var(--red)}.cat:nth-child(3n){border-bottom-color:var(--acc)}
+.cat .i{font-size:30px;display:block}
+.cat b{font-size:13.5px;font-weight:600;display:block;margin-top:4px}
+.cat small{color:var(--muted);font-size:11.5px}
+
+.banner{background:linear-gradient(110deg,#fff4d6,#ffe7a8);border:1.5px dashed var(--acc2);border-radius:var(--r);padding:16px 18px;display:flex;align-items:center;gap:14px;margin:20px 0}
+.banner .i{font-size:36px}
+.banner small{font-size:11px;color:#8a6a10;font-weight:700;letter-spacing:.5px}
+.banner b{display:block;font:700 18px Outfit}
+
+.layout{display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:start}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
+.list{display:flex;flex-direction:column;gap:12px}
+.li{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:14px;display:flex;gap:14px;border:1.5px solid transparent;cursor:pointer;text-align:left;width:100%}
+.li:hover{border-color:#b6c6e6}
+.li.dest{border-color:var(--acc);background:linear-gradient(180deg,#fffaf0,#fff)}
+.li.nr{background:#fafbfa}
+.li .ph{width:86px;height:86px;border-radius:14px;display:grid;place-items:center;font-size:40px;flex-shrink:0}
+.li .bd{flex:1;min-width:0}
+.li h4{font-size:17px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.li .meta{font-size:13px;color:var(--muted);margin-top:2px}
+.li .desc{font-size:13.5px;margin-top:5px;color:#34413c}
+.li .act{display:flex;flex-direction:column;gap:6px;align-items:flex-end;justify-content:center}
+@media(max-width:600px){.li{flex-wrap:wrap}.li .act{flex-direction:row;width:100%}.li .act .btn{flex:1}.li .ph{width:64px;height:64px;font-size:30px}}
+.bdg{font:700 10.5px Inter;padding:2px 7px;border-radius:6px;text-transform:uppercase;letter-spacing:.3px}
+.bdg.d{background:var(--acc);color:var(--pri2)}
+.bdg.v{background:#e2ebfa;color:var(--pri)}
+.bdg.n{background:#eceeed;color:var(--muted)}
+.bdg.o{background:#e0f2ea;color:var(--wa)}
+.bdg.c{background:#f6e3e0;color:var(--bad)}
+.bdg.ex{background:#fff1c9;color:#8a6400}
+.stars{color:#e8a10b;font-weight:700}
+.side .box{margin-bottom:14px}
+.box{background:var(--card);border-radius:var(--r);padding:16px;box-shadow:var(--sh)}
+.box h3{font-size:19px;margin-bottom:6px}
+.note{font-size:12.5px;color:var(--muted)}
+.empty{background:var(--card);border-radius:var(--r);padding:28px;text-align:center;color:var(--muted)}
+
+.offers{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.of{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;cursor:pointer;text-align:left}
+.of .top{background:linear-gradient(110deg,var(--dark),var(--graf));border-left:6px solid var(--red);color:#fff;padding:14px;display:flex;justify-content:space-between;align-items:center}
+.of .top b{font:800 26px Outfit;color:var(--acc)}
+.of .bd{padding:12px;font-size:13.5px}
+
+.ov{position:fixed;inset:0;background:rgba(10,25,20,.55);z-index:60;display:none}.ov.on{display:block}
+.modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(600px,94vw);max-height:90vh;overflow:auto;background:#fff;border-radius:18px;z-index:80;display:none;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.modal.on{display:block}
+.mh{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:2}
+.mh h3{font-size:21px}
+.x{font-size:24px;line-height:1;padding:2px 9px;border-radius:9px}.x:hover{background:#eef1f6}
+.mb{padding:16px}
+.gal{display:grid;grid-template-columns:2fr 1fr 1fr;gap:6px;height:150px;margin-bottom:14px}
+.gal div{border-radius:12px;display:grid;place-items:center;font-size:44px}
+.gal div:first-child{grid-row:span 2;font-size:64px}
+.gal.lk div{filter:grayscale(1);opacity:.5}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.tags span{background:#eef2f8;border-radius:7px;padding:3px 9px;font-size:12.5px}
+.rv{border-top:1px solid var(--line);padding:10px 0;font-size:13.5px}
+.rv b{font-size:13.5px}
+.claim{background:#f3f6fc;border:1.5px dashed #9fb4dd;border-radius:12px;padding:12px;margin-top:14px;font-size:13.5px}
+.fl{display:block;font-size:13px;font-weight:600;margin:10px 0 4px}
+.in{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:10px;outline:0;background:#fff}
+.in:focus{border-color:var(--pri)}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:560px){.r2{grid-template-columns:1fr}}
+
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.plans{grid-template-columns:1fr 1fr}}@media(max-width:560px){.plans{grid-template-columns:1fr}}
+.plan{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:18px;display:flex;flex-direction:column;gap:8px;border:2px solid transparent}
+.plan.hl{border-color:var(--acc)}
+.plan h3{font-size:20px}
+.plan .pr{font:800 30px Outfit;color:var(--pri)}
+.plan .pr small{font:500 13px Inter;color:var(--muted)}
+.plan ul{list-style:none;font-size:13.5px;display:flex;flex-direction:column;gap:5px;flex:1}
+.plan li:before{content:"✓ ";color:var(--wa);font-weight:700}
+.plan li.no{color:#a5ada9}.plan li.no:before{content:"– ";color:#a5ada9}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+@media(max-width:800px){.kpis{grid-template-columns:1fr 1fr}}
+.kpi{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
+.kpi small{color:var(--muted);font-size:12.5px;font-weight:600}
+.kpi b{display:block;font:800 28px Outfit;color:var(--pri)}
+.bars{display:flex;align-items:flex-end;gap:6px;height:110px;margin-top:10px}
+.bars div{flex:1;background:#cdd9f0;border-radius:6px 6px 0 0;position:relative}
+.bars div.t{background:var(--red)}
+.bars span{position:absolute;bottom:-18px;left:0;right:0;text-align:center;font-size:10.5px;color:var(--muted)}
+.lead{border:1.5px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+.lead .lh{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.blur{filter:blur(4px);user-select:none}
+.dash2{display:grid;grid-template-columns:1.2fr 1fr;gap:14px}
+@media(max-width:900px){.dash2{grid-template-columns:1fr}}
+
+.view{display:none}.view.on{display:block}
+.cmp{width:100%;border-collapse:collapse;font-size:14px;margin-top:10px}
+.cmp th,.cmp td{padding:10px;border-bottom:1px solid var(--line);text-align:left}
+.cmp th{font:700 15px Outfit}
+.cmp td.g{color:var(--muted)}.cmp td.y{color:var(--pri);font-weight:600}
+footer{background:var(--dark);color:#aeb5c2;border-top:5px solid var(--red);margin-top:40px;padding:24px 0;font-size:13px}
+footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+footer b{color:#fff}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;padding:11px 18px;border-radius:12px;z-index:99;transition:.25s;font-weight:600;font-size:14px;max-width:90vw}
+.toast.on{transform:translateX(-50%)}
+
+.btn.green{background:var(--wa);color:#fff}
+#qr img,#qr canvas{border:8px solid #fff;border-radius:8px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="hrow">
+      <a class="logo" href="#inicio"><div class="mk">T</div><div><b>Guia Parnaíba <span>Tem</span></b><small>Onde tem? Logo ali. · Santana de Parnaíba</small></div></a>
+      <div class="sp"></div>
+      <a class="hb hide" href="#pedir">📝 Pedir orçamento</a>
+      <a class="hb y" href="#painel" id="hbConta">+ Anuncie grátis</a>
+    </div>
+    <nav class="tabs" id="tabs">
+      <a href="#inicio" data-v="inicio">Início</a>
+      <a href="#buscar" data-v="buscar">Buscar</a>
+      <a href="#pedir" data-v="pedir">Pedir orçamento</a>
+      <a href="#planos" data-v="planos">Planos para anunciantes</a>
+      <a href="#painel" data-v="painel">Área do anunciante</a>
+      <a href="#vem-do-grupo" data-v="vem-do-grupo">📣 Anuncia em grupo?</a>
+      <a href="#admin" data-v="admin" id="tabAdmin" style="display:none">⚙️ Admin</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section class="view" id="v-inicio">
+  <div class="hero">
+    <div class="disk">🏛️</div>
+    <h1>Onde tem? <em>Logo ali.</em><br>Parnaíba tem!</h1>
+    <p>Comércios e prestadores de serviço de Santana de Parnaíba, num só lugar. Chame direto no WhatsApp ou peça orçamento grátis.</p>
+    <form class="sbar" id="fHero">
+      <input id="hq" placeholder="O que você procura? Ex.: eletricista, farmácia, pizzaria">
+      <select id="hb"></select>
+      <button class="btn pri">Buscar</button>
+    </form>
+    <div class="quick" id="quick"></div>
+  </div>
+  <div class="sec-t"><h2>Categorias</h2><span id="totalTxt">Carregando…</span></div>
+  <div class="cats" id="cats"></div>
+  <div class="banner"><span class="i">📣</span><div style="flex:1"><small>ESPAÇO PARA ANUNCIANTES</small><b>Seu negócio aqui, para quem procura no seu bairro</b><span class="note">Perfil grátis. Planos com destaque para aparecer primeiro.</span></div><a class="btn sm pri" href="#planos">Ver planos</a></div>
+  <div class="sec-t"><h2>⭐ Em destaque</h2><span>Anunciantes do plano Destaque</span></div>
+  <div class="list" id="destList"></div>
+</section>
+
+<section class="view" id="v-buscar">
+  <div class="sec-t" style="margin-top:18px">
+    <form class="sbar" id="fBusca" style="box-shadow:var(--sh);flex:1;max-width:none">
+      <input id="bq" placeholder="O que você procura?">
+      <select id="bc"></select>
+      <select id="bb"></select>
+      <button class="btn pri">Buscar</button>
+    </form>
+  </div>
+  <div class="layout">
+    <div>
+      <div class="sec-t" style="margin-top:4px"><h2 id="resT">Resultados</h2></div>
+      <div class="list" id="resList"></div>
+    </div>
+    <aside class="side">
+      <div class="box"><h3>📝 Não achou?</h3><p class="note">Descreva o que precisa e receba contato de até 3 profissionais da região.</p><a class="btn full" href="#pedir" style="margin-top:10px">Pedir orçamento grátis</a></div>
+      <div class="box"><h3>Tem um negócio?</h3><p class="note">Seu negócio pode já estar aqui. Reivindique grátis e apareça para quem procura no seu bairro.</p><a class="btn pri full" href="#painel" style="margin-top:10px">Anunciar grátis</a></div>
+    </aside>
+  </div>
+</section>
+
+<section class="view" id="v-pedir">
+  <div class="sec-t"><h2>Pedir orçamento</h2><span>Grátis · até 3 profissionais entram em contato</span></div>
+  <div class="layout">
+    <div class="box">
+      <form id="fPedido">
+        <label class="fl">Que serviço você precisa?</label>
+        <select class="in" id="pCat" required></select>
+        <label class="fl">Descreva o serviço</label>
+        <textarea class="in" id="pDesc" rows="3" required minlength="5" maxlength="600" placeholder="Ex.: trocar a fiação da cozinha e instalar 4 tomadas novas"></textarea>
+        <div class="r2">
+          <div><label class="fl">Bairro</label><select class="in" id="pBairro"></select></div>
+          <div><label class="fl">Quando?</label><select class="in" id="pQuando"><option>Urgente (hoje/amanhã)</option><option>Esta semana</option><option>Este mês</option><option>Só pesquisando preço</option></select></div>
+        </div>
+        <div class="r2">
+          <div><label class="fl">Seu nome</label><input class="in" id="pNome" required maxlength="80"></div>
+          <div><label class="fl">WhatsApp (com DDD)</label><input class="in" id="pTel" required inputmode="tel" placeholder="(11) 90000-0000"></div>
+        </div>
+        <label class="note" style="display:flex;gap:8px;margin-top:10px"><input type="checkbox" required> Concordo que meu nome e WhatsApp sejam enviados a até 3 profissionais da categoria escolhida.</label>
+        <button class="btn pri full" style="margin-top:14px">Enviar pedido</button>
+      </form>
+    </div>
+    <aside class="box">
+      <h3>Como funciona</h3>
+      <p class="note" style="margin-top:6px">1. Você descreve o serviço.<br>2. Os profissionais da categoria recebem o pedido no painel deles.<br>3. Até 3 deles liberam seu contato e te chamam no WhatsApp.<br>4. Você compara e escolhe.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="view" id="v-planos">
+  <div class="sec-t"><h2>Planos para anunciantes</h2><span>Comece grátis. Pague só se quiser aparecer mais.</span></div>
+  <div class="plans" id="plans"></div>
+  <p class="note" style="margin-top:12px">Pagamento por Pix. Depois de pagar, envie o comprovante pelo WhatsApp e o plano é ativado.</p>
+</section>
+
+<section class="view" id="v-painel"><div id="painelBox"></div></section>
+
+<section class="view" id="v-vem-do-grupo">
+  <div class="hero alt" style="padding-bottom:110px">
+    <div class="disk">📣</div>
+    <h1>Seu anúncio some no feed do grupo? <em>Aqui ele fica fixo.</em></h1>
+    <p>Nos grupos de Facebook e WhatsApp o post desaparece em poucas horas. No Guia Parnaíba Tem seu perfil fica sempre lá, aparece quando alguém procura o seu serviço no seu bairro, e você vê quantas pessoas te encontraram.</p>
+    <a class="btn" href="#painel">Criar meu perfil grátis</a>
+  </div>
+  <div class="box">
+    <h3>Grupo × Guia Parnaíba Tem</h3>
+    <table class="cmp">
+      <tr><th></th><th>Grupo de divulgação</th><th>Guia Parnaíba Tem</th></tr>
+      <tr><td>Quanto tempo o anúncio aparece</td><td class="g">Algumas horas, depois some no feed</td><td class="y">Sempre, seu perfil é fixo</td></tr>
+      <tr><td>Como o cliente te encontra</td><td class="g">Rolando o feed ou perguntando</td><td class="y">Busca por serviço e bairro</td></tr>
+      <tr><td>Avaliações</td><td class="g">Comentários soltos</td><td class="y">Nota e avaliações no seu perfil</td></tr>
+      <tr><td>Saber se deu resultado</td><td class="g">Não tem como</td><td class="y">Visitas e cliques no WhatsApp</td></tr>
+      <tr><td>Pedidos de orçamento</td><td class="g">Não tem</td><td class="y">Clientes descrevem o serviço e você responde</td></tr>
+      <tr><td>Custo</td><td class="g">Grátis, mas precisa postar todo dia</td><td class="y">Grátis para começar</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="view" id="v-admin"><div id="adminBox"></div></section>
+</main>
+
+<footer><div class="wrap fr"><div><b>Guia Parnaíba Tem</b> · Onde tem? Logo ali. · Santana de Parnaíba<br>Dados de comércios não reivindicados: © colaboradores do OpenStreetMap (ODbL) · <a href="#privacidade" style="color:#cfe7df">Privacidade e remoção de perfil</a></div><div>by <b>Foster Tech Soluções</b></div></div></footer>
+
+<div class="ov" id="ov"></div>
+<div class="modal" id="mPerfil"><div class="mh"><h3 id="mpT"></h3><button class="x" data-close>×</button></div><div class="mb" id="mpB"></div></div>
+<div class="modal" id="mMsg"><div class="mh"><h3 id="mmT"></h3><button class="x" data-close>×</button></div><div class="mb" id="mmB"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const SB_URL="https://fvsdlpnvqfvjdxmfgbjx.supabase.co";
+const SB_KEY="sb_publishable_VT3XEbInyTr2Eu-AuLnrqw_BOrA2jYy";
+const sb=supabase.createClient(SB_URL,SB_KEY,{auth:{persistSession:true,autoRefreshToken:true}});
+const SITE="Guia Parnaíba Tem";
+
+const BAIRROS=["Alphaville","Centro","Chácara do Solar","Cidade São Pedro","Colinas da Anhanguera","Fazendinha","Jardim Isaura","Jardim Parnaíba","Jardim São Luiz","Parque Jaguari","Parque Santana","Recanto Silvestre","Refúgio dos Bandeirantes","Suru","Tamboré","Tanquinho","Várzea dos Souzas"];
+const CATS=[
+ {id:"eletricista",n:"Eletricista",i:"⚡"},{id:"encanador",n:"Encanador",i:"🔧"},{id:"pedreiro",n:"Pedreiro / Reformas",i:"🧱"},
+ {id:"pintor",n:"Pintor",i:"🎨"},{id:"diarista",n:"Diarista / Limpeza",i:"🧽"},{id:"mecanico",n:"Mecânico",i:"🚗"},
+ {id:"material",n:"Material de construção",i:"🏗️"},{id:"marmitaria",n:"Restaurante / Lanches",i:"🍱"},{id:"padaria",n:"Padaria",i:"🥖"},
+ {id:"salao",n:"Salão / Barbearia",i:"💈"},{id:"petshop",n:"Pet shop",i:"🐶"},{id:"chaveiro",n:"Chaveiro",i:"🔑"},
+ {id:"vidracaria",n:"Vidraçaria",i:"🪟"},{id:"contador",n:"Contabilidade",i:"📊"},{id:"academia",n:"Academia",i:"🏋️"},
+ {id:"supermercado",n:"Supermercado / Mercado",i:"🛒"},{id:"farmacia",n:"Farmácia",i:"💊"},{id:"saude",n:"Clínica / Dentista",i:"🩺"},
+ {id:"lojas",n:"Lojas",i:"🛍️"},{id:"shopping",n:"Shoppings e centros",i:"🏬"},{id:"servicos",n:"Outros serviços",i:"🧰"},
+ {id:"engenharia",n:"Engenharia e construtoras",i:"📐"},{id:"tecnologia",n:"Sites, apps e tecnologia",i:"💻"},{id:"mudancas",n:"Mudanças e fretes",i:"🚚"}
+];
+const COR={eletricista:"#fff1c4",encanador:"#dcecf9",pedreiro:"#f5e5d2",pintor:"#f3e0f1",diarista:"#e0f3ee",mecanico:"#e6e9ee",material:"#f8e8cc",marmitaria:"#fde5d6",padaria:"#f8ead3",salao:"#ece3f7",petshop:"#e3f1df",chaveiro:"#f1ede0",vidracaria:"#e0f0f6",contador:"#e5ebf5",academia:"#fbe1e1",supermercado:"#e3efe0",farmacia:"#fde3e3",saude:"#e2ecf9",lojas:"#f6e6f2",shopping:"#ebe6f7",servicos:"#eceae4",engenharia:"#e4e9f4",tecnologia:"#e6e4f6",mudancas:"#fde8d4"};
+const ORD={dest:0,pro:1,free:2,nr:3};
+const ERR={whatsapp_invalido:"WhatsApp inválido. Use DDD + número.",descricao_curta:"Descreva um pouco mais o serviço.",limite_pedidos:"Limite de 3 pedidos por dia para este WhatsApp.",
+ login_necessario:"Entre na sua conta primeiro.",sem_creditos:"Você não tem créditos. Compre um pacote abaixo.",pedido_completo:"Esse pedido já recebeu o máximo de respostas.",
+ categoria_diferente:"Esse pedido é de outra categoria.",limite_negocios:"Limite de 3 negócios por conta.",proprio_negocio:"Você não pode avaliar o próprio negócio.",
+ contato_necessario:"Informe um contato (WhatsApp ou e-mail).",sem_permissao:"Sem permissão.",pacote_invalido:"Pacote inválido.",nome_necessario:"Informe o nome do negócio."};
+
+let N=[],USER=null,CONTA=null,B={q:"",c:"",b:""};
+const $=s=>document.querySelector(s);
+const cat=id=>CATS.find(c=>c.id===id)||{n:"Outros",i:"📍"};
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const R=v=>Number(v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const norm=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+const safeUrl=u=>/^https?:\/\//i.test(u||"")?u:(u?"https://"+u:"");
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("on"),2800)}
+function erro(e){const m=(e&&(e.message||e.error_description))||String(e);const k=Object.keys(ERR).find(k=>m.includes(k));return k?ERR[k]:m}
+async function rpc(f,args){const {data,error}=await sb.rpc(f,args||{});if(error)throw error;return data}
+function abrir(s){$("#ov").classList.add("on");$(s).classList.add("on")}
+function fechar(){document.querySelectorAll(".modal.on").forEach(e=>e.classList.remove("on"));$("#ov").classList.remove("on")}
+function msg(t,h){$("#mmT").textContent=t;$("#mmB").innerHTML=h;document.querySelectorAll(".modal.on").forEach(m=>m.classList.remove("on"));abrir("#mMsg")}
+const waLink=(n,txt)=>`https://wa.me/${n}?text=${encodeURIComponent(txt||"Olá! Encontrei vocês no Guia Parnaíba Tem.")}`;
+
+/* ===== PIX (BR Code) ===== */
+function crc16(s){let c=0xFFFF;for(let i=0;i<s.length;i++){c^=s.charCodeAt(i)<<8;for(let j=0;j<8;j++)c=(c&0x8000)?((c<<1)^0x1021)&0xFFFF:(c<<1)&0xFFFF}return c.toString(16).toUpperCase().padStart(4,"0")}
+function tlv(id,v){return id+String(v.length).padStart(2,"0")+v}
+function semAcento(s){return norm(s).toUpperCase().replace(/[^A-Z0-9 ]/g,"")}
+function pixPayload(chave,nome,cidade,valor,txid){
+  const mai=tlv("00","br.gov.bcb.pix")+tlv("01",chave);
+  let p=tlv("00","01")+tlv("26",mai)+tlv("52","0000")+tlv("53","986")+(valor?tlv("54",Number(valor).toFixed(2)):"")+tlv("58","BR")+
+    tlv("59",semAcento(nome).slice(0,25))+tlv("60",semAcento(cidade).slice(0,15))+tlv("62",tlv("05",(txid||"***").replace(/[^A-Za-z0-9]/g,"").slice(0,25)||"***"))+"6304";
+  return p+crc16(p);
+}
+function telaPix(r,titulo){
+  const code=pixPayload(r.pix.chave,r.pix.nome,r.pix.cidade,r.valor,r.codigo);
+  msg("💳 "+titulo,`<p>Código do pedido: <b>${esc(r.codigo)}</b></p><p style="font:800 30px Outfit;color:var(--pri);margin:6px 0">${R(r.valor)}</p>
+   <div id="qr" style="display:flex;justify-content:center;margin:10px 0"></div>
+   <div class="fl">Pix copia e cola</div><div class="claim" id="pixc" style="word-break:break-all;font-family:monospace;font-size:12px">${esc(code)}</div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn sm blue" data-copy="pixc">Copiar código Pix</button>
+   <a class="btn sm wa" href="${waLink(r.pix.contato,`Olá! Paguei o pedido ${r.codigo} (${titulo}) do Guia Parnaíba Tem. Segue o comprovante.`)}" target="_blank" rel="noopener">💬 Enviar comprovante</a></div>
+   <p class="note" style="margin-top:10px">Depois de pagar, envie o comprovante pelo WhatsApp. A liberação é feita assim que o pagamento é confirmado.</p>`);
+  try{new QRCode($("#qr"),{text:code,width:200,height:200,correctLevel:QRCode.CorrectLevel.M})}catch(e){}
+}
+
+/* ===== LISTAGEM ===== */
+async function carregar(){
+  try{N=await rpc("guia_listar")||[]}catch(e){N=[];toast("Não foi possível carregar o guia. Tente de novo.")}
+  renderAll();
+}
+function badges(n){return (n.pl==="dest"?'<span class="bdg d">Destaque</span>':"")+((n.pl==="dest"||n.pl==="pro")?'<span class="bdg v">✔ Verificado</span>':"")+(n.pl==="nr"?'<span class="bdg n">Não reivindicado</span>':"")}
+function item(n){
+  const c=cat(n.cat),nr=n.pl==="nr";
+  const contato=nr?`<button class="btn sm ghost" data-claim="${n.id}">É meu negócio</button>`:
+    (n.wa?`<a class="btn sm wa" data-ev="whats" data-id="${n.id}" href="${waLink(n.wa)}" target="_blank" rel="noopener">💬 WhatsApp</a>`:(n.site?`<a class="btn sm blue" data-ev="site" data-id="${n.id}" href="${esc(safeUrl(n.site))}" target="_blank" rel="noopener">🌐 Acessar</a>`:""));
+  return `<div class="li ${n.pl==="dest"?"dest":""} ${nr?"nr":""}" data-n="${n.id}">
+    <div class="ph" style="background:${COR[n.cat]||"#eee"};${nr?"filter:grayscale(1);opacity:.6":""}">${c.i}</div>
+    <div class="bd"><h4>${esc(n.nome)} ${badges(n)}</h4>
+      <div class="meta">${esc(c.n)} · 📍 ${esc(n.b)}${nr?"":(n.av?` · <span class="stars">★ ${Number(n.nota).toFixed(1)}</span> (${n.av})`:" · Novo, sem avaliações")}</div>
+      <div class="desc">${nr?(n.end?"📍 "+esc(n.end)+". ":"")+"Perfil criado com dados abertos. O dono ainda não completou as informações.":esc(n.desc)}</div></div>
+    <div class="act">${contato}<button class="btn sm ghost" data-ver="${n.id}">Ver perfil</button></div></div>`;
+}
+function renderInicio(){
+  $("#cats").innerHTML=CATS.map(c=>{const q=N.filter(n=>n.cat===c.id).length;return q?`<button class="cat" data-cat="${c.id}"><span class="i">${c.i}</span><b>${c.n}</b><small>${q} no guia</small></button>`:""}).join("");
+  $("#totalTxt").textContent=`${N.length} comércios e serviços no guia`;
+  $("#quick").innerHTML=["Farmácia","Pizzaria","Material de construção","Mudança","Pet shop"].map(q=>`<button data-q="${q}">${q}</button>`).join("");
+  const d=N.filter(n=>n.pl==="dest");
+  $("#destList").innerHTML=d.length?d.slice(0,6).map(item).join(""):'<div class="empty">Seja o primeiro destaque do guia. <a href="#planos">Ver planos</a></div>';
+}
+function renderBusca(){
+  $("#bq").value=B.q;$("#bc").value=B.c;$("#bb").value=B.b;
+  const q=norm(B.q);
+  let r=N.filter(n=>(!B.c||n.cat===B.c)&&(!B.b||n.b===B.b)&&(!q||norm(n.nome+" "+cat(n.cat).n+" "+(n.desc||"")+" "+(n.tags||[]).join(" ")+" "+(n.end||"")).includes(q)));
+  r.sort((a,b)=>ORD[a.pl]-ORD[b.pl]||((b.nota||0)-(a.nota||0))||a.nome.localeCompare(b.nome));
+  $("#resT").textContent=`${r.length} resultado${r.length!==1?"s":""}${B.c?" · "+cat(B.c).n:""}${B.b?" · "+B.b:""}`;
+  $("#resList").innerHTML=r.length?r.map(item).join(""):'<div class="empty">Nada encontrado. <a href="#pedir">Peça um orçamento</a> e os profissionais vêm até você.</div>';
+}
+async function abrirPerfil(id){
+  const n=N.find(x=>x.id==id);if(!n)return;const c=cat(n.cat),nr=n.pl==="nr";
+  rpc("guia_evento",{p_id:n.id,p_tipo:"view"}).catch(()=>{});
+  $("#mpT").textContent=n.nome;
+  const tags=(n.tags||[]).map(t=>`<span>${esc(t)}</span>`).join("");
+  const apps=(n.apps||[]).map(a=>`<a href="${esc(safeUrl(a.url))}" target="_blank" rel="noopener" style="background:#e2ebfa;border-radius:7px;padding:4px 10px;font-size:13px;text-decoration:none;color:var(--pri);font-weight:600">${esc(a.nome)} ↗</a>`).join("");
+  $("#mpB").innerHTML=`<div style="display:flex;gap:14px;align-items:center;margin-bottom:12px"><div style="width:90px;height:90px;border-radius:16px;display:grid;place-items:center;font-size:46px;background:${COR[n.cat]||"#eee"};${nr?"filter:grayscale(1);opacity:.6":""}">${c.i}</div>
+     <div><div>${badges(n)}</div><p class="note" style="margin-top:6px">${esc(c.n)} · 📍 ${esc(n.b)}${n.b==="Santana de Parnaíba"?"":", Santana de Parnaíba"}</p></div></div>
+    ${n.end?`<p>📍 <b>${esc(n.end)}</b></p>`:""}${n.hor?`<p class="note" style="margin-top:4px">🕒 ${esc(n.hor)}</p>`:""}
+    ${nr?`<p style="margin-top:10px">Este perfil foi criado a partir de <b>dados abertos do OpenStreetMap</b> e ainda não foi confirmado pelo dono.</p><p class="note" style="margin-top:6px">Dados: © colaboradores do OpenStreetMap (ODbL)</p>
+      <div class="claim"><b>Este negócio é seu?</b> Reivindique grátis e complete o perfil com WhatsApp, fotos e descrição para receber clientes.<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn sm pri" data-claim="${n.id}">Reivindicar perfil</button><button class="btn sm ghost" data-rem="${n.id}">Remover meu negócio</button></div></div>`
+    :`<p style="margin-top:10px">${esc(n.desc)}</p>${tags?`<div class="tags">${tags}</div>`:""}
+      <div style="display:flex;gap:8px;margin:12px 0;flex-wrap:wrap">${n.wa?`<a class="btn wa full" data-ev="whats" data-id="${n.id}" href="${waLink(n.wa)}" target="_blank" rel="noopener">💬 Chamar no WhatsApp</a>`:""}
+        ${n.site?`<a class="btn blue" data-ev="site" data-id="${n.id}" href="${esc(safeUrl(n.site))}" target="_blank" rel="noopener">🌐 Site</a>`:""}${n.ig?`<a class="btn ghost" data-ev="site" data-id="${n.id}" href="${esc(safeUrl(n.ig))}" target="_blank" rel="noopener">📷 Instagram</a>`:""}<a class="btn ghost" href="#pedir" data-close>Pedir orçamento</a></div>
+      ${n.tel?`<p class="note">📞 ${esc(n.tel)}</p>`:""}${apps?`<h4 style="margin-top:10px">Apps e plataformas</h4><div class="tags">${apps}</div>`:""}`}
+    <h4 style="margin-top:14px">${n.av?`<span class="stars">★ ${Number(n.nota).toFixed(1)}</span> · ${n.av} avaliaç${n.av>1?"ões":"ão"}`:"Avaliações"}</h4>
+    <div id="revs"><p class="note">Carregando…</p></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="btn sm ghost" data-aval="${n.id}">⭐ Avaliar</button>${nr?"":`<button class="btn sm blue" data-share="${n.id}">📣 Compartilhar nos grupos</button>`}</div>
+    <p class="note" style="margin-top:12px">${nr?"":`É o dono? <a href="#painel" data-close>Área do anunciante</a> · `}<a href="#" data-rem="${n.id}">Remover ou corrigir</a></p>`;
+  abrir("#mPerfil");
+  try{const rv=await rpc("guia_avaliacoes_de",{p_id:n.id});$("#revs").innerHTML=rv.length?rv.map(r=>`<div class="rv"><b>${esc(r.autor)}</b> <span class="stars">${"★".repeat(r.nota)}${"☆".repeat(5-r.nota)}</span><br>${esc(r.comentario)}</div>`).join(""):'<p class="note">Ainda sem avaliações. Seja o primeiro a avaliar.</p>'}catch(e){$("#revs").innerHTML=""}
+}
+
+/* ===== LOGIN ===== */
+function formLogin(prox){
+  return `<div class="box" style="max-width:460px;margin:20px auto">
+    <h3>Entrar ou criar conta</h3><p class="note">Use o mesmo login dos apps Foster, se já tiver.</p>
+    <form id="fLogin" data-prox="${prox||""}">
+      <label class="fl">E-mail</label><input class="in" id="lEmail" type="email" required autocomplete="email">
+      <label class="fl">Senha (mínimo 6 caracteres)</label><input class="in" id="lSenha" type="password" required minlength="6" autocomplete="current-password">
+      <div style="display:flex;gap:8px;margin-top:14px"><button class="btn pri full" data-modo="entrar">Entrar</button><button class="btn ghost full" data-modo="criar">Criar conta</button></div>
+      <p class="note" style="margin-top:10px"><a href="#" id="lEsqueci">Esqueci minha senha</a></p>
+    </form></div>`;
+}
+async function loginSubmit(e){
+  e.preventDefault();const modo=e.submitter?.dataset.modo||"entrar";const email=$("#lEmail").value.trim(),senha=$("#lSenha").value;
+  try{
+    if(modo==="criar"){
+      const {data,error}=await sb.auth.signUp({email,password:senha,options:{emailRedirectTo:location.origin+location.pathname+"#painel"}});
+      if(error)throw error;
+      if(!data.session){msg("📧 Confirme seu e-mail",`<p>Enviamos um link de confirmação para <b>${esc(email)}</b>. Confirme e depois volte aqui para entrar.</p>`);return}
+    }else{const {error}=await sb.auth.signInWithPassword({email,password:senha});if(error)throw error}
+    toast("Bem-vindo!");
+  }catch(err){const m=err.message||"";toast(m.includes("Invalid login")?"E-mail ou senha incorretos.":m.includes("not confirmed")?"Confirme seu e-mail antes de entrar.":m.includes("already registered")?"Esse e-mail já tem conta. Use Entrar.":erro(err))}
+}
+
+/* ===== PAINEL ===== */
+async function renderPainel(){
+  const box=$("#painelBox");
+  if(!USER){box.innerHTML=`<div class="sec-t"><h2>Área do anunciante</h2><span>Anuncie grátis, responda pedidos e acompanhe seus resultados</span></div>`+formLogin();return}
+  box.innerHTML='<div class="empty">Carregando sua conta…</div>';
+  try{CONTA=await rpc("guia_minha_conta")}catch(e){box.innerHTML=`<div class="empty">${esc(erro(e))}</div>`;return}
+  $("#tabAdmin").style.display=CONTA.admin?"":"none";
+  let pedidos=[];try{pedidos=await rpc("guia_pedidos_para_mim")}catch(e){}
+  const pac=(CONTA.pacotes||[]);
+  const negs=CONTA.negocios||[];
+  box.innerHTML=`<div class="sec-t"><h2>Área do anunciante</h2><span>${esc(CONTA.email)} · <a href="#" id="sair">Sair</a></span></div>
+   ${(CONTA.reivindicacoes||[]).filter(r=>r.status==="pendente").map(r=>`<div class="claim" style="margin-bottom:12px">⏳ Reivindicação de <b>${esc(r.negocio)}</b> em análise. Você recebe o acesso assim que for aprovada.</div>`).join("")}
+   ${(CONTA.pendentes||[]).map(p=>`<div class="claim" style="margin-bottom:12px">💳 Pagamento <b>${esc(p.codigo)}</b> (${p.tipo==="creditos"?"créditos":"plano"}, ${R(p.valor)}) aguardando confirmação. Já pagou? Envie o comprovante: <a href="${waLink(CONTA.contato||"5524992096103",`Comprovante do pedido ${p.codigo} - Guia Parnaíba Tem`)}" target="_blank" rel="noopener">WhatsApp</a></div>`).join("")}
+   ${negs.length?negs.map(n=>{const mx=Math.max(1,...(n.dias||[0]));return `<div class="box" style="margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><h3>${cat(n.cat).i} ${esc(n.nome)}</h3><div>${n.pl==="dest"?'<span class="bdg d">Destaque</span>':n.pl==="pro"?'<span class="bdg v">Profissional</span>':'<span class="bdg n">Grátis</span>'}${n.plano_ate&&n.pl!=="free"?` <span class="note">até ${new Date(n.plano_ate).toLocaleDateString("pt-BR")}</span>`:""}</div></div>
+      <div class="kpis" style="margin-top:10px"><div class="kpi"><small>Visitas (30 dias)</small><b>${n.views}</b></div><div class="kpi"><small>Cliques WhatsApp/site</small><b>${n.whats}</b></div><div class="kpi"><small>Avaliação</small><b>${n.av?"★ "+Number(n.nota).toFixed(1):"—"}</b><span class="note">${n.av} avaliações</span></div><div class="kpi"><small>Categoria</small><b style="font-size:18px">${esc(cat(n.cat).n)}</b></div></div>
+      <div class="bars">${(n.dias||[]).map((v,i)=>`<div class="${i===6?"t":""}" style="height:${Math.max(4,v/mx*100)}%"><span>${i===6?"Hoje":"-"+(6-i)+"d"}</span></div>`).join("")}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:28px"><button class="btn sm blue" data-editar="${n.id}">✏️ Editar perfil</button><button class="btn sm ghost" data-ver="${n.id}">Ver como cliente</button>
+        ${n.pl!=="dest"?`<button class="btn sm pri" data-assinar="${n.id}|dest">⭐ Destaque · ${R(CONTA.precos.dest)}/mês</button>`:""}${n.pl==="free"?`<button class="btn sm" data-assinar="${n.id}|pro">Profissional · ${R(CONTA.precos.pro)}/mês</button>`:""}
+        ${n.pl!=="free"?`<button class="btn sm ghost" data-assinar="${n.id}|${n.pl}">Renovar +30 dias</button>`:""}</div></div>`}).join("")
+     :`<div class="box" style="margin-bottom:14px"><h3>Você ainda não tem negócio no guia</h3><p class="note">Cadastre grátis, ou procure o seu na busca e toque em "É meu negócio".</p><div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn pri" data-novo="1">+ Cadastrar meu negócio</button><a class="btn ghost" href="#buscar">Procurar meu negócio</a></div></div>`}
+   ${negs.length&&negs.length<3?'<p style="margin-bottom:14px"><button class="btn sm ghost" data-novo="1">+ Cadastrar outro negócio</button></p>':""}
+   <div class="dash2">
+    <div class="box"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><h3>📝 Pedidos de orçamento</h3><span class="bdg v">${CONTA.saldo} crédito${CONTA.saldo===1?"":"s"}</span></div>
+      <p class="note" style="margin-bottom:10px">Pedidos dos últimos 30 dias nas categorias dos seus negócios. Use 1 crédito para liberar o contato do cliente (máx. 3 profissionais por pedido).</p>
+      ${!negs.length?'<div class="empty">Cadastre seu negócio para receber pedidos.</div>':pedidos.length?pedidos.map(l=>`<div class="lead"><div class="lh"><b>${esc(l.desc)}</b><span class="bdg ${String(l.quando).startsWith("Urgente")?"c":"n"}">${esc(l.quando)}</span></div>
+        <p class="note" style="margin-top:4px">${cat(l.cat).i} ${esc(cat(l.cat).n)} · 📍 ${esc(l.b)} · ${new Date(l.data).toLocaleDateString("pt-BR")} · ${l.resp}/${l.max} responderam</p>
+        <div style="margin-top:8px">${l.lib?`<p style="margin-bottom:6px">👤 <b>${esc(l.nome)}</b> · ${esc(l.wa)}</p><a class="btn sm wa" href="${waLink("55"+String(l.wa).replace(/^55/,""),`Olá, ${l.nome}! Vi seu pedido no Guia Parnaíba Tem: "${l.desc}". Posso te ajudar.`)}" target="_blank" rel="noopener">💬 Chamar cliente</a>`:
+          l.aberto?`<button class="btn sm pri" data-lib="${l.id}" ${CONTA.saldo<1?"disabled":""}>Liberar contato · 1 crédito</button>`:'<span class="note">Pedido completo</span>'}</div></div>`).join(""):'<div class="empty">Nenhum pedido na sua categoria ainda.</div>'}
+    </div>
+    <div class="box"><h3>💳 Comprar créditos</h3><p class="note">Pagamento por Pix. Os créditos não expiram.</p>
+      ${pac.map(p=>`<div class="lead" style="display:flex;justify-content:space-between;align-items:center"><div><b>${p.creditos} créditos</b><br><span class="note">${R(p.valor/p.creditos)} por contato</span></div><button class="btn sm blue" data-pac="${esc(p.id)}">${R(p.valor)}</button></div>`).join("")}
+      <p class="note">O plano Destaque inclui ${esc(CONTA.precos.creditos_dest)} créditos por mês.</p></div>
+   </div>`;
+}
+function formNegocio(n){
+  n=n||{};
+  return `<form id="fNeg" data-id="${n.id||""}">
+    <div class="r2"><div><label class="fl">Nome do negócio ou nome profissional</label><input class="in" name="nome" required maxlength="120" value="${esc(n.nome)}"></div>
+      <div><label class="fl">Categoria</label><select class="in" name="cat">${CATS.map(c=>`<option value="${c.id}" ${n.cat===c.id?"selected":""}>${c.n}</option>`).join("")}</select></div></div>
+    <div class="r2"><div><label class="fl">Bairro</label><select class="in" name="bairro">${["Santana de Parnaíba",...BAIRROS].map(b=>`<option ${n.b===b?"selected":""}>${b}</option>`).join("")}</select></div>
+      <div><label class="fl">WhatsApp (com DDD)</label><input class="in" name="wa" inputmode="tel" value="${esc(n.wa)}" placeholder="11 90000-0000"></div></div>
+    <label class="fl">O que você faz?</label><textarea class="in" name="desc" rows="3" maxlength="600">${esc(n.desc)}</textarea>
+    <label class="fl">Destaques (separe por vírgula, até 6)</label><input class="in" name="tags" value="${esc((n.tags||[]).join(", "))}" placeholder="Orçamento grátis, Atende urgência, Cartão">
+    <div class="r2"><div><label class="fl">Endereço (opcional)</label><input class="in" name="end" maxlength="160" value="${esc(n.end)}"></div>
+      <div><label class="fl">Horário (opcional)</label><input class="in" name="hor" maxlength="120" value="${esc(n.hor)}" placeholder="Seg a Sex, 8h às 18h"></div></div>
+    <div class="r2"><div><label class="fl">Site (opcional)</label><input class="in" name="site" maxlength="200" value="${esc(n.site)}"></div>
+      <div><label class="fl">Instagram (opcional)</label><input class="in" name="ig" maxlength="200" value="${esc(n.ig)}"></div></div>
+    <label class="fl">Telefone fixo (opcional)</label><input class="in" name="tel" maxlength="60" value="${esc(n.tel)}">
+    <button class="btn pri full" style="margin-top:14px">${n.id?"Salvar alterações":"Publicar meu perfil grátis"}</button></form>`;
+}
+async function salvarNeg(e){
+  e.preventDefault();const f=e.target,fd=new FormData(f),p={};fd.forEach((v,k)=>p[k]=String(v).trim());
+  p.tags=p.tags?p.tags.split(",").map(s=>s.trim()).filter(Boolean).slice(0,6):[];
+  try{
+    if(f.dataset.id)await rpc("guia_salvar",{p_id:+f.dataset.id,p});else await rpc("guia_cadastrar",{p});
+    fechar();toast(f.dataset.id?"Perfil atualizado!":"Perfil publicado!");await carregar();renderPainel();
+  }catch(err){toast(erro(err))}
+}
+
+/* ===== ADMIN ===== */
+async function renderAdmin(){
+  const box=$("#adminBox");
+  if(!USER){box.innerHTML=formLogin();return}
+  box.innerHTML='<div class="empty">Carregando…</div>';
+  let a;try{a=await rpc("guia_admin_painel")}catch(e){box.innerHTML='<div class="empty">Acesso só para administradores.</div>';return}
+  const r=a.resumo;
+  box.innerHTML=`<div class="sec-t"><h2>⚙️ Painel do administrador</h2><span>Guia Parnaíba Tem</span></div>
+   <div class="kpis"><div class="kpi"><small>Negócios no guia</small><b>${r.negocios}</b></div><div class="kpi"><small>Com dono (ativos)</small><b>${r.ativos}</b></div><div class="kpi"><small>Pagantes</small><b>${r.pagantes}</b></div><div class="kpi"><small>Recebido (30 dias)</small><b>${R(r.recebido_30d)}</b></div></div>
+   <div class="kpis"><div class="kpi"><small>Pedidos (30 dias)</small><b>${r.pedidos_30d}</b></div><div class="kpi"><small>Visitas a perfis (30 dias)</small><b>${r.visitas_30d}</b></div></div>
+   <div class="box" style="margin-bottom:14px"><h3>💳 Pagamentos aguardando confirmação</h3>
+    ${a.pagamentos.length?a.pagamentos.map(p=>`<div class="lead"><div class="lh"><b>${esc(p.codigo)} · ${R(p.valor)}</b><span class="note">${new Date(p.data).toLocaleString("pt-BR")}</span></div>
+      <p class="note">${esc(p.email)} · ${p.tipo==="creditos"?p.creditos+" créditos":"Plano "+(p.ref==="dest"?"Destaque":"Profissional")+" · "+esc(p.negocio||"")}</p>
+      <div style="display:flex;gap:8px;margin-top:8px"><button class="btn sm green wa" data-apag="${esc(p.codigo)}|confirmar">✔ Confirmar pagamento</button><button class="btn sm ghost" data-apag="${esc(p.codigo)}|cancelar">Cancelar</button></div></div>`).join(""):'<p class="note">Nenhum pagamento pendente.</p>'}</div>
+   <div class="box" style="margin-bottom:14px"><h3>📨 Solicitações</h3>
+    ${a.solicitacoes.length?a.solicitacoes.map(s=>`<div class="lead"><div class="lh"><b>${s.tipo==="reivindicar"?"Reivindicar":s.tipo==="remover"?"Remover/corrigir":"Denúncia"}: ${esc(s.negocio)}</b><span class="note">${new Date(s.data).toLocaleString("pt-BR")}</span></div>
+      <p class="note">${esc(s.nome)} · ${esc(s.contato)}${s.email?" · conta "+esc(s.email):""}</p>${s.msg?`<p style="font-size:14px;margin-top:4px">${esc(s.msg)}</p>`:""}
+      <div style="display:flex;gap:8px;margin-top:8px"><button class="btn sm wa" data-asol="${s.id}|aprovar">✔ Aprovar${s.tipo==="reivindicar"?" (passa o perfil para a conta)":s.tipo==="remover"?" (remove do guia)":""}</button><button class="btn sm ghost" data-asol="${s.id}|recusar">Recusar</button></div></div>`).join(""):'<p class="note">Nenhuma solicitação pendente.</p>'}</div>
+   <div class="dash2">
+    <div class="box"><h3>🎁 Dar créditos</h3><form id="fCred"><label class="fl">E-mail da conta</label><input class="in" id="cEmail" type="email" required><label class="fl">Quantidade (use negativo para tirar)</label><input class="in" id="cQtd" type="number" required value="5"><button class="btn blue full" style="margin-top:10px">Aplicar</button></form></div>
+    <div class="box"><h3>⭐ Plano de um negócio</h3><form id="fPlano"><label class="fl">Negócio</label><select class="in" id="aNeg">${N.filter(n=>n.pl!=="nr").map(n=>`<option value="${n.id}">${esc(n.nome)}</option>`).join("")}</select>
+      <div class="r2"><div><label class="fl">Plano</label><select class="in" id="aPl"><option value="free">Grátis</option><option value="pro">Profissional</option><option value="dest">Destaque</option></select></div><div><label class="fl">Dias (0 = sem prazo)</label><input class="in" id="aDias" type="number" value="30"></div></div>
+      <button class="btn blue full" style="margin-top:10px">Aplicar</button></form></div>
+   </div>
+   <div class="box" style="margin-top:14px"><h3>📝 Últimos pedidos de orçamento</h3>
+    ${a.pedidos.length?a.pedidos.map(p=>`<div class="lead"><div class="lh"><b>${esc(p.desc)}</b><span class="bdg n">${esc(p.status)}</span></div><p class="note">${esc(cat(p.cat).n)} · ${esc(p.b)} · ${esc(p.nome)} · ${esc(p.wa)} · ${p.resp} respostas · ${new Date(p.data).toLocaleString("pt-BR")}</p>
+      ${p.status!=="removido"?`<button class="btn sm ghost" style="margin-top:6px" data-aped="${p.id}">Remover (spam)</button>`:""}</div>`).join(""):'<p class="note">Nenhum pedido ainda.</p>'}</div>`;
+}
+
+/* ===== ROTAS ===== */
+const VIEWS=["inicio","buscar","pedir","planos","painel","vem-do-grupo","admin"];
+function route(){
+  let h=location.hash.slice(1);
+  if(h==="privacidade"){msg("Privacidade e remoção",`<p>Os perfis "Não reivindicado" vêm de <b>dados abertos do OpenStreetMap</b> (© colaboradores do OpenStreetMap, licença ODbL). Mostramos só nome, categoria, bairro, endereço e horário comercial.</p><p style="margin-top:10px">Qualquer negócio pode pedir remoção ou correção pelo botão "Remover ou corrigir" no perfil. Pedidos de orçamento: nome e WhatsApp do cliente só são mostrados para até 3 profissionais que aceitarem o pedido.</p><p style="margin-top:10px">Contato: (24) 99209-6103 · Foster Tech Soluções</p>`);h="inicio"}
+  const v=VIEWS.includes(h)?h:"inicio";
+  document.querySelectorAll(".view").forEach(e=>e.classList.toggle("on",e.id==="v-"+v));
+  document.querySelectorAll("#tabs a").forEach(a=>a.classList.toggle("on",a.dataset.v===v));
+  if(h!=="privacidade")fechar();window.scrollTo(0,0);
+  if(v==="painel")renderPainel();if(v==="admin")renderAdmin();if(v==="buscar")renderBusca();
+}
+function renderAll(){renderInicio();renderBusca();renderPlanos()}
+function renderPlanos(){
+  $("#plans").innerHTML=`<div class="plan"><h3>Grátis</h3><div class="pr">R$ 0</div><ul><li>Perfil com WhatsApp</li><li>Aparece na busca</li><li>Avaliações de clientes</li><li>Estatísticas de visitas</li><li class="no">Selo verificado</li><li class="no">Topo da categoria</li></ul><a class="btn ghost full" href="#painel">Começar grátis</a></div>
+  <div class="plan"><h3>Profissional</h3><div class="pr" id="prPro">—<small>/mês</small></div><ul><li>Tudo do Grátis</li><li>Selo verificado</li><li>Aparece antes dos perfis grátis</li><li class="no">Topo da categoria</li></ul><a class="btn pri full" href="#painel">Assinar</a></div>
+  <div class="plan hl"><span class="bdg d" style="align-self:flex-start">Mais procurado</span><h3>Destaque</h3><div class="pr" id="prDest">—<small>/mês</small></div><ul><li>Tudo do Profissional</li><li>Topo da categoria</li><li>Aparece na página inicial</li><li id="liCred">Créditos de orçamento por mês</li></ul><a class="btn full" href="#painel">Assinar</a></div>
+  <div class="plan"><h3>Créditos avulsos</h3><div class="pr" style="font-size:22px">Pacotes</div><ul><li>Responder pedidos de orçamento</li><li>1 crédito = 1 contato liberado</li><li>Não expiram</li></ul><a class="btn ghost full" href="#painel">Comprar créditos</a></div>`;
+  if(CONTA&&CONTA.precos){$("#prPro").innerHTML=R(CONTA.precos.pro)+"<small>/mês</small>";$("#prDest").innerHTML=R(CONTA.precos.dest)+"<small>/mês</small>";$("#liCred").textContent=CONTA.precos.creditos_dest+" créditos de orçamento por mês"}
+  else{$("#prPro").innerHTML="R$ 39<small>/mês</small>";$("#prDest").innerHTML="R$ 99<small>/mês</small>";$("#liCred").textContent="10 créditos de orçamento por mês"}
+}
+
+/* ===== EVENTOS ===== */
+document.addEventListener("click",async e=>{
+  const t=e.target;
+  if(t.closest("[data-close]")||t.id==="ov"){fechar()}
+  if(t.id==="sair"){e.preventDefault();await sb.auth.signOut();toast("Você saiu.");return}
+  if(t.id==="lEsqueci"){e.preventDefault();const em=$("#lEmail").value.trim();if(!em){toast("Digite seu e-mail acima.");return}
+    const {error}=await sb.auth.resetPasswordForEmail(em,{redirectTo:location.origin+location.pathname+"#painel"});toast(error?erro(error):"Enviamos um link para redefinir a senha.");return}
+  const ev=t.closest("[data-ev]");if(ev){rpc("guia_evento",{p_id:+ev.dataset.id,p_tipo:ev.dataset.ev}).catch(()=>{});return}
+  const cp=t.closest("[data-copy]");if(cp){const x=document.getElementById(cp.dataset.copy).innerText;navigator.clipboard?.writeText(x).then(()=>toast("Copiado!"),()=>toast("Selecione e copie manualmente"));return}
+  const cl=t.closest("[data-claim]");if(cl){e.stopPropagation();const n=N.find(x=>x.id==cl.dataset.claim);
+    if(!USER){msg("Reivindicar perfil",`<p>Para reivindicar <b>${esc(n.nome)}</b>, entre ou crie sua conta grátis.</p>`+formLogin("claim:"+n.id));return}
+    msg("Reivindicar perfil",`<p><b>${esc(n.nome)}</b></p><p class="note">Vamos confirmar que você é o responsável antes de liberar o perfil.</p>
+     <form id="fClaim" data-id="${n.id}"><label class="fl">Seu nome</label><input class="in" name="nome" required><label class="fl">WhatsApp do negócio</label><input class="in" name="contato" required inputmode="tel">
+     <label class="fl">Como podemos confirmar? (opcional)</label><input class="in" name="msg" placeholder="Ex.: sou o proprietário, CNPJ, telefone fixo da loja"><button class="btn pri full" style="margin-top:12px">Enviar pedido</button></form>`);return}
+  const rm=t.closest("[data-rem]");if(rm){e.preventDefault();e.stopPropagation();const n=N.find(x=>x.id==rm.dataset.rem);
+    msg("Remover ou corrigir",`<p><b>${esc(n.nome)}</b></p><form id="fRem" data-id="${n.id}"><label class="fl">O que deseja?</label><select class="in" name="o"><option>Remover meu negócio do guia</option><option>Corrigir informações</option><option>O negócio fechou</option></select>
+      <label class="fl">Seu nome</label><input class="in" name="nome" required><label class="fl">WhatsApp ou e-mail para contato</label><input class="in" name="contato" required><label class="fl">Detalhes (opcional)</label><input class="in" name="msg">
+      <button class="btn pri full" style="margin-top:12px">Enviar</button></form>`);return}
+  const av=t.closest("[data-aval]");if(av){const n=N.find(x=>x.id==av.dataset.aval);
+    if(!USER){msg("Avaliar",`<p>Para avaliar <b>${esc(n.nome)}</b>, entre na sua conta. Isso evita avaliações falsas.</p>`+formLogin());return}
+    msg("⭐ Avaliar "+n.nome,`<form id="fAval" data-id="${n.id}"><label class="fl">Nota</label><select class="in" name="nota"><option value="5">★★★★★ Excelente</option><option value="4">★★★★ Bom</option><option value="3">★★★ Regular</option><option value="2">★★ Ruim</option><option value="1">★ Péssimo</option></select>
+      <label class="fl">Comentário</label><textarea class="in" name="c" rows="3" maxlength="400"></textarea><label class="fl">Seu nome (como vai aparecer)</label><input class="in" name="autor" maxlength="40" required><button class="btn pri full" style="margin-top:12px">Enviar avaliação</button></form>`);return}
+  const sh=t.closest("[data-share]");if(sh){const n=N.find(x=>x.id==sh.dataset.share);const url=location.origin+location.pathname;
+    const txt=`${cat(n.cat).i} ${n.nome} — ${cat(n.cat).n} em ${n.b}\n${n.av?`★ ${Number(n.nota).toFixed(1)} (${n.av} avaliações) no ${SITE}`:`Agora no ${SITE}`}\nVeja e chame no WhatsApp: ${url}`;
+    msg("📣 Compartilhar nos grupos",`<div class="claim" id="shTxt" style="white-space:pre-wrap">${esc(txt)}</div><div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn sm blue" data-copy="shTxt">Copiar texto</button><a class="btn sm wa" href="https://wa.me/?text=${encodeURIComponent(txt)}" target="_blank" rel="noopener">Enviar no WhatsApp</a></div>`);return}
+  const lb=t.closest("[data-lib]");if(lb){lb.disabled=true;try{const r=await rpc("guia_liberar",{p_pedido:+lb.dataset.lib});toast("Contato liberado: "+r.nome);renderPainel()}catch(err){toast(erro(err));lb.disabled=false}return}
+  const pk=t.closest("[data-pac]");if(pk){try{const r=await rpc("guia_comprar",{p_pacote:pk.dataset.pac});telaPix(r,r.creditos+" créditos")}catch(err){toast(erro(err))}return}
+  const as=t.closest("[data-assinar]");if(as){const [id,pl]=as.dataset.assinar.split("|");try{const r=await rpc("guia_assinar",{p_negocio:+id,p_plano:pl});telaPix(r,"Plano "+(pl==="dest"?"Destaque":"Profissional")+" (30 dias)")}catch(err){toast(erro(err))}return}
+  const ed=t.closest("[data-editar]");if(ed){const n=(CONTA.negocios||[]).find(x=>x.id==ed.dataset.editar);msg("✏️ Editar perfil",formNegocio(n));return}
+  if(t.closest("[data-novo]")){msg("Cadastrar meu negócio",formNegocio());return}
+  const ap=t.closest("[data-apag]");if(ap){const [c,a]=ap.dataset.apag.split("|");if(a==="confirmar"&&!confirmarUI(ap))return;try{await rpc("guia_admin_pagamento",{p_codigo:c,p_acao:a});toast(a==="confirmar"?"Pagamento confirmado e liberado!":"Cancelado.");await carregar();renderAdmin()}catch(err){toast(erro(err))}return}
+  const aso=t.closest("[data-asol]");if(aso){const [i,a]=aso.dataset.asol.split("|");if(!confirmarUI(aso))return;try{await rpc("guia_admin_solicitacao",{p_id:+i,p_acao:a});toast("Feito!");await carregar();renderAdmin()}catch(err){toast(erro(err))}return}
+  const apd=t.closest("[data-aped]");if(apd){if(!confirmarUI(apd))return;try{await rpc("guia_admin_pedido",{p_id:+apd.dataset.aped,p_status:"removido"});renderAdmin()}catch(err){toast(erro(err))}return}
+  const vr=t.closest("[data-ver]");if(vr){e.stopPropagation();abrirPerfil(+vr.dataset.ver);return}
+  if(t.closest(".act"))return;
+  const li=t.closest(".li[data-n]");if(li){abrirPerfil(+li.dataset.n);return}
+  const c=t.closest("[data-cat]");if(c){B={q:"",c:c.dataset.cat,b:""};location.hash="buscar";renderBusca();return}
+  const q=t.closest("[data-q]");if(q){B={q:q.dataset.q,c:"",b:$("#hb").value};location.hash="buscar";renderBusca()}
+});
+function confirmarUI(btn){if(btn.dataset.ok)return true;btn.dataset.ok=1;const o=btn.textContent;btn.textContent="Toque de novo para confirmar";setTimeout(()=>{delete btn.dataset.ok;btn.textContent=o},3500);return false}
+document.addEventListener("submit",async e=>{
+  const f=e.target;
+  if(f.id==="fLogin")return loginSubmit(e);
+  if(f.id==="fNeg")return salvarNeg(e);
+  e.preventDefault();
+  const fd=new FormData(f);
+  try{
+    if(f.id==="fHero"){B={q:$("#hq").value.trim(),c:"",b:$("#hb").value};location.hash="buscar";renderBusca();return}
+    if(f.id==="fBusca"){B={q:$("#bq").value.trim(),c:$("#bc").value,b:$("#bb").value};renderBusca();return}
+    if(f.id==="fPedido"){const b=f.querySelector("button");b.disabled=true;const catEscolhida=$("#pCat").value;
+      try{const r=await rpc("guia_pedir",{p_cat:$("#pCat").value,p_bairro:$("#pBairro").value,p_desc:$("#pDesc").value,p_quando:$("#pQuando").value,p_nome:$("#pNome").value,p_whats:$("#pTel").value});
+        f.reset();msg("✅ Pedido enviado!",`<p>Seu pedido foi enviado para os profissionais de <b>${esc(cat(catEscolhida).n)}</b>${r.profissionais?` (${r.profissionais} cadastrado${r.profissionais>1?"s":""})`:""}. Até 3 vão entrar em contato pelo seu WhatsApp.</p>${r.profissionais?"":'<p class="note" style="margin-top:8px">Ainda estamos cadastrando profissionais nessa categoria. Seu pedido fica guardado e é enviado assim que eles entrarem.</p>'}`)}
+      finally{b.disabled=false}return}
+    if(f.id==="fClaim"){await rpc("guia_solicitar",{p_tipo:"reivindicar",p_negocio:+f.dataset.id,p_nome:fd.get("nome"),p_contato:fd.get("contato"),p_msg:fd.get("msg")});msg("✅ Pedido enviado","<p>Vamos confirmar e liberar o perfil para a sua conta. Acompanhe na Área do anunciante.</p>");return}
+    if(f.id==="fRem"){await rpc("guia_solicitar",{p_tipo:"remover",p_negocio:+f.dataset.id,p_nome:fd.get("nome"),p_contato:fd.get("contato"),p_msg:fd.get("o")+(fd.get("msg")?" — "+fd.get("msg"):"")});msg("✅ Recebido","<p>Seu pedido foi registrado e será atendido em até 48 horas.</p>");return}
+    if(f.id==="fAval"){await rpc("guia_avaliar",{p_id:+f.dataset.id,p_nota:+fd.get("nota"),p_coment:fd.get("c"),p_autor:fd.get("autor")});fechar();toast("Obrigado pela avaliação!");await carregar();return}
+    if(f.id==="fCred"){const r=await rpc("guia_admin_creditos",{p_email:$("#cEmail").value,p_qtd:+$("#cQtd").value});toast("Novo saldo: "+r.saldo);return}
+    if(f.id==="fPlano"){const d=+$("#aDias").value;await rpc("guia_admin_negocio",{p_id:+$("#aNeg").value,p_plano:$("#aPl").value,p_status:"",p_dias:d});toast("Plano aplicado!");await carregar();return}
+  }catch(err){toast(erro(err))}
+});
+["#bc","#bb"].forEach(s=>document.addEventListener("change",e=>{if(e.target.matches(s)){B={q:$("#bq").value.trim(),c:$("#bc").value,b:$("#bb").value};renderBusca()}}));
+document.addEventListener("keydown",e=>{if(e.key==="Escape")fechar()});
+window.addEventListener("hashchange",route);
+
+/* ===== INÍCIO ===== */
+const OB=BAIRROS.map(b=>`<option>${b}</option>`).join(""),OC=CATS.map(c=>`<option value="${c.id}">${c.n}</option>`).join("");
+$("#hb").innerHTML='<option value="">Todos os bairros</option>'+OB;$("#bb").innerHTML='<option value="">Todos os bairros</option>'+OB;
+$("#bc").innerHTML='<option value="">Todas as categorias</option>'+OC;$("#pCat").innerHTML=OC;$("#pBairro").innerHTML=OB+"<option>Outro</option>";
+sb.auth.onAuthStateChange((ev,s)=>{setTimeout(()=>aoMudarSessao(ev,s),0)});
+async function aoMudarSessao(ev,s){
+  USER=s?.user||null;$("#hbConta").textContent=USER?"👤 Minha conta":"+ Anuncie grátis";
+  if(!USER){CONTA=null;$("#tabAdmin").style.display="none"}
+  else if(ev==="SIGNED_IN"||ev==="INITIAL_SESSION"){try{CONTA=await rpc("guia_minha_conta");$("#tabAdmin").style.display=CONTA.admin?"":"none";renderPlanos()}catch(e){}}
+  const v=location.hash.slice(1);if(v==="painel")renderPainel();if(v==="admin")renderAdmin();
+  const pend=document.querySelector("#fLogin[data-prox^='claim:']");if(USER&&pend){const id=pend.dataset.prox.split(":")[1];fechar();setTimeout(()=>{const b=document.querySelector(`[data-claim="${id}"]`);if(b)b.click();else abrirPerfil(+id)},150)}
+}
+route();carregar();
+
+</script>
+</body>
+</html>
