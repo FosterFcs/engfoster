@@ -8,7 +8,13 @@
 <meta property="og:title" content="Guia Parnaíba Tem">
 <meta property="og:description" content="Onde tem? Logo ali. Comércios e serviços de Santana de Parnaíba num só lugar.">
 <meta name="theme-color" content="#1b1e23">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='30' fill='%23d7262e'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>T</text></svg>">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Parnaíba Tem">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" type="image/png" href="icon-192.png"><rect width='100' height='100' rx='30' fill='%23d7262e'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>T</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -194,6 +200,7 @@ footer b{color:#fff}
     <div class="hrow">
       <a class="logo" href="#inicio"><div class="mk">T</div><div><b>Guia Parnaíba <span>Tem</span></b><small>Onde tem? Logo ali. · Santana de Parnaíba</small></div></a>
       <div class="sp"></div>
+      <button class="hb" id="btnInstalar" style="display:none">📲 Instalar app</button>
       <a class="hb hide" href="#pedir">📝 Pedir orçamento</a>
       <a class="hb y" href="#painel" id="hbConta">+ Anuncie grátis</a>
     </div>
@@ -696,6 +703,17 @@ async function aoMudarSessao(ev,s){
   const v=location.hash.slice(1);if(v==="painel")renderPainel();if(v==="admin")renderAdmin();
   const pend=document.querySelector("#fLogin[data-prox^='claim:']");if(USER&&pend){const id=pend.dataset.prox.split(":")[1];fechar();setTimeout(()=>{const b=document.querySelector(`[data-claim="${id}"]`);if(b)b.click();else abrirPerfil(+id)},150)}
 }
+/* ===== APP (PWA) ===== */
+let pedidoInstalar=null;
+const ehIOS=/iphone|ipad|ipod/i.test(navigator.userAgent),instalado=matchMedia("(display-mode: standalone)").matches||navigator.standalone;
+if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();pedidoInstalar=e;$("#btnInstalar").style.display=""});
+window.addEventListener("appinstalled",()=>{$("#btnInstalar").style.display="none";toast("App instalado! Procure o ícone Parnaíba Tem na tela inicial.")});
+if(ehIOS&&!instalado)$("#btnInstalar").style.display="";
+$("#btnInstalar").onclick=async()=>{
+  if(pedidoInstalar){pedidoInstalar.prompt();const r=await pedidoInstalar.userChoice;pedidoInstalar=null;if(r.outcome!=="accepted")$("#btnInstalar").style.display="";return}
+  msg("📲 Instalar o app",ehIOS?'<p>No iPhone:</p><p style="margin-top:8px">1. Toque no botão <b>Compartilhar</b> (quadrado com a seta para cima) do Safari.<br>2. Escolha <b>Adicionar à Tela de Início</b>.<br>3. Toque em <b>Adicionar</b>.</p>':'<p>No menu ⋮ do Chrome, escolha <b>Instalar app</b> ou <b>Adicionar à tela inicial</b>.</p>');
+};
 route();carregar();
 
 </script>
