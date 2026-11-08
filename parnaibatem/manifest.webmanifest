@@ -1,0 +1,19 @@
+{
+  "name": "Guia Parnaíba Tem",
+  "short_name": "Parnaíba Tem",
+  "description": "Onde tem? Logo ali. Comércios e serviços de Santana de Parnaíba num só lugar.",
+  "id": "/parnaibatem/",
+  "start_url": "/parnaibatem/",
+  "scope": "/parnaibatem/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1b1e23",
+  "theme_color": "#1b1e23",
+  "lang": "pt-BR",
+  "categories": ["business", "lifestyle", "shopping"],
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
