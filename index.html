@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"Foster Engenharia","url":"https://engfoster.com.br/","image":"https://engfoster.com.br/wilson.jpg","telephone":"+55-24-99209-6103","email":"comercial@fosterconstrucoes.com.br","areaServed":"São Paulo e Grande São Paulo","founder":{"@type":"Person","name":"José Wilson Pereira","jobTitle":"Engenheiro Civil"},"sameAs":["https://instagram.com/foster.engenharia","https://facebook.com/fosterconstrucoes"]}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Foster Engenharia","url":"https://engfoster.com.br/","image":"https://engfoster.com.br/previa.png","telephone":"+55-24-99209-6103","email":"comercial@fosterconstrucoes.com.br","areaServed":"São Paulo e Grande São Paulo","founder":{"@type":"Person","name":"José Wilson Pereira","jobTitle":"Engenheiro Civil"},"sameAs":["https://instagram.com/foster.engenharia","https://facebook.com/fosterconstrucoes"]}
 </script>
 <style>
 :root{
@@ -76,9 +76,9 @@ h1,h2,h3{font-family:var(--f-d);letter-spacing:.01em;line-height:1.02;margin:0}
 .provas{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
 .provas span{font-size:.8rem;color:#d4d6da;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:6px 11px}
 .provas span::before{content:"✓ ";color:#4ade80;font-weight:800}
-.foto{position:relative;justify-self:center;width:min(230px,60vw);margin-bottom:64px}
-@media (max-width:860px){.foto{width:min(170px,46vw);margin-top:6px}.foto .flut{right:-14px}}
-.foto img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:50% 18%;border-radius:50%;border:4px solid var(--red);box-shadow:0 0 0 1px rgba(255,255,255,.1),0 30px 60px rgba(0,0,0,.5)}
+.foto{position:relative;justify-self:center;width:min(440px,92vw);margin-bottom:64px}
+@media (max-width:860px){.foto{width:min(360px,88vw);margin-top:6px}.foto .flut{right:-6px}}
+.foto img{display:block;width:100%;height:auto;aspect-ratio:8/9;filter:drop-shadow(0 30px 50px rgba(0,0,0,.45))}
 .foto .crea{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;top:calc(100% + 12px);background:#fff;color:var(--ink);border-radius:14px;padding:10px 14px;box-shadow:0 14px 30px rgba(0,0,0,.35);font-size:.78rem;line-height:1.3}
 .foto .crea b{display:block;font:800 1.05rem var(--f-d);letter-spacing:.02em}
 .foto .flut{position:absolute;right:-18px;top:4px;background:var(--red);color:#fff;border-radius:12px;padding:8px 12px;font:700 .78rem var(--f-b);box-shadow:0 12px 26px rgba(208,25,31,.45);transform:rotate(3deg)}
@@ -168,8 +168,8 @@ section.bloco{padding:56px 0 0}
 /* quem */
 .quem{display:grid;grid-template-columns:240px minmax(0,1fr);gap:0;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
 @media (max-width:760px){.quem{grid-template-columns:minmax(0,1fr)}}
-.quem img{width:180px;height:180px;margin:28px auto;object-fit:cover;object-position:50% 18%;display:block;border-radius:50%;box-shadow:0 0 0 4px #fff,0 0 0 7px var(--red),0 14px 30px rgba(0,0,0,.18)}
-@media (max-width:760px){.quem img{width:130px;height:130px;margin:24px 24px 0}}
+.quem img{width:220px;height:auto;aspect-ratio:8/9;margin:20px auto;display:block;filter:drop-shadow(0 14px 22px rgba(0,0,0,.25))}
+@media (max-width:760px){.quem img{width:min(300px,80vw);margin:20px auto 0}}
 .quem .t{padding:26px;display:flex;flex-direction:column;gap:12px}
 .quem h2{font-weight:800;font-size:2.3rem;text-transform:uppercase}
 .quem p{margin:0;color:var(--muted)}
@@ -222,7 +222,7 @@ footer a:hover{color:#fff}
       <div class="provas"><span>CREA-SP 5071894914</span><span>Normas ABNT na base</span><span>Funciona no celular</span><span>Sem instalar nada</span></div>
     </div>
     <div class="foto">
-      <img src="wilson.jpg" width="480" height="600" alt="Wilson Foster, engenheiro civil, de capacete branco">
+      <img src="apps.webp" width="960" height="1080" alt="Aplicativos Foster no celular: Foster Projeto com maquete 3D de prédio, Foster Calc e Foster Orça">
       <div class="flut">8 apps no ar 🚀</div>
       <div class="crea"><b>Eng. Wilson Foster</b>Engenheiro civil · CREA-SP</div>
     </div>
@@ -309,8 +309,8 @@ footer a:hover{color:#fff}
     </article>
     <article class="prod rev" style="--cor:#1d4ed8">
       <div class="tela" style="background:linear-gradient(135deg,#3b82f6,#1e3a8a)"><span class="ico">📐</span><span class="badge g">7 dias grátis</span><div class="mock"><i class="c"></i><div class="lin"><i></i><i></i><i></i></div><i class="m"></i><i class="p"></i></div></div>
-      <div class="txt"><span class="tag">Cálculo estrutural · NBR 6118</span><h3>Foster Calc</h3><p>Você projeta, o Foster Calc calcula e mostra cada passo, com memória em PDF e desenho em DXF.</p>
-        <ul><li>Lajes e vigas</li><li>Pilares e escadas</li><li>Sapatas e muros</li><li>Calculadoras grátis</li></ul>
+      <div class="txt"><span class="tag">Projeto e cálculo estrutural · NBR 6118</span><h3>Foster Calc</h3><p>Com o Foster Projeto, descreva a obra e receba plantas, cortes, estrutura, instalações, orçamento e maquete 3D — de casa térrea a prédio de 5 pavimentos. Depois, calcule cada peça com memória em PDF e DXF.</p>
+        <ul><li>Foster Projeto: casa a prédio</li><li>Maquete 3D e vídeo</li><li>Lajes, vigas e pilares</li><li>Calculadoras grátis</li></ul>
         <div class="pe"><span class="preco">A partir de R$ 9,90/mês</span><a class="bt pri" href="https://fostercalc.com.br" target="_blank" rel="noopener">Acessar</a></div></div>
     </article>
     <article class="prod rev" style="--cor:#0f766e">
@@ -357,7 +357,7 @@ footer a:hover{color:#fff}
 
 <section class="bloco" id="quem">
   <div class="quem rev">
-    <img src="wilson.jpg" width="480" height="600" alt="Wilson Foster, engenheiro civil">
+    <img src="apps.webp" width="960" height="1080" loading="lazy" alt="Aplicativos Foster: Foster Projeto, Foster Calc e Foster Orça">
     <div class="t">
       <span class="eyebrow">Quem faz</span>
       <h2>Do canteiro para o celular</h2>
