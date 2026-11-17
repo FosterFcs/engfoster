@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Abrindo o WhatsApp…</title>
+<style>body{font-family:system-ui,sans-serif;display:grid;place-items:center;min-height:90vh;margin:0;color:#1d3b33;text-align:center;padding:20px}a{display:inline-block;margin-top:14px;background:#25d366;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:600}</style></head>
+<body><div><p id="t">Abrindo o WhatsApp com a mensagem pronta…</p><a id="b" href="#">Abrir WhatsApp</a></div>
+<script>
+// Convite do Guia Parnaíba Tem: monta a mensagem e abre o WhatsApp do comércio.
+// Uso: convite.html?n=<id do perfil>&w=<DDD+número>&nome=<nome do comércio>
+const p=new URLSearchParams(location.search);
+const n=(p.get("n")||"").replace(/\D/g,""),w=(p.get("w")||"").replace(/\D/g,""),nome=(p.get("nome")||"seu negócio").slice(0,120);
+const link="https://engfoster.com.br/parnaibatem/#n"+n;
+const msg=`Olá! Aqui é o Wilson, do Guia Parnaíba Tem, o guia de comércios e serviços de Santana de Parnaíba. O ${nome} já está no guia, de graça: ${link}\n\nToque em "Reivindicar perfil" para colocar seu WhatsApp, fotos e descrição e receber clientes da região. Se preferir não aparecer, é só me responder que eu tiro. 🙂`;
+if(!n||w.length<10){document.getElementById("t").textContent="Link de convite incompleto.";document.getElementById("b").style.display="none"}
+else{const u="https://wa.me/55"+w+"?text="+encodeURIComponent(msg);document.getElementById("b").href=u;location.replace(u)}
+</script></body></html>
