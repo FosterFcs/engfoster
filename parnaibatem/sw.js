@@ -1,7 +1,7 @@
 // Guia Parnaíba Tem — service worker
 // Página: rede primeiro (sempre a versão mais nova), cópia guardada para abrir sem internet.
 // Dados do Supabase nunca são guardados aqui.
-const CACHE = "parnaibatem-v1";
+const CACHE = "parnaibatem-v2";
 const ARQUIVOS = ["./", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(ARQUIVOS))); self.skipWaiting(); });
 self.addEventListener("activate", e => {
