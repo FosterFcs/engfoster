@@ -316,6 +316,19 @@ tr.memo code{font-family:var(--mono);background:var(--amber2);padding:1px 4px;bo
 #print .wm{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;overflow:hidden}
 #print .wm span{transform:rotate(-32deg);font:900 70px Archivo,sans-serif;color:rgba(225,29,46,.11);white-space:nowrap;letter-spacing:.04em}
 @media (max-width:560px){.topr{position:static;justify-content:flex-end;margin-bottom:6px}.qcplanos{grid-template-columns:1fr}}
+
+/* ===== Glossário ===== */
+.gl-busca{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.gl-busca input{flex:1;min-width:220px;border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:15px}
+.gl-cat{margin:18px 0 8px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:800}
+.gl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.gl-it{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;gap:12px;align-items:flex-start}
+.gl-k{flex:none;min-width:58px;height:44px;border-radius:10px;background:var(--ink);color:var(--amber);font:800 15px var(--mono);display:flex;align-items:center;justify-content:center;padding:0 8px}
+.gl-k.sv{background:#f7f6f2;border:1px solid var(--line)}
+.gl-t b{display:block;font-size:14.5px}
+.gl-t span{color:var(--ink2);font-size:13.5px;line-height:1.4}
+.gl-t em{font-style:normal;display:block;margin-top:4px;font-size:12.5px;color:var(--warn);background:var(--warnbg);border-radius:6px;padding:3px 7px}
+.gl-vazio{color:var(--mut);padding:20px 4px}
 </style>
 </head>
 <body>
@@ -344,6 +357,7 @@ tr.memo code{font-family:var(--mono);background:var(--amber2);padding:1px 4px;bo
   <button data-tab="orcamento"><span class="n">07</span>Orçamento</button>
   <button data-tab="resumo"><span class="n">08</span>Resumo</button>
   <button data-tab="entrega"><span class="n">09</span>Entrega</button>
+  <button data-tab="glossario"><span class="n">10</span>Glossário</button>
 </div></nav>
 
 <main><div class="wrap">
@@ -419,6 +433,13 @@ tr.memo code{font-family:var(--mono);background:var(--amber2);padding:1px 4px;bo
     <h2>Entrega da obra e ensaios</h2>
     <p class="lead">Faça a verificação final da NBR 5410 (inspeção visual e ensaios), anexe fotos e gere o termo de entrega para o cliente assinar.</p>
     <div id="entrega"></div>
+  </section>
+
+  <section class="sec" id="s-glossario">
+    <h2>Glossário: siglas, letras e símbolos</h2>
+    <p class="lead">O que significa cada sigla, letra das fórmulas e símbolo que aparece no app, na planta, no unifilar e nos PDFs.</p>
+    <div class="card gl-busca"><input id="glBusca" type="search" placeholder="Buscar: DR, Iz, queda de tensão, tomada…" autocomplete="off"><span id="glConta" class="h"></span></div>
+    <div id="glossario"></div>
   </section>
 
   <div class="warn">
@@ -1606,7 +1627,7 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('change',e=>{
   const el=e.target;
-  if(el.closest('#qcOv'))return;
+  if(el.closest('#qcOv')||el.id==='glBusca')return;
   if(!qcPode('editar')){renderAll();return;}
   if(el.dataset.cfg){const k=el.dataset.cfg;S.cfg[k]=['nome','sis','met','metAl','conc'].includes(k)?el.value:+el.value;if(k==='sis')S.fase={};renderAll();return;}
   if(el.dataset.m!=null){M[el.dataset.m]=el.value.trim();saveMarca();renderCalc();return;}
@@ -1632,6 +1653,110 @@ document.addEventListener('change',e=>{
 load();
 if(!S.rooms.length&&!Object.keys(PROJ).length){exemplo();}
 renderAll();
+
+
+/* ===================== GLOSSÁRIO ===================== */
+const GL_SV={
+  luz:'<svg width="30" height="30" viewBox="-11 -11 22 22"><circle r="9" fill="#fff" stroke="#e11d2e" stroke-width="2"/><line x1="-9" x2="9" stroke="#e11d2e" stroke-width="1.4"/></svg>',
+  tug:'<svg width="28" height="26" viewBox="-10 -9 20 18"><path d="M-8 6 L0 -7 L8 6Z" fill="#2563eb"/></svg>',
+  tue:'<svg width="30" height="27" viewBox="-11 -10 22 20"><path d="M-9 7 L0 -8 L9 7Z" fill="#fff3cf" stroke="#b45309" stroke-width="1.6"/></svg>',
+  itr:'<svg width="20" height="20" viewBox="-7 -7 14 14"><circle r="5" fill="#0e0e10"/></svg>',
+  qd:'<svg width="40" height="24"><rect width="40" height="24" fill="#0e0e10"/><text x="20" y="17" font-size="13" font-weight="900" fill="#ffb400" text-anchor="middle" font-family="Archivo">QD</text></svg>',
+  dj:'<svg width="22" height="32" viewBox="-11 -16 22 32"><rect x="-9" y="-14" width="18" height="28" rx="2" fill="#fff" stroke="#0e0e10" stroke-width="1.6"/><path d="M-5 9 L5 -9" stroke="#0e0e10" stroke-width="1.6"/></svg>',
+  dr:'<svg width="34" height="32" viewBox="0 0 34 32"><rect x="2" y="2" width="30" height="28" rx="3" fill="#fff" stroke="#0e0e10" stroke-width="1.6"/><text x="17" y="21" font-size="11" font-weight="900" text-anchor="middle" font-family="Archivo">DR</text></svg>',
+  dps:'<svg width="26" height="32" viewBox="-13 0 26 32"><rect x="-12" y="1" width="24" height="30" rx="3" fill="#fff3cf" stroke="#0e0e10" stroke-width="1.6"/><path d="M0 7 l-5 9 h10 l-5 9" fill="none" stroke="#0e0e10" stroke-width="1.4"/></svg>',
+  terra:'<svg width="24" height="22" viewBox="-12 0 24 22"><line x1="0" y1="0" x2="0" y2="8" stroke="#0e0e10" stroke-width="1.6"/><line x1="-10" y1="8" x2="10" y2="8" stroke="#0e0e10" stroke-width="2"/><line x1="-6" y1="12" x2="6" y2="12" stroke="#0e0e10" stroke-width="2"/><line x1="-2" y1="16" x2="2" y2="16" stroke="#0e0e10" stroke-width="2"/></svg>',
+  kwh:'<svg width="34" height="34" viewBox="-17 -17 34 34"><circle r="15" fill="#fff" stroke="#0e0e10" stroke-width="1.8"/><text y="4" font-size="9" font-weight="700" text-anchor="middle" font-family="JetBrains Mono,monospace">kWh</text></svg>',
+  barra:'<svg width="44" height="14"><line x1="2" y1="7" x2="42" y2="7" stroke="#0e0e10" stroke-width="4"/></svg>',
+  fases:'<svg width="48" height="22"><rect x="1" y="3" width="14" height="16" rx="3" fill="#e11d2e"/><rect x="17" y="3" width="14" height="16" rx="3" fill="#2a2a30"/><rect x="33" y="3" width="14" height="16" rx="3" fill="#2563eb"/></svg>',
+  cores:'<svg width="48" height="22"><rect x="1" y="3" width="14" height="16" rx="3" fill="#0e0e10"/><rect x="17" y="3" width="14" height="16" rx="3" fill="#7cc4ff"/><rect x="33" y="3" width="14" height="16" rx="3" fill="#1f9d55"/><rect x="33" y="9" width="14" height="4" fill="#ffdf00"/></svg>',
+};
+const GLOSS=[
+ ['Siglas e abreviações',[
+  ['NBR 5410','Norma de instalações elétricas de baixa tensão','Norma da ABNT que define as regras das instalações elétricas residenciais, comerciais e prediais até 1000 V. É a base de todos os cálculos do app.'],
+  ['ABNT','Associação Brasileira de Normas Técnicas','Entidade que publica as normas técnicas brasileiras (NBR).'],
+  ['TUG','Tomada de Uso Geral','Tomada para aparelhos portáteis (TV, carregador, liquidificador). Mínimo de 100 VA cada; em cozinha, copa, área de serviço e lavanderia, 600 VA para as 3 primeiras.'],
+  ['TUE','Tomada de Uso Específico','Ponto para um equipamento fixo de potência conhecida (chuveiro, ar-condicionado, forno, torneira elétrica). Usa a potência do próprio aparelho e costuma ter circuito exclusivo.'],
+  ['IL','Iluminação','Pontos de luz. Mínimo de 100 VA para os primeiros 6 m² do cômodo, mais 60 VA a cada 4 m² inteiros. Com LED, o app permite informar a potência real.'],
+  ['QD','Quadro de Distribuição','Caixa que recebe a alimentação e distribui os circuitos, com disjuntores, DR e DPS. Também chamado de quadro de luz.'],
+  ['DG','Disjuntor Geral','Disjuntor na entrada (padrão ou quadro) que protege e desliga toda a instalação.'],
+  ['DTM','Disjuntor TermoMagnético','O disjuntor comum: desarma por sobrecarga (parte térmica) e por curto-circuito (parte magnética).'],
+  ['DR','Dispositivo Diferencial Residual','Desliga o circuito quando há fuga de corrente para a terra, por exemplo uma pessoa levando choque. Obrigatório (30 mA) em banheiros, cozinhas, áreas de serviço, áreas externas e tomadas em locais molhados. Também aparece como IDR ou DDR.'],
+  ['DPS','Dispositivo de Proteção contra Surtos','Protege a instalação contra picos de tensão vindos da rede ou de raios próximos. No quadro de residência costuma ser o de classe II, ligado ao terra.'],
+  ['PE','Condutor de proteção (terra)','Fio que liga as massas metálicas e o pino terra das tomadas ao aterramento. Cor verde ou verde-amarela; nunca pode ser interrompido por disjuntor.'],
+  ['N','Neutro','Condutor de retorno do circuito monofásico. Cor azul-claro.'],
+  ['F / L','Fase','Condutor energizado (vivo). Em 127/220 V cada fase tem 127 V para o neutro e 220 V entre fases.'],
+  ['PEN','Neutro e proteção no mesmo condutor','Condutor que acumula as funções de neutro e de terra (sistema TN-C). Não é permitido em circuitos terminais de residência.'],
+  ['BEP','Barramento de Equipotencialização Principal','Ponto que reúne o aterramento, o PE do quadro e as tubulações metálicas, para que todas fiquem no mesmo potencial.'],
+  ['TN-S / TT','Esquemas de aterramento','Formas de ligar o neutro e o terra. TN-S: neutro e terra separados desde a origem. TT: terra local da casa, independente do neutro da concessionária.'],
+  ['ART / TRT','Anotação / Termo de Responsabilidade Técnica','Documento que registra o profissional responsável pelo projeto ou execução: ART no CREA (engenheiros) e TRT no CFT (técnicos industriais).'],
+  ['CREA / CFT','Conselhos profissionais','CREA: Conselho Regional de Engenharia e Agronomia. CFT: Conselho Federal dos Técnicos Industriais.'],
+  ['SPDA','Sistema de Proteção contra Descargas Atmosféricas','O para-raios da edificação (NBR 5419). É diferente do DPS, que protege a instalação interna.'],
+  ['PVC / EPR / XLPE','Tipos de isolação do cabo','PVC suporta 70 °C (o mais comum em residência). EPR e XLPE suportam 90 °C e conduzem mais corrente. O app usa cobre com PVC 70 °C.'],
+  ['IP','Grau de proteção','Código IPXY da proteção contra poeira (X) e água (Y). Ex.: IP65 para áreas externas.'],
+  ['DIN','Trilho e módulo DIN','Padrão de fixação de disjuntores no quadro. O tamanho do quadro é contado em módulos DIN.'],
+  ['Unifilar','Diagrama unifilar','Desenho do quadro em que cada circuito é representado por uma única linha, mostrando disjuntores, DR, DPS, cabos e fases.'],
+  ['Curva B / C','Curva de disparo do disjuntor','B: desarma rápido, para cargas resistivas e iluminação. C: tolera picos de partida, para motores e ar-condicionado. Residência normalmente usa C.'],
+  ['Mono / Bi / Tri','Tipo de fornecimento','Monofásico: 1 fase + neutro. Bifásico: 2 fases + neutro. Trifásico: 3 fases + neutro. Definido pela carga e pela concessionária.'],
+ ]],
+ ['Letras e grandezas das fórmulas',[
+  ['V','Tensão (volt)','Diferença de potencial. No Brasil: 127 V e 220 V (rede 127/220) ou 220 V e 380 V (rede 220/380).'],
+  ['I','Corrente (ampère, A)','Quantidade de eletricidade que passa pelo fio. Define a bitola do cabo e o disjuntor.'],
+  ['P','Potência ativa (watt, W)','Potência que vira trabalho útil (calor, luz, movimento).'],
+  ['S','Potência aparente (VA)','Potência total que a rede fornece. S = V × I. É a usada no quadro de cargas.'],
+  ['FP / cos φ','Fator de potência','Relação entre W e VA (P = S × FP). Chuveiro e resistências ≈ 1,0; motores e eletrônicos ficam abaixo.'],
+  ['Ib','Corrente de projeto','Corrente que o circuito vai consumir: Ib = S ÷ V (ou S ÷ (√3 × V) no trifásico).'],
+  ['Iz','Capacidade de condução do cabo','Corrente máxima que o cabo aguenta no método de instalação usado, já multiplicada por FCT e FCA (Tabela 36 da NBR 5410).'],
+  ['In','Corrente nominal do disjuntor','Valor do disjuntor (10, 16, 20, 25, 32 A…). Regra de ouro: Ib ≤ In ≤ Iz.','O disjuntor protege o FIO, não o aparelho: nunca aumente o disjuntor sem aumentar o cabo.'],
+  ['I2','Corrente de atuação garantida','Corrente que garante o desarme do disjuntor na sobrecarga. A norma exige I2 ≤ 1,45 × Iz (atendido pelos disjuntores NBR NM 60898 quando In ≤ Iz).'],
+  ['IΔn','Sensibilidade do DR','Corrente de fuga que faz o DR desarmar. Para proteção de pessoas: 30 mA.'],
+  ['ΔV%','Queda de tensão','Perda de tensão ao longo do fio. O app limita em 4% no circuito terminal e 5% no total (medidor até o ponto mais distante).'],
+  ['L','Comprimento do circuito (m)','Distância do quadro até o ponto mais distante. Quanto maior, maior a queda de tensão.'],
+  ['mm²','Seção do condutor (bitola)','Área do cobre do fio: 1,5 / 2,5 / 4 / 6 / 10 mm²… Mínimos da norma: 1,5 mm² para iluminação e 2,5 mm² para tomadas.'],
+  ['ρ (rô)','Resistividade do cobre','≈ 0,0172 Ω·mm²/m a 20 °C. Entra no cálculo da queda de tensão.'],
+  ['FCT','Fator de correção de temperatura','Reduz a capacidade do cabo quando o ambiente passa de 30 °C (ou o solo passa de 20 °C).'],
+  ['FCA','Fator de correção de agrupamento','Reduz a capacidade do cabo quando vários circuitos passam juntos no mesmo eletroduto.'],
+  ['FD','Fator de demanda','Percentual da carga instalada que realmente é usada ao mesmo tempo. Serve para dimensionar o alimentador e o padrão de entrada.'],
+  ['kW / kVA','Quilowatt / quilovolt-ampère','1 kW = 1000 W; 1 kVA = 1000 VA. Usados na carga total e na demanda.'],
+  ['kWh','Quilowatt-hora','Energia consumida (potência × tempo). É o que o medidor registra e a conta cobra.'],
+  ['A1, A2, B1, B2, C, D','Métodos de instalação','Como o cabo está instalado (Tabela 33 da NBR 5410). B1: cabos isolados em eletroduto embutido em alvenaria, o mais comum em casas. D: cabo enterrado. Cada método tem uma capacidade diferente.'],
+  ['2 / 3 cond.','Condutores carregados','Fios que conduzem corrente em funcionamento normal: 2 no monofásico (fase + neutro) e 3 no trifásico. O PE não conta.'],
+  ['A / B / C','Fases (também R / S / T)','Nome de cada fase da rede. O balanceamento distribui os circuitos para as fases ficarem com cargas parecidas.'],
+  ['127/220','Tensão da rede','Primeiro número: tensão fase-neutro. Segundo: tensão entre fases.'],
+ ]],
+ ['Símbolos da planta e do unifilar',[
+  ['§luz','Ponto de luz no teto','Ao lado vêm o número do circuito e a potência.'],
+  ['§tug','Tomada de uso geral (TUG)','O número indica o circuito.'],
+  ['§tue','Ponto de força / tomada de uso específico (TUE)','Equipamento fixo, como chuveiro, ar-condicionado ou forno.'],
+  ['§itr','Interruptor','Comando do ponto de luz do cômodo.'],
+  ['§qd','Quadro de distribuição (QD)','Onde ficam os disjuntores, o DR e o DPS.'],
+  ['§kwh','Medidor de energia','Relógio da concessionária no padrão de entrada.'],
+  ['§dj','Disjuntor','No unifilar, com o número de polos (1P, 2P, 3P) e a corrente nominal (In).'],
+  ['§dr','DR (diferencial residual)','Protege os circuitos de áreas molhadas e externas, com IΔn de 30 mA.'],
+  ['§dps','DPS (protetor de surtos)','Ligado entre o barramento e o terra.'],
+  ['§terra','Aterramento','Ligação com a terra (haste e malha).'],
+  ['§barra','Barramento','Barra do quadro que alimenta os disjuntores.'],
+  ['§fases','Cores das fases no app','Fase A em vermelho, fase B em grafite e fase C em azul, no balanceamento e no unifilar.'],
+  ['§cores','Cores dos fios na obra','Fase: preto, vermelho ou branco. Neutro: azul-claro. Terra (PE): verde ou verde-amarelo. A norma reserva o azul-claro para o neutro e o verde-amarelo para o terra.'],
+  ['#2,5','Bitola indicada','No unifilar e nos memoriais, # seguido de um número é a seção do cabo em mm².'],
+  ['C1, C2…','Número do circuito','Cada circuito do quadro tem um número, repetido na planta, no unifilar e no orçamento.'],
+ ]],
+];
+const glNorm=t=>String(t).normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+function rGlossario(){
+  const el=$('#glossario');if(!el)return;
+  const q=glNorm($('#glBusca')?.value||'').trim();let n=0;
+  el.innerHTML=GLOSS.map(([cat,itens])=>{
+    const ws=q.split(/\s+/).filter(Boolean),vis=itens.filter(i=>{const h=glNorm(cat+' '+i.join(' ').replace('§',''));return ws.every(w=>h.includes(w.replace(/s$/,'')));});n+=vis.length;
+    if(!vis.length)return '';
+    return `<div class="gl-cat">${cat}</div><div class="gl-grid">${vis.map(([k,t,d,a])=>{
+      const sv=k.startsWith('§');
+      return `<div class="gl-it"><div class="gl-k${sv?' sv':''}">${sv?GL_SV[k.slice(1)]:esc(k)}</div><div class="gl-t"><b>${esc(t)}</b><span>${esc(d)}</span>${a?`<em>⚠️ ${esc(a)}</em>`:''}</div></div>`;}).join('')}</div>`;
+  }).join('')||`<div class="gl-vazio">Nada encontrado para "${esc($('#glBusca').value)}". Tente outra palavra.</div>`;
+  const c=$('#glConta');if(c)c.textContent=q?`${n} resultado(s)`:`${n} termos`;
+}
+document.addEventListener('input',e=>{if(e.target.id==='glBusca')rGlossario();});
+rGlossario();
 
 /* PWA: offline + instalar */
 if('serviceWorker' in navigator&&/^https?:/.test(location.protocol)){
