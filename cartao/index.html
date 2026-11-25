@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foster Engenharia & Construção · Cartão Digital</title>
+<meta name="description" content="Reformas, telhados, impermeabilização, projetos e laudos com engenheiro responsável. Santana de Parnaíba, Alphaville e região de SP. Peça seu orçamento pelo WhatsApp.">
+<meta name="theme-color" content="#0E0E0F">
+<meta property="og:title" content="Foster Engenharia & Construção">
+<meta property="og:description" content="Reformas, telhados, impermeabilização, projetos e laudos com engenheiro responsável. Peça seu orçamento.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://engfoster.com.br/cartao/">
+<link rel="canonical" href="https://engfoster.com.br/cartao/">
+<style>
+  :root{
+    --preto:#0E0E0F; --grafite:#1C1C1F; --cinza:#2A2A2E; --linha:#38383D;
+    --texto:#F4F4F5; --suave:#A1A1AA; --vermelho:#D3202A; --vermelho2:#B0161F;
+    --raio:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:radial-gradient(1200px 600px at 50% -200px,#2a1214 0%,var(--preto) 60%) fixed,var(--preto);
+    color:var(--texto);line-height:1.45;-webkit-font-smoothing:antialiased;
+    padding:24px 16px 48px;
+  }
+  .wrap{max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+  a{color:inherit;text-decoration:none}
+
+  /* Cabeçalho */
+  .topo{background:var(--grafite);border:1px solid var(--linha);border-radius:var(--raio);
+    padding:28px 20px 22px;text-align:center;position:relative;overflow:hidden}
+  .topo::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--vermelho)}
+  .logo{width:84px;height:84px;margin:0 auto 14px;border-radius:20px;background:var(--preto);
+    border:1px solid var(--linha);display:grid;place-items:center}
+  .logo img{width:100%;height:100%;object-fit:contain;border-radius:20px}
+  h1{font-size:22px;letter-spacing:-.01em;font-weight:800}
+  h1 span{color:var(--vermelho)}
+  .bio{color:var(--suave);font-size:14.5px;margin:8px auto 0;max-width:340px}
+  .selos{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:14px}
+  .selo{font-size:12px;padding:5px 10px;border-radius:999px;background:var(--cinza);border:1px solid var(--linha);color:#d4d4d8}
+  .share{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:10px;border:1px solid var(--linha);
+    background:var(--cinza);display:grid;place-items:center;cursor:pointer;color:var(--texto)}
+
+  /* Botões */
+  .btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:15px 16px;
+    border-radius:14px;font-weight:700;font-size:15.5px;border:1px solid var(--linha);background:var(--grafite);
+    color:var(--texto);cursor:pointer;transition:transform .08s ease,background .2s}
+  .btn:active{transform:scale(.98)}
+  .btn:hover{background:var(--cinza)}
+  .btn svg{width:20px;height:20px;flex:none}
+  .btn.principal{background:var(--vermelho);border-color:var(--vermelho);font-size:16.5px;padding:17px 16px;
+    box-shadow:0 8px 24px -8px rgba(211,32,42,.6)}
+  .btn.principal:hover{background:var(--vermelho2)}
+  .dupla{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+  /* Cartões de seção */
+  .card{background:var(--grafite);border:1px solid var(--linha);border-radius:var(--raio);padding:20px}
+  .card h2{font-size:17px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+  .card h2::before{content:"";width:4px;height:18px;border-radius:2px;background:var(--vermelho)}
+  .card .sub{color:var(--suave);font-size:13.5px;margin-bottom:14px}
+
+  /* Serviços */
+  .servicos{display:flex;flex-direction:column;gap:10px}
+  .serv{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:12px;background:var(--cinza);border:1px solid var(--linha)}
+  .serv .ic{width:40px;height:40px;border-radius:10px;background:var(--preto);display:grid;place-items:center;flex:none;color:var(--vermelho)}
+  .serv .ic svg{width:22px;height:22px}
+  .serv h3{font-size:15px;font-weight:700}
+  .serv p{font-size:13px;color:var(--suave);margin-top:2px}
+  .serv a{display:inline-block;margin-top:8px;font-size:13px;font-weight:700;color:#fff;
+    background:var(--preto);border:1px solid var(--linha);padding:6px 12px;border-radius:999px}
+  .serv a:hover{border-color:var(--vermelho)}
+  .vercat{margin-top:12px;font-size:13.5px;text-align:center;color:var(--suave)}
+  .vercat a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+
+  /* Formulário */
+  form{display:flex;flex-direction:column;gap:10px}
+  label{font-size:12.5px;font-weight:600;color:#d4d4d8;display:block;margin-bottom:4px}
+  input,select,textarea{width:100%;padding:12px 13px;border-radius:10px;border:1px solid var(--linha);
+    background:var(--preto);color:var(--texto);font:inherit;font-size:15px}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--vermelho);outline-offset:0;border-color:transparent}
+  textarea{min-height:76px;resize:vertical}
+  .aviso{font-size:11.5px;color:var(--suave)}
+
+  /* Clientes */
+  .clientes{display:flex;flex-wrap:wrap;gap:6px}
+  .clientes span{font-size:12.5px;padding:6px 10px;border-radius:8px;background:var(--cinza);border:1px solid var(--linha)}
+
+  /* Redes */
+  .redes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .rede{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 6px;border-radius:12px;
+    background:var(--cinza);border:1px solid var(--linha);font-size:12px;font-weight:600}
+  .rede svg{width:22px;height:22px}
+  .rede:hover{border-color:var(--vermelho)}
+
+  .endereco{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+  .endereco svg{width:20px;height:20px;color:var(--vermelho);flex:none;margin-top:2px}
+  .endereco a{display:inline-block;margin-top:6px;font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+  .pix{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-radius:12px;background:var(--cinza);border:1px solid var(--linha);font-size:14px}
+  .pix code{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#d4d4d8;word-break:break-all}
+  .pix button{flex:none;background:var(--preto);color:#fff;border:1px solid var(--linha);border-radius:8px;padding:8px 10px;font-weight:700;cursor:pointer}
+
+  /* Galeria */
+  .chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:10px;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:none;font:inherit;font-size:13px;font-weight:600;padding:8px 12px;border-radius:999px;
+    border:1px solid var(--linha);background:var(--cinza);color:var(--texto);cursor:pointer}
+  .chip[aria-pressed="true"]{background:var(--vermelho);border-color:var(--vermelho)}
+  .grade{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .foto{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--cinza);border:0;padding:0;cursor:zoom-in}
+  .foto img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+  .foto:hover img{transform:scale(1.05)}
+  .mais{margin-top:10px}
+  .semfoto{font-size:13px;color:var(--suave);text-align:center;padding:16px 0}
+  .lb{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:20;display:none;flex-direction:column;align-items:center;justify-content:center;padding:16px}
+  .lb.on{display:flex}
+  .lb img{max-width:100%;max-height:70vh;border-radius:10px;object-fit:contain}
+  .lb .leg{margin-top:12px;font-size:14px;color:#d4d4d8;text-align:center}
+  .lb .acoes{display:flex;gap:8px;margin-top:14px;width:100%;max-width:420px}
+  .lb .acoes .btn{padding:12px}
+  .lb .nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid #444;background:rgba(20,20,20,.8);color:#fff;font-size:22px;cursor:pointer}
+  .lb .prev{left:10px}.lb .next{right:10px}
+  .lb .fechar{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:50%;border:1px solid #444;background:#111;color:#fff;font-size:20px;cursor:pointer}
+  .lb .cont{position:absolute;top:22px;left:18px;font-size:13px;color:#a1a1aa}
+
+  footer{text-align:center;color:var(--suave);font-size:12.5px;margin-top:10px}
+  footer strong{color:var(--texto)}
+
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:#fff;color:#111;
+    padding:10px 16px;border-radius:999px;font-weight:700;font-size:14px;transition:transform .25s;z-index:9}
+  .toast.on{transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <!-- CABEÇALHO -->
+  <header class="topo">
+    <button class="share" id="btnShare" aria-label="Compartilhar cartão">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>
+    </button>
+    <div class="logo" id="logo">
+      <!-- Para usar o logo oficial: coloque logo.png na mesma pasta. Se não existir, aparece este símbolo. -->
+      <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true">
+        <rect x="8" y="8" width="36" height="36" rx="4" transform="rotate(45 26 26)" fill="none" stroke="#3A3A40" stroke-width="5"/>
+        <path d="M19 15h16v5H24.5v5H33v5h-8.5v7H19z" fill="#D3202A"/>
+      </svg>
+    </div>
+    <h1>Foster <span>Engenharia</span> & Construção</h1>
+    <p class="bio">Engenharia civil do projeto à entrega da obra: diagnóstico técnico, execução e acompanhamento com engenheiro responsável.</p>
+    <div class="selos">
+      <span class="selo">Projetos</span>
+      <span class="selo">Laudos técnicos</span>
+      <span class="selo">Execução de obras</span>
+      <span class="selo">Manutenção predial</span>
+    </div>
+    <p class="bio" style="font-size:13px;margin-top:12px">Santana de Parnaíba · Alphaville · Região de SP</p>
+  </header>
+
+  <!-- AÇÕES PRINCIPAIS -->
+  <a class="btn principal" id="btnZap" href="#" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3Z"/></svg>
+    Pedir orçamento no WhatsApp
+  </a>
+  <div class="dupla">
+    <a class="btn" href="tel:+5524992096103">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>
+      Ligar
+    </a>
+    <button class="btn" id="btnVcard">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+      Salvar contato
+    </button>
+  </div>
+
+  <!-- SERVIÇOS -->
+  <section class="card">
+    <h2>Serviços</h2>
+    <p class="sub">Toque em um serviço e fale direto com a gente.</p>
+    <div class="servicos">
+      <div class="serv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M2 12.5 12 5l10 7.5"/></svg></div>
+        <div><h3>Telhados</h3><p>Telhado novo, reforma e troca de telhas, com calhas, rufos e garantia do serviço.</p>
+          <a href="#" data-servico="Telhados">Pedir orçamento →</a></div>
+      </div>
+      <div class="serv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7S6 9.5 6 14a6 6 0 0 0 12 0c0-4.5-6-11.3-6-11.3Z"/><path d="M4 21h16"/></svg></div>
+        <div><h3>Impermeabilização</h3><p>Lajes, terraços, caixas d'água e áreas molhadas. Fim de infiltrações e goteiras.</p>
+          <a href="#" data-servico="Impermeabilização">Pedir orçamento →</a></div>
+      </div>
+      <div class="serv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><path d="M9 20v-6h6v6"/></svg></div>
+        <div><h3>Reformas e acabamentos</h3><p>Casas, apartamentos e lojas: pisos, pintura, fachadas, drywall e reformas completas.</p>
+          <a href="#" data-servico="Reforma">Pedir orçamento →</a></div>
+      </div>
+      <div class="serv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div>
+        <div><h3>Projetos e laudos</h3><p>Projetos, vistorias, laudos técnicos e regularização de obras.</p>
+          <a href="#" data-servico="Projeto ou laudo">Pedir orçamento →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section class="card" id="obras">
+    <h2>Obras realizadas</h2>
+    <p class="sub">Alguns trabalhos executados pela Foster. Toque na foto para ampliar.</p>
+    <div class="chips" id="chips" role="toolbar" aria-label="Filtrar fotos"></div>
+    <div class="grade" id="grade"></div>
+    <p class="semfoto" id="semfoto" hidden>As fotos aparecem quando o cartão estiver publicado no site.</p>
+    <button class="btn mais" id="btnMais" hidden>Ver mais fotos</button>
+    <p class="vercat">Veja também o <a href="https://wa.me/c/5524992096103" target="_blank" rel="noopener">catálogo no WhatsApp</a></p>
+  </section>
+
+  <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+    <span class="cont" id="lbCont"></span>
+    <button class="fechar" id="lbFechar" aria-label="Fechar">✕</button>
+    <button class="nav prev" id="lbPrev" aria-label="Anterior">‹</button>
+    <img id="lbImg" alt="">
+    <button class="nav next" id="lbNext" aria-label="Próxima">›</button>
+    <p class="leg" id="lbLeg"></p>
+    <div class="acoes"><a class="btn principal" id="lbZap" href="#" target="_blank" rel="noopener">Quero um orçamento assim</a></div>
+  </div>
+
+  <!-- FORMULÁRIO -->
+  <section class="card" id="orcamento">
+    <h2>Peça seu orçamento</h2>
+    <p class="sub">Preencha e envie. A mensagem abre pronta no WhatsApp.</p>
+    <form id="form">
+      <div><label for="fNome">Nome</label><input id="fNome" required autocomplete="name" placeholder="Seu nome"></div>
+      <div><label for="fTel">WhatsApp</label><input id="fTel" required type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 90000-0000"></div>
+      <div><label for="fLocal">Bairro / Cidade</label><input id="fLocal" placeholder="Ex.: Alphaville, Barueri"></div>
+      <div><label for="fServ">Qual serviço?</label>
+        <select id="fServ" required>
+          <option value="">Selecione…</option>
+          <option>Reforma</option><option>Telhado</option><option>Impermeabilização</option>
+          <option>Projeto</option><option>Laudo / vistoria</option><option>Outro</option>
+        </select></div>
+      <div><label for="fDesc">Conte um pouco (opcional)</label><textarea id="fDesc" placeholder="Ex.: goteira no quarto, telhado de 80 m²…"></textarea></div>
+      <button class="btn principal" type="submit">Enviar pelo WhatsApp</button>
+      <a id="zapForm" class="aviso" href="#" target="_blank" rel="noopener" hidden style="text-align:center;text-decoration:underline">Se o WhatsApp não abriu, toque aqui.</a>
+      <p class="aviso">Seus dados são usados só para responder ao seu pedido.</p>
+    </form>
+  </section>
+
+  <!-- CONFIANÇA -->
+  <section class="card">
+    <h2>Já atendemos</h2>
+    <p class="sub">Empresas, condomínios e residências da região.</p>
+    <div class="clientes">
+      <span>Banco Itaú</span><span>JHSF Fazenda Boa Vista</span><span>Claro</span><span>Proinvest</span>
+      <span>Residências Alphaville</span><span>Condomínio Itapark</span><span>Condomínio São Pedro</span>
+      <span>Max Center</span><span>Fotótica</span><span>Yogo Up</span><span>Rizzo Gourmet</span>
+      <span>Tutti Frutti</span><span>Molas Farias</span><span>RVE Engenharia</span><span>Conexão Pet</span>
+    </div>
+  </section>
+
+  <!-- REDES -->
+  <section class="card">
+    <h2>Acompanhe</h2>
+    <p class="sub">Obras, dicas e bastidores.</p>
+    <div class="redes">
+      <a class="rede" href="https://instagram.com/foster.engenharia" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Instagram</a>
+      <a class="rede" href="https://www.tiktok.com/@fosterconstrucoes" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.7a5.8 5.8 0 1 0 5 5.7V9.1a7.3 7.3 0 0 0 4.3 1.4V7.4a4.3 4.3 0 0 1-3.3-1.6Z"/></svg>TikTok</a>
+      <a class="rede" href="https://facebook.com/fosterconstrucoes" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8V6.3c0-.8.2-1.3 1.4-1.3H17V2h-2.6C11.6 2 10.7 3.8 10.7 6v2H8v3h2.7v11H14V11h2.7l.4-3Z"/></svg>Facebook</a>
+      <a class="rede" href="https://www.linkedin.com/in/wilsonfoster" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6.1V21h-4v-5.1c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4Z"/></svg>LinkedIn</a>
+      <a class="rede" href="mailto:comercial@fosterconstrucoes.com.br">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>E-mail</a>
+      <a class="rede" href="https://engfoster.com.br" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>Site</a>
+    </div>
+  </section>
+
+  <!-- ENDEREÇO -->
+  <section class="card">
+    <div class="endereco">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      <div>Santana de Parnaíba/SP<br><span style="color:var(--suave);font-size:13px">Atendemos Alphaville e toda a região de SP</span></div>
+    </div>
+  </section>
+
+  <!-- PIX (aparece só se a chave for preenchida no código) -->
+  <section class="card" id="secPix" hidden>
+    <h2>Pagamento via PIX</h2>
+    <p class="sub">Para clientes com serviço contratado.</p>
+    <div class="pix"><code id="pixKey"></code><button id="btnPix">Copiar</button></div>
+  </section>
+
+  <footer>
+    <strong>Wilson Foster · Engenheiro Civil</strong><br>
+    Foster Engenharia & Construção
+  </footer>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ===== CONFIGURAÇÃO =====
+  const ZAP = "5524992096103";
+  const PIX_CHAVE = "fosterconstrutora@gmail.com"; // cole aqui a chave PIX para mostrar o bloco de pagamento
+  // ========================
+
+  const toast = (t) => { const el = document.getElementById("toast"); el.textContent = t; el.classList.add("on"); setTimeout(() => el.classList.remove("on"), 2200); };
+  const zapLink = (msg) => "https://wa.me/" + ZAP + "?text=" + encodeURIComponent(msg);
+
+  // Logo oficial, se existir logo.png na pasta
+  (function(){ const img = new Image(); img.onload = () => { const box = document.getElementById("logo"); box.innerHTML = ""; img.alt = "Logo Foster"; box.appendChild(img); }; img.src = "logo.png"; })();
+
+  document.getElementById("btnZap").href = zapLink("Olá! Vim pelo cartão digital da Foster e gostaria de um orçamento.");
+
+  document.querySelectorAll("[data-servico]").forEach(a => {
+    a.href = zapLink("Olá! Vim pelo cartão digital e gostaria de um orçamento de: " + a.dataset.servico + ".");
+    a.target = "_blank"; a.rel = "noopener";
+  });
+
+  document.getElementById("form").addEventListener("submit", e => {
+    e.preventDefault();
+    const v = id => document.getElementById(id).value.trim();
+    let msg = "Olá! Vim pelo cartão digital e quero um orçamento.\n\n" +
+      "Nome: " + v("fNome") + "\nWhatsApp: " + v("fTel") +
+      (v("fLocal") ? "\nLocal: " + v("fLocal") : "") +
+      "\nServiço: " + v("fServ") +
+      (v("fDesc") ? "\nDetalhes: " + v("fDesc") : "");
+    const link = document.getElementById("zapForm");
+    link.href = zapLink(msg); link.hidden = false;
+    link.click();
+  });
+
+  document.getElementById("btnVcard").addEventListener("click", () => {
+    const vcf = [
+      "BEGIN:VCARD","VERSION:3.0",
+      "N:Foster Engenharia & Construção;;;;","FN:Foster Engenharia & Construção",
+      "ORG:Foster Engenharia & Construção","TITLE:Wilson Foster · Engenheiro Civil",
+      "TEL;TYPE=CELL,VOICE:+55 24 99209-6103",
+      "EMAIL;TYPE=WORK:comercial@fosterconstrucoes.com.br",
+      "URL:https://engfoster.com.br",
+      "ADR;TYPE=WORK:;;;Santana de Parnaíba;SP;;Brasil",
+      "END:VCARD"
+    ].join("\r\n");
+    const blob = new Blob([vcf], { type: "text/vcard;charset=utf-8" });
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "Foster-Engenharia.vcf";
+    document.body.appendChild(a); a.click(); a.remove();
+    toast("Contato baixado");
+  });
+
+  document.getElementById("btnShare").addEventListener("click", async () => {
+    const data = { title: "Foster Engenharia & Construção", text: "Reformas, telhados, impermeabilização e projetos. Peça seu orçamento:", url: location.href };
+    try {
+      if (navigator.share) { await navigator.share(data); }
+      else { await navigator.clipboard.writeText(location.href); toast("Link copiado"); }
+    } catch (_) {}
+  });
+
+  // ===== GALERIA DE OBRAS =====
+  const W = "https://2ee04565b1.cbaul-cdnwnd.com/b263b193b304ef2c1c15391c30b8a959/";
+  const A = "https://meuairgo.com.br/assets/uploads/images/catalog-products/produto-img-";
+  const FOTOS = [
+    // [categoria, endereço da foto, legenda]
+    ["Telhados", A+"20230320-084500026-23-07-2023-14-15.png", "Telhado com telhas cerâmicas"],
+    ["Telhados", A+"20230128-170234779-24-07-2023-01-18.png", "Execução de telhado"],
+    ["Impermeabilização", A+"20211215-110510331-24-07-2023-00-51.png", "Impermeabilização de laje com manta"],
+    ["Fachadas e pintura", A+"20220823-013609-933-24-07-2023-01-04.png", "Fachada de edifício pintada"],
+    ["Fachadas e pintura", A+"20220806-051930-804-24-07-2023-01-06.png", "Recuperação e pintura de fachada"],
+    ["Fachadas e pintura", A+"20220818-235822-067-24-07-2023-01-20.png", "Pintura de fachada — antes e depois"],
+    ["Fachadas e pintura", A+"20230301-165852477-24-07-2023-01-10.png", "Serviço em altura na fachada"],
+    ["Fachadas e pintura", W+"200000026-0f9cb1094a/IMG0014L.jpg", "Fachada comercial"],
+    ["Fachadas e pintura", W+"200000037-8e2d390987/IMG0016E.jpg", "Fachada de imóvel comercial"],
+    ["Fachadas e pintura", W+"200000345-3e91040648/DSC_0000031.jpg", "Fachada de galpão"],
+    ["Reformas e acabamentos", A+"20220824-072109-116-24-07-2023-00-56.png", "Reforma de interiores"],
+    ["Reformas e acabamentos", A+"20221209-120101-911-24-07-2023-01-03.png", "Reforma de academia"],
+    ["Reformas e acabamentos", W+"200000034-cfc0cd0b7a/IMG0015P.jpg", "Forro de gesso com sanca iluminada"],
+    ["Reformas e acabamentos", W+"200000352-46f9b47fd3/DSC01542.JPG", "Pintura interna"],
+    ["Reformas e acabamentos", W+"200000354-6bff16de8e/Foto0064.jpg", "Instalação de piso"],
+    ["Reformas e acabamentos", W+"200000355-075b70854d/Foto0106.jpg", "Forro de gesso e iluminação"],
+    ["Reformas e acabamentos", W+"200000356-70cec71cec/Foto0113.jpg", "Corredor reformado"],
+    ["Reformas e acabamentos", W+"200000357-6aeec6be5f/Foto-0124.jpg", "Escada revestida"],
+    ["Reformas e acabamentos", W+"200000590-cfac9d19b5/P01-01-13_19.49%5B2%5D.jpg", "Piso laminado"],
+    ["Reformas e acabamentos", W+"200000348-3b7ff3c7ec/DSC_0000096.jpg", "Reforma de áreas internas"],
+    ["Reformas e acabamentos", W+"200000344-c844cc93cb/DSC_0000015.jpg", "Forro e instalações"],
+    ["Reformas e acabamentos", W+"200000347-d7cb5d9ba6/DSC_0000080.jpg", "Forro com iluminação"],
+    ["Reformas e acabamentos", W+"200000595-b8825b97b6/CAM00148.jpg", "Cozinha reformada"],
+    ["Lojas e comercial", W+"200000045-8ef248ff1e/IMG0060A.jpg", "Reforma de loja"],
+    ["Lojas e comercial", W+"200000042-ebd2decd02/IMG0018I.jpg", "Loja entregue"],
+    ["Lojas e comercial", W+"200000018-e0f1de1eb7/IMG0006I.jpg", "Piso de loja"],
+    ["Lojas e comercial", W+"200000017-0b2720c204/IMG0004C.jpg", "Ar-condicionado e forro"],
+    ["Lojas e comercial", W+"200000012-c4ff3c6f3d/IMG0002L.jpg", "Obra em shopping"],
+    ["Lojas e comercial", W+"200000014-d3727d4835/IMG0002P.jpg", "Equipe em obra comercial"],
+    ["Lojas e comercial", W+"200000015-20b6321b6b/IMG0002S.jpg", "Fechamento de loja"],
+    ["Lojas e comercial", W+"200000019-999c99a95d/IMG0007D.jpg", "Preparação de piso"],
+    ["Lojas e comercial", W+"200000046-2a5702b4e9/IMG0064A.jpg", "Acabamento de fachada interna"],
+    ["Construção e estrutura", W+"200000350-65a596669d/DSC_0000111.jpg", "Construção de casas"],
+    ["Construção e estrutura", W+"200000349-d1deed2d80/DSC_0000099.jpg", "Muro de contenção"],
+    ["Construção e estrutura", W+"200000351-0a8cc0c819/DSC_0000139.jpg", "Fundação e instalações"],
+    ["Construção e estrutura", W+"200000210-1485619652/IMG0023H.jpg", "Muro em alvenaria"],
+    ["Construção e estrutura", W+"200000212-760a37700e/IMG0024G.jpg", "Execução de muro"],
+    ["Construção e estrutura", W+"200000214-73d2774ca0/IMG0026B.jpg", "Reboco de muro"],
+    ["Construção e estrutura", W+"200000215-8e1f690108/IMG0026E.jpg", "Muro chapiscado"],
+    ["Construção e estrutura", W+"200000216-b03e1b133b/IMG0027A.jpg", "Alvenaria de vedação"],
+    ["Construção e estrutura", W+"200000217-ecb78edb0c/IMG0027E.jpg", "Muro finalizado"]
+  ];
+  {
+    const cats = ["Todas", ...new Set(FOTOS.map(f => f[0]))];
+    const chips = document.getElementById("chips"), grade = document.getElementById("grade");
+    const btnMais = document.getElementById("btnMais"), semfoto = document.getElementById("semfoto");
+    const lb = document.getElementById("lb"), lbImg = document.getElementById("lbImg");
+    let filtro = "Todas", limite = 9, lista = [], atual = 0, falhas = new Set();
+
+    chips.innerHTML = cats.map(c => `<button class="chip" aria-pressed="${c === filtro}">${c}</button>`).join("");
+    chips.addEventListener("click", e => {
+      const b = e.target.closest(".chip"); if (!b) return;
+      filtro = b.textContent; limite = 9;
+      chips.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", x === b));
+      render();
+    });
+
+    function render() {
+      lista = FOTOS.filter(f => (filtro === "Todas" || f[0] === filtro) && !falhas.has(f[1]));
+      grade.innerHTML = "";
+      lista.slice(0, limite).forEach((f, i) => {
+        const b = document.createElement("button"); b.className = "foto"; b.setAttribute("aria-label", f[2]);
+        const img = document.createElement("img"); img.loading = "lazy"; img.alt = f[2]; img.src = f[1];
+        img.onerror = () => { falhas.add(f[1]); b.remove(); checar(); };
+        b.appendChild(img); b.onclick = () => abrir(i); grade.appendChild(b);
+      });
+      btnMais.hidden = lista.length <= limite;
+      btnMais.textContent = "Ver mais fotos (" + (lista.length - limite) + ")";
+      checar();
+    }
+    function checar() { const vazio = grade.children.length === 0; semfoto.hidden = !vazio; if (vazio) btnMais.hidden = true; }
+    btnMais.onclick = () => { limite += 12; render(); };
+
+    function abrir(i) { atual = i; mostrar(); lb.classList.add("on"); document.body.style.overflow = "hidden"; }
+    function fechar() { lb.classList.remove("on"); document.body.style.overflow = ""; }
+    function mostrar() {
+      const f = lista[atual]; lbImg.src = f[1]; lbImg.alt = f[2];
+      document.getElementById("lbLeg").textContent = f[2] + " · " + f[0];
+      document.getElementById("lbCont").textContent = (atual + 1) + " / " + lista.length;
+      document.getElementById("lbZap").href = zapLink("Olá! Vi no cartão digital a foto \"" + f[2] + "\" (" + f[0] + ") e quero um orçamento parecido.");
+    }
+    const passo = d => { atual = (atual + d + lista.length) % lista.length; mostrar(); };
+    document.getElementById("lbPrev").onclick = () => passo(-1);
+    document.getElementById("lbNext").onclick = () => passo(1);
+    document.getElementById("lbFechar").onclick = fechar;
+    lb.addEventListener("click", e => { if (e.target === lb) fechar(); });
+    document.addEventListener("keydown", e => {
+      if (!lb.classList.contains("on")) return;
+      if (e.key === "Escape") fechar(); if (e.key === "ArrowLeft") passo(-1); if (e.key === "ArrowRight") passo(1);
+    });
+    let x0 = null;
+    lb.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener("touchend", e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) passo(dx < 0 ? 1 : -1); x0 = null; });
+
+    render();
+  }
+
+  if (PIX_CHAVE) {
+    document.getElementById("secPix").hidden = false;
+    document.getElementById("pixKey").textContent = PIX_CHAVE;
+    document.getElementById("btnPix").addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(PIX_CHAVE); toast("Chave PIX copiada"); } catch (_) { toast("Copie manualmente"); }
+    });
+  }
+</script>
+</body>
+</html>
